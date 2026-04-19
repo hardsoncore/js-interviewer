@@ -2517,7 +2517,7 @@ export const questions = [
   },
   {
     id: 107,
-    name: 'Protected vs Private vs Public in TypeScript. When to use each of these access modifiers?',
+    name: 'Access Modifiers (Public, Private, Protected) + Static in TypeScript. When to use each of these access modifiers?',
     answer: 'assets/content/eng/answers/107-Protected-vs-Private-vs-Public-v-TypeScript.md',
     tags: [
       'TypeScript',
@@ -2538,6 +2538,9 @@ export const questions = [
       },
       {
         name: 'When to use each of these access modifiers',
+      },
+      {
+        name: 'Static properties and methods. What are their features and when to use them',
       }
     ]
   },

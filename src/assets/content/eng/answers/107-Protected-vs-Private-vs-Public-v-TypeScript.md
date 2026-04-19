@@ -88,7 +88,7 @@
   Important: Do not abuse <code>protected</code>, turning it into "almost public". If it seems to you that many methods should be <code>protected</code>, it might be worth reconsidering the architecture and extracting these methods into a separate service or utility.
 </p>
 
-<h3>Summary - when to use each of these access modifiers?</h3>
+<h3>When to use each of these access modifiers?</h3>
 
 <p>
   <code>protected</code> is needed only to delineate access. To give the ability to use methods in subclasses (since <code>private</code> is not accessible there) and close access to calling methods from the outside (like for <code>public</code>).
@@ -98,4 +98,88 @@
   If it's needed only for subclasses, then <code>protected</code>.
   <br />
   If it's needed only inside the class, then <code>private</code>.
+</p>
+
+
+<h3>Additional: Static (Static Properties and Methods)</h3>
+
+<p>
+  <code>Public/Private/Protected</code> answer the question: "Who can see this?" (Visibility).
+</p>
+
+<p>
+  <code>Static</code> answers the question: "Who owns this?" (Memory scope: class or instance).
+</p>
+
+<p>
+  <span class="accent">Static method</span> — a method that belongs to the class itself, not its instances (objects). While regular methods are called on a specific object created with <code>new</code>, static methods are called directly on the class.
+</p>
+
+<h4>Main Features</h4>
+
+<p>
+  <strong>Call without creating an object:</strong> You don't need to write <code>const obj = new MyClass()</code> to use the method.
+</p>
+
+<p><strong>No access to <code>this</code> (instance):</strong> Inside a static method, you cannot use <code>this</code> to access regular class fields because the static method "doesn't know" which object called it (there might not be any object at all).</p>
+
+<p><strong>Global access point:</strong> Static methods are often used to create utility functions that are logically related to the class's theme.</p>
+
+<code class="code">
+  class Calculator {
+    // Static property
+    static PI: number = 3.14159;
+
+    // Static method
+    static add(a: number, b: number): number {
+      return a + b;
+    }
+
+    // Regular method (instance method)
+    sayHello(): void {
+      console.log("Hello from the calculator!");
+    }
+  }
+
+  // 1. Call the static method directly on the class
+  const sum = Calculator.add(5, 10);
+  console.log(sum); // 15
+  console.log(Calculator.PI); // 3.14159
+
+  // 2. This won't work:
+  const calc = new Calculator();
+  calc.add(5, 10); // Error: Property 'add' does not exist on type 'Calculator'.
+
+  // 3. To call sayHello, you need to create an object
+  const myCalc = new Calculator();
+  myCalc.sayHello(); // Works
+</code>
+
+<h4>When to use static methods?</h4>
+<p>
+  <strong>Utilities:</strong> When a method performs a pure action that does not depend on the state of a specific object (for example, <code>Math.round()</code> in JavaScript is a static method of the <code>Math</code> class).
+</p>
+
+<p>
+  <strong>Factories:</strong> When you need to create an object in a special way.
+</p>
+
+<code class="code">
+  class User {
+    constructor(public name: string) {}
+
+    static createAdmin(): User {
+      return new User("Admin");
+    }
+  }
+  const admin = User.createAdmin();
+</code>
+
+<p>
+  <strong>Caching or shared settings:</strong> If you need to store data that is common to all objects of this type.
+</p>
+
+<h4>Summary of static methods</h4>
+<p>
+  If a method does not need data from <code>this</code> (properties of a specific object) to work, it can safely be made static. This saves memory and makes the code cleaner.
 </p>

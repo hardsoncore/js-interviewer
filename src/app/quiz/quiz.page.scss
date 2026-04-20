@@ -1,3 +1,24 @@
+:host::ng-deep ion-title[size="large"] {
+  height: fit-content;
+}
+
+.header {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
+  }
+
+  &__toggle {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
 .container {
   margin-top: 2rem;
 }
@@ -8,6 +29,8 @@
   & .question__id {
     font-size: .9rem;
     font-weight: 500;
+    display: flex;
+    justify-content: space-between;
   }
 
   & .question__name {
@@ -40,7 +63,7 @@
 }
 
 .progress-wrapper {
-  padding: 1rem;
+  padding: 20px;
 
   ion-progress-bar {
     border-radius: 5px;
@@ -52,7 +75,7 @@
   display: flex;
   justify-content: space-between;
   gap: .5rem;
-  padding: 1rem;
+  padding: 20px;
 
   & ion-button {
     flex: 1;

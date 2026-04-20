@@ -7,6 +7,7 @@ import { QueryParams } from '../models/app.model';
 import { Question } from '../models/question.model';
 import { QuestionsService } from '../services/questions.service';
 import { ResultsService } from '../services/results.service';
+import { QuestionLevels } from '../enums/questions.enum';
 
 @Component({
   selector: 'app-quiz',
@@ -14,8 +15,10 @@ import { ResultsService } from '../services/results.service';
   styleUrls: ['quiz.page.scss']
 })
 export class QuizPage implements OnInit, OnDestroy {
-  question: Question;
-  percent$: Observable<number>;
+  questionLevels = QuestionLevels;
+  question: Question | null = null;
+  percent$: Observable<number> | null = null;
+  isRandomized = JSON.parse(localStorage.getItem('isRandomized') || 'false');
 
   private destroy$ = new Subject<void>();
   private timerId: any;
@@ -49,7 +52,7 @@ export class QuizPage implements OnInit, OnDestroy {
   public visitTheoryPage(): void {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        questionId: this.question.id,
+        questionId: this.question?.id,
       } as QueryParams
     };
 
@@ -59,11 +62,18 @@ export class QuizPage implements OnInit, OnDestroy {
   public submitAnswer(): void {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        questionId: this.question.id,
+        questionId: this.question?.id,
       } as QueryParams
     };
 
     this.router.navigate(['tabs/quiz/answer-structure'], navigationExtras);
+  }
+
+  public toggleQuiz(event: any): void {
+    this.isRandomized = event.detail.checked;
+    localStorage.setItem('isRandomized', JSON.stringify(this.isRandomized));
+
+    this.getNextQuestion();
   }
 
   public getNextQuestion(): void {
@@ -75,13 +85,20 @@ export class QuizPage implements OnInit, OnDestroy {
         const uncompletedQuestions = results.filter(r => r.correctness < 100);
 
         if (uncompletedQuestions.length > 0) {
-          const randomId = uncompletedQuestions[Math.floor(Math.random() * uncompletedQuestions.length)].id;
-          this.question = this.questionsService.getQuestionById(randomId);
-          this.percent$ = this.resultsService.getPercentById(this.question.id);
+          let selectedId: number | string;
+
+          if (this.isRandomized) {
+            selectedId = uncompletedQuestions[Math.floor(Math.random() * uncompletedQuestions.length)].id;
+          } else {
+            selectedId = uncompletedQuestions[0].id;
+          }
+
+          this.question = this.questionsService.getQuestionById(selectedId);
+          this.percent$ = this.resultsService.getPercentById(this.question?.id);
         } else {
           this.questionsService.getRandomQuestion().pipe(take(1)).subscribe(q => {
             this.question = q;
-            this.percent$ = this.resultsService.getPercentById(this.question.id);
+            this.percent$ = this.resultsService.getPercentById(this.question?.id);
           });
         }
       });

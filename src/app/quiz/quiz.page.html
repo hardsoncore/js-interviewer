@@ -7,9 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header collapse="condense" class="header">
     <ion-toolbar>
-      <ion-title size="large">Quiz</ion-title>
+      <ion-title size="large">
+        <div class="header__title">
+          <span>Quiz</span>
+
+          <ion-label class="header__toggle">
+            Randomize
+            <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
+          </ion-label>
+        </div>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -17,8 +26,18 @@
     <ion-card class="question" (click)="visitTheoryPage()">
       <ion-card-header *ngIf="question" class="header">
         <ion-card-subtitle class="question__id">
-          Question №{{ question.id }}
+          <span>Question №{{ question.id }}</span>
+
+          <span *ngIf="question.level">
+            Level:
+            <ion-text
+              [color]="question.level === questionLevels.junior && 'success' ||
+                question.level === questionLevels.middle && 'warning' || 'danger'">
+                  {{ question.level }}
+                </ion-text>
+          </span>
         </ion-card-subtitle>
+
         <ion-card-title class="question__name">{{ question.name }}</ion-card-title>
       </ion-card-header>
       <!-- skeleton -->

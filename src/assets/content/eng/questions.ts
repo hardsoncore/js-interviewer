@@ -1164,7 +1164,7 @@ export const questions = [
   },
   {
     id: 46,
-    name: 'Partial Application',
+    name: 'Partial Application and Function Composition',
     answer: 'assets/content/eng/answers/46-Partial-Application.md',
     tags: [
       'JavaScript',
@@ -1180,6 +1180,9 @@ export const questions = [
       },
       {
         name: 'Implementation of partial application',
+      },
+      {
+        name: 'Function Composition - what it is and why it is needed',
       }
     ]
   },

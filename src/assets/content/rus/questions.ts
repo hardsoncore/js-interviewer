@@ -1164,7 +1164,7 @@ export const questions = [
   },
   {
     id: 46,
-    name: 'Частичное применение (Partial Application)',
+    name: 'Частичное применение (Partial Application) и Композиция функций (Function Composition)',
     answer: 'assets/content/rus/answers/46-Chastichnoe-primenenie-Partial-Application.md',
     tags: [
       'JavaScript',
@@ -1180,6 +1180,9 @@ export const questions = [
       },
       {
         name: 'Реализация частичного применения',
+      },
+      {
+        name: 'Композиция функций - что это и для чего нужно',
       }
     ]
   },

@@ -1165,7 +1165,7 @@ export const questions = [
   },
   {
     id: 46,
-    name: 'Часткове застосування (Partial Application)',
+    name: 'Часткове застосування (Partial Application) і Композиція функцій (Function Composition)',
     answer: 'assets/content/ukr/answers/46-Chastkove-zastosuvannya-Partial-Application.md',
     tags: [
       'JavaScript',
@@ -1181,6 +1181,9 @@ export const questions = [
       },
       {
         name: 'Реалізація часткового застосування',
+      },
+      {
+        name: 'Композиція функцій (Function Composition) - що це і для чого потрібно',
       }
     ]
   },

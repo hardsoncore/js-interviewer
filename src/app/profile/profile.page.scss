@@ -1,16 +1,48 @@
 .profile-info {
-  padding: 3rem 0 5rem;
   text-align: center;
 
   &__avatar {
-    margin: auto;
+    margin: 2rem auto 0;
     width: 50vw;
-    max-width: 300px;
+    max-width: 11rem;
     height: 50vw;
-    max-height: 300px;
+    max-height: 11rem;
+  }
+
+  .not-displayed {
+    display: none;
   }
 }
 
-.not-displayed {
-  display: none;
+.section-header {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ion-color-medium);
+  margin-top: 16px;
 }
+
+.item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+ion-icon {
+  font-size: 18px;
+  color: var(--ion-color-medium);
+}
+
+.item-value {
+  color: var(--ion-color-medium);
+  font-size: 15px;
+}
+
+.chevron-icon {
+  color: var(--ion-color-medium);
+  font-size: 16px;
+}
+

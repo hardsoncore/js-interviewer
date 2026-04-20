@@ -5,72 +5,74 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Profile</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-  <div class="profile-info">
-    <ion-avatar class="profile-info__avatar" [ngClass]="{'not-displayed': !imgLoaded}">
-      <img [src]="profile.avatarUrl" (load)="onImageLoad()">
-    </ion-avatar>
-    <div *ngIf="!imgLoaded">
-      <ion-avatar class="profile-info__avatar">
-        <ion-skeleton-text animated></ion-skeleton-text>
+    <div class="profile-info">
+      <ion-avatar class="profile-info__avatar" [ngClass]="{'not-displayed': !imgLoaded}">
+        <img [src]="profile.avatarUrl" (load)="onImageLoad()">
       </ion-avatar>
+      <div *ngIf="!imgLoaded">
+        <ion-avatar class="profile-info__avatar">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+      </div>
     </div>
+
+    <ion-list-header class="section-header">Settings</ion-list-header>
+    <ion-list [inset]="true">
+      <ion-item>
+        <div slot="start" class="item-icon item-icon--theme">
+          <ion-icon name="sunny"></ion-icon>
+        </div>
+        <ion-label>Theme</ion-label>
+        <ion-select [(ngModel)]="currentTheme">
+          <ion-select-option value="light">Light</ion-select-option>
+          <ion-select-option value="dark">Dark</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <div slot="start" class="item-icon item-icon--language">
+          <ion-icon name="language"></ion-icon>
+        </div>
+        <ion-label>Language</ion-label>
+        <ion-select [(ngModel)]="currentLanguage">
+          <ion-select-option [value]="languages.eng">English</ion-select-option>
+          <ion-select-option [value]="languages.ukr">Ukrainian</ion-select-option>
+          <ion-select-option [value]="languages.rus">ru</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none">
+        <div slot="start" class="item-icon item-icon--version">
+          <ion-icon name="bar-chart"></ion-icon>
+        </div>
+        <ion-label>App version</ion-label>
+        <span slot="end" class="item-value">{{ appVersion }}</span>
+      </ion-item>
+    </ion-list>
+
+    <ion-list-header class="section-header">About</ion-list-header>
+    <ion-list [inset]="true">
+      <ion-item href="https://github.com/hardsoncore/js-interviewer" target="_blank" detail="false">
+        <div slot="start" class="item-icon item-icon--github">
+          <ion-icon name="logo-github"></ion-icon>
+        </div>
+        <ion-label>Star on GitHub</ion-label>
+        <ion-icon name="chevron-forward" slot="end" class="chevron-icon"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <ion-list [inset]="true">
+      <ion-item lines="none" button detail="false" (click)="clearResults()">
+        <div slot="start" class="item-icon item-icon--signout">
+          <ion-icon name="trash"></ion-icon>
+        </div>
+        <ion-label color="danger">Clear Results</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
-
-  <ion-list-header class="section-header">Settings</ion-list-header>
-  <ion-list [inset]="true">
-    <ion-item>
-      <div slot="start" class="item-icon item-icon--theme">
-        <ion-icon name="sunny"></ion-icon>
-      </div>
-      <ion-label>Theme</ion-label>
-      <ion-select [(ngModel)]="currentTheme">
-        <ion-select-option value="light">Light</ion-select-option>
-        <ion-select-option value="dark">Dark</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <div slot="start" class="item-icon item-icon--language">
-        <ion-icon name="language"></ion-icon>
-      </div>
-      <ion-label>Language</ion-label>
-      <ion-select [(ngModel)]="currentLanguage">
-        <ion-select-option [value]="languages.eng">English</ion-select-option>
-        <ion-select-option [value]="languages.ukr">Ukrainian</ion-select-option>
-        <ion-select-option [value]="languages.rus">ru</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item lines="none">
-      <div slot="start" class="item-icon item-icon--version">
-        <ion-icon name="bar-chart"></ion-icon>
-      </div>
-      <ion-label>App version</ion-label>
-      <span slot="end" class="item-value">{{ appVersion }}</span>
-    </ion-item>
-  </ion-list>
-
-  <ion-list-header class="section-header">About</ion-list-header>
-  <ion-list [inset]="true">
-    <ion-item href="https://github.com/hardsoncore/js-interviewer" target="_blank" detail="false">
-      <div slot="start" class="item-icon item-icon--github">
-        <ion-icon name="logo-github"></ion-icon>
-      </div>
-      <ion-label>Star on GitHub</ion-label>
-      <ion-icon name="chevron-forward" slot="end" class="chevron-icon"></ion-icon>
-    </ion-item>
-  </ion-list>
-
-  <ion-list [inset]="true">
-    <ion-item lines="none" button detail="false" (click)="clearResults()">
-      <div slot="start" class="item-icon item-icon--signout">
-        <ion-icon name="trash"></ion-icon>
-      </div>
-      <ion-label color="danger">Clear Results</ion-label>
-    </ion-item>
-  </ion-list>
 </ion-content>

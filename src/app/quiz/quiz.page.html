@@ -82,8 +82,21 @@
       </div>
 
       <div class="buttons">
-        <ion-button (click)="getNextQuestion(); $event.stopPropagation();" color="tertiary" fill="outline" size="large">Skip</ion-button>
-        <ion-button (click)="submitAnswer(); $event.stopPropagation();" color="tertiary" size="large">Check your answer</ion-button>
+        <ion-button
+          *ngIf="isRandomized"
+          (click)="getNextQuestion(); $event.stopPropagation();"
+          color="tertiary"
+          fill="outline"
+          size="large">
+            Skip
+        </ion-button>
+
+        <ion-button
+          (click)="submitAnswer(); $event.stopPropagation();"
+          color="tertiary"
+          size="large">
+            Check your answer
+        </ion-button>
       </div>
     </ion-card>
   </div>

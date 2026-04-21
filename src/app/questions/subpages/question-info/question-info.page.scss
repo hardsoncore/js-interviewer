@@ -105,9 +105,12 @@ ion-button {
   }
 }
 
+.container {
+  background: none;
+}
+
 @media (min-width: 768px) {
   .container {
-    background-color: var(--ion-item-background);
     border-radius: 5px;
     padding: 1rem;
     margin: 1rem auto;

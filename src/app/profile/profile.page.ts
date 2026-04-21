@@ -20,6 +20,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   imgLoaded = false;
   profile: Profile;
   avPercent: number;
+  completedCount = 0;
   appVersion: string;
   languages = Languages;
 
@@ -56,6 +57,9 @@ export class ProfilePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.profileService.profile.pipe(takeUntil(this.destroy$)).subscribe(profile => this.profile = profile);
     this.resultsService.getAveragePercent().pipe(takeUntil(this.destroy$)).subscribe(percent => this.avPercent = percent);
+    this.resultsService.results.pipe(takeUntil(this.destroy$)).subscribe(results => {
+      this.completedCount = results.filter(r => r.correctness === 100).length;
+    });
   }
 
   ngOnDestroy(): void {

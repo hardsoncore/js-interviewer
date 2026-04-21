@@ -14,6 +14,31 @@
   }
 }
 
+.stats-grid {
+  padding: 2rem 12px 0;
+}
+
+.stat-card {
+  margin: 0;
+  border-radius: 14px;
+  text-align: center;
+
+  ion-card-content {
+    padding: 16px 8px;
+  }
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--ion-color-medium);
+  margin-top: 4px;
+}
+
 .section-header {
   font-size: 12px;
   font-weight: 600;

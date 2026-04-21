@@ -57,6 +57,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.profileService.profile.pipe(takeUntil(this.destroy$)).subscribe(profile => this.profile = profile);
     this.resultsService.getAveragePercent().pipe(takeUntil(this.destroy$)).subscribe(percent => this.avPercent = percent);
+    this.resultsService.streak$.pipe(takeUntil(this.destroy$)).subscribe(streak => this.daysStreak = streak);
   }
 
   ngOnDestroy(): void {

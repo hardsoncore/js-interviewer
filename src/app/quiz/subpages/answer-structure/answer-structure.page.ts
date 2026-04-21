@@ -57,6 +57,7 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
     this._updateResults(correctness);
 
     this.resultsService.setResults(this.results);
+    this.resultsService.recordActivity();
     this.backToQuiz(true);
   }
 

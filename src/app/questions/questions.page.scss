@@ -4,6 +4,11 @@
   border: 1px solid rgba(var(--ion-color-medium-rgb), 0.3);
 }
 
+ion-item {
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
 @media (max-width: 768px) {
   .question {
     margin-left: .5rem;

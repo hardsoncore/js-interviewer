@@ -1,16 +1,23 @@
 @media (min-width: 768px) {
   :host::ng-deep .container {
     min-width: 768px;
-    width: 50vw;
+    width: 55vw;
     margin: 0 auto;
   }
 
   :host::ng-deep ion-title[size="large"] {
     min-width: 768px;
-    width: 50vw;
+    width: 55vw;
     margin: 0 auto;
+    padding: 0;
     left: 0;
     right: 0;
     font-size: 2.5rem;
+  }
+
+  :host::ng-deep ion-searchbar {
+    padding: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 }

@@ -14,7 +14,7 @@
           <span>Quiz</span>
 
           <ion-label class="header__toggle">
-            Randomize
+            Random
             <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
           </ion-label>
         </div>
@@ -98,6 +98,16 @@
             Check your answer
         </ion-button>
       </div>
+
+      <!-- <ion-button
+        (click)="visitTheoryPage()"
+        color="tertiary"
+        fill="clear"
+        expand="block"
+        size="large">
+          Read theory
+      </ion-button>
+      <br> -->
     </ion-card>
   </div>
 </ion-content>

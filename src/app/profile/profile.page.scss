@@ -1,3 +1,7 @@
+.container {
+  margin-bottom: 2rem;
+}
+
 .profile-info {
   text-align: center;
 
@@ -20,7 +24,12 @@ ion-item {
 }
 
 .stats-grid {
-  padding: 2rem 12px 0;
+  padding: 2rem 0 0;
+
+  .stats-grid__row {
+    display: flex;
+    gap: .5rem;
+  }
 }
 
 .stat-card {
@@ -45,12 +54,22 @@ ion-item {
 }
 
 .section-header {
+  padding: 0;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ion-color-medium);
   margin-top: 16px;
+}
+
+:host::ng-deep ion-list {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+:host::ng-deep ion-col {
+  padding: 0 !important;
 }
 
 .item-icon {
@@ -76,3 +95,8 @@ ion-icon {
   font-size: 16px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    margin: 1rem 1rem 2rem;
+  }
+}

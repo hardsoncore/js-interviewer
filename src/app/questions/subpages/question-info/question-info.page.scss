@@ -92,17 +92,21 @@
   }
 }
 
-ion-button {
-  margin: 1rem;
-}
-
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 
   & ion-button {
     flex: 1;
   }
+}
+
+.item-transparent {
+  --background: transparent;
+  margin-bottom: 1rem;
 }
 
 .container {

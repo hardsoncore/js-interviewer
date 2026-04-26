@@ -56,6 +56,16 @@ export class ResultsService {
     localStorage.setItem('results', JSON.stringify(results));
   }
 
+  setResult(result: Results): void {
+    const currentResults = this._results.getValue();
+    const existingResultIndex = currentResults.findIndex(r => r.id === result.id);
+    const updatedResults = existingResultIndex !== -1
+      ? (currentResults[existingResultIndex] = result, currentResults) : [...currentResults, result];
+
+    this._results.next(updatedResults);
+    localStorage.setItem('results', JSON.stringify(updatedResults));
+  }
+
   getAveragePercent(): Observable<number> {
     return this._results.pipe(
       map(results => {

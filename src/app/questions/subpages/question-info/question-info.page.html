@@ -11,17 +11,16 @@
       <pre class="pre-text" [innerHTML]="question?.answer"></pre>
     </section>
 
-    <ion-button
-      (click)="submitAnswer()"
-      color="tertiary"
-      fill="outline"
-      expand="block"
-      size="large"
+    <ion-item
+      class="item-transparent"
+      lines="none"
+      detail="false"
     >
-      Check Answer
-    </ion-button>
+      <ion-label>Mark question as complete</ion-label>
+      <ion-checkbox (ionChange)="markAsComplete()" slot="end" color="success"></ion-checkbox>
+    </ion-item>
 
-    <div class="navigation-buttons">
+    <div class="navigation-buttons" *ngIf="!redirectedFromQuiz">
       <ion-button
         (click)="goToPrevQuestion()"
         [disabled]="isFirstQuestion()"

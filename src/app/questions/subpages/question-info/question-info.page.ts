@@ -7,6 +7,7 @@ import { QuestionsService } from 'src/app/services/questions.service';
 import { QueryParams } from 'src/app/models/app.model';
 import { combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
+import { ResultsService } from 'src/app/services/results.service';
 
 @Component({
   selector: 'app-question-info',
@@ -16,6 +17,7 @@ import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 export class QuestionInfoPage implements OnInit, OnDestroy {
   questionId: number;
   question: Question;
+  redirectedFromQuiz = false;
 
   private destroy$ = new Subject<void>();
 
@@ -23,7 +25,8 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private questionsService: QuestionsService,
-    private http: HttpClient
+    private http: HttpClient,
+    private resultsService: ResultsService,
   ) { }
 
   ngOnInit() {
@@ -44,6 +47,11 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
       this.question = question;
       this.loadAnswerContent(this.question.answer); // TODO: ideally, need not to rewrite the field, but to have a separate one for content
     });
+
+    this.route.queryParams.pipe(
+      takeUntil(this.destroy$),
+      map(params => !!params.fromQuiz)
+    ).subscribe(fromQuiz => this.redirectedFromQuiz = fromQuiz);
   }
 
   ngOnDestroy() {
@@ -51,14 +59,23 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public submitAnswer(): void {
+  public markAsComplete(): void {
+    this.resultsService.setResult({ id: this.question.id, correctness: 100 });
+    this.resultsService.recordActivity();
+
+    if (this.redirectedFromQuiz) {
+      this.backToQuiz();
+    }
+  }
+
+  public backToQuiz(): void {
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        questionId: this.question.id,
+        needToUpdate: true
       } as QueryParams
     };
 
-    this.router.navigate(['tabs/quiz/answer-structure'], navigationExtras);
+    this.router.navigate(['tabs/quiz'], navigationExtras);
   }
 
   public goToPrevQuestion(): void {

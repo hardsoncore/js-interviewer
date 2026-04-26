@@ -53,6 +53,7 @@ export class QuizPage implements OnInit, OnDestroy {
     const navigationExtras: NavigationExtras = {
       queryParams: {
         questionId: this.question?.id,
+        fromQuiz: true,
       } as QueryParams
     };
 

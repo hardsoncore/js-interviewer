@@ -18,6 +18,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
   questionId: number;
   question: Question;
   redirectedFromQuiz = false;
+  isQuestionCompleted = false;
 
   private destroy$ = new Subject<void>();
 
@@ -59,12 +60,19 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public markAsComplete(): void {
+  public markAsComplete(event: CustomEvent): void {
+    if (!event.detail.checked) {
+      return;
+    }
+
     this.resultsService.setResult({ id: this.question.id, correctness: 100 });
     this.resultsService.recordActivity();
 
     if (this.redirectedFromQuiz) {
-      this.backToQuiz();
+      setTimeout(() => {
+        this.isQuestionCompleted = false;
+        this.backToQuiz();
+      }, 100);
     }
   }
 

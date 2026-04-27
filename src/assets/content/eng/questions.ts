@@ -1304,6 +1304,15 @@ export const questions = [
     structure: [
       {
         name: '__proto__ - what is it?',
+      },
+      {
+        name: '__proto__ vs [[Prototype]] vs F.prototype',
+      },
+      {
+        name: 'Modern alternatives',
+      },
+      {
+        name: 'Performance impact when changing the prototype on the fly',
       }
     ]
   },

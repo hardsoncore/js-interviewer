@@ -1403,6 +1403,12 @@ export const questions = [
     structure: [
       {
         name: 'Try - Catch - для чого потрібно?',
+      },
+      {
+        name: 'Синтаксис і механіка роботи',
+      },
+      {
+        name: 'Блок finally',
       }
     ]
   },

@@ -1402,6 +1402,12 @@ export const questions = [
     structure: [
       {
         name: 'Try - Catch - what is it for?',
+      },
+      {
+        name: 'Syntax and mechanics',
+      },
+      {
+        name: 'Finally block',
       }
     ]
   },

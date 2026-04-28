@@ -1402,6 +1402,12 @@ export const questions = [
     structure: [
       {
         name: 'Try - Catch - для чего нужно?',
+      },
+      {
+        name: 'Синтаксис и механика работы',
+      },
+      {
+        name: 'Блок finally',
       }
     ]
   },

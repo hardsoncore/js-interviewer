@@ -7,6 +7,7 @@ import { QuestionsService } from 'src/app/services/questions.service';
 import { Question, Results } from 'src/app/models/question.model';
 import { QueryParams } from 'src/app/models/app.model';
 import { ResultsService } from 'src/app/services/results.service';
+import { StreakService } from 'src/app/services/streak.service';
 
 @Component({
   selector: 'app-answer-structure',
@@ -25,6 +26,7 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
     private router: Router,
     private questionsService: QuestionsService,
     private resultsService: ResultsService,
+    private streakService: StreakService,
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,7 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
     this._updateResults(correctness);
 
     this.resultsService.setResults(this.results);
-    this.resultsService.recordActivity();
+    this.streakService.recordActivity();
     this.backToQuiz(true);
   }
 

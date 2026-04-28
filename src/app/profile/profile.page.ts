@@ -10,6 +10,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { ResultsService } from 'src/app/services/results.service';
 import { AppService } from 'src/app/services/app.service';
+import { StreakService } from '../services/streak.service';
 
 @Component({
   selector: 'app-profile',
@@ -32,6 +33,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     private alertController: AlertController,
     private profileService: ProfileService,
     private resultsService: ResultsService,
+    private streakService: StreakService,
     private appService: AppService
   ) {
     this.appVersion = this.appService.appVersion;
@@ -57,7 +59,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.profileService.profile.pipe(takeUntil(this.destroy$)).subscribe(profile => this.profile = profile);
     this.resultsService.getAveragePercent().pipe(takeUntil(this.destroy$)).subscribe(percent => this.avPercent = percent);
-    this.resultsService.streak$.pipe(takeUntil(this.destroy$)).subscribe(streak => this.daysStreak = streak);
+    this.streakService.streak$.pipe(takeUntil(this.destroy$)).subscribe(streak => this.daysStreak = streak);
   }
 
   ngOnDestroy(): void {

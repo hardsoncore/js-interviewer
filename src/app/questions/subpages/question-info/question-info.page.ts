@@ -8,6 +8,7 @@ import { QueryParams } from 'src/app/models/app.model';
 import { combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { ResultsService } from 'src/app/services/results.service';
+import { StreakService } from 'src/app/services/streak.service';
 
 @Component({
   selector: 'app-question-info',
@@ -28,6 +29,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
     private questionsService: QuestionsService,
     private http: HttpClient,
     private resultsService: ResultsService,
+    private streakService: StreakService,
   ) { }
 
   ngOnInit() {
@@ -66,7 +68,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
     }
 
     this.resultsService.setResult({ id: this.question.id, correctness: 100 });
-    this.resultsService.recordActivity();
+    this.streakService.recordActivity();
 
     if (this.redirectedFromQuiz) {
       setTimeout(() => {

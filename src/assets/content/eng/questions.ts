@@ -1221,7 +1221,7 @@ export const questions = [
       'JS mechanics'
     ],
     category: 'JavaScript',
-    level: QuestionLevels.middle,
+    level: QuestionLevels.junior,
     structure: [
       {
         name: '"use strict" directive - what it is and why it is needed',
@@ -1259,6 +1259,7 @@ export const questions = [
     answer: 'assets/content/eng/answers/50-Event-loop-microtasks-event-queue.md',
     tags: [
       'JavaScript',
+      'Event loop',
       'Browser mechanics'
     ],
     category: 'JavaScript',
@@ -1278,6 +1279,7 @@ export const questions = [
     answer: 'assets/content/eng/answers/51-Inheritance-in-JavaScript.md',
     tags: [
       'JavaScript',
+      'Prototypes',
       'JS mechanics'
     ],
     category: 'JavaScript',
@@ -1297,6 +1299,7 @@ export const questions = [
     answer: 'assets/content/eng/answers/52-Reference-__proto__-What-is-it-and-how-to-use-it.md',
     tags: [
       'JavaScript',
+      'Prototypes',
       'JS mechanics'
     ],
     category: 'JavaScript',
@@ -1322,6 +1325,7 @@ export const questions = [
     answer: 'assets/content/eng/answers/53-Fprototype-property-and-creating-objects-with-new.md',
     tags: [
       'JavaScript',
+      'Prototypes',
       'JS mechanics'
     ],
     category: 'JavaScript',

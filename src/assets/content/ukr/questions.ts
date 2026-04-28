@@ -1222,7 +1222,7 @@ export const questions = [
       'JS mechanics'
     ],
     category: 'JavaScript',
-    level: QuestionLevels.middle,
+    level: QuestionLevels.junior,
     structure: [
       {
         name: 'Директива "use strict" - що це і для чого потрібно',
@@ -1260,6 +1260,7 @@ export const questions = [
     answer: 'assets/content/ukr/answers/50-Tsikl-podiy-Event-loop-microtasks-event-queue.md',
     tags: [
       'JavaScript',
+      'Event loop',
       'Browser mechanics'
     ],
     category: 'JavaScript',
@@ -1279,6 +1280,7 @@ export const questions = [
     answer: 'assets/content/ukr/answers/51-Nasliduvannya-v-JavaScript.md',
     tags: [
       'JavaScript',
+      'Prototypes',
       'JS mechanics'
     ],
     category: 'JavaScript',
@@ -1298,6 +1300,7 @@ export const questions = [
     answer: 'assets/content/ukr/answers/52-Ssylka-__proto__-shcho-tse-i-z-chym-yoho-yidyat.md',
     tags: [
       'JavaScript',
+      'Prototypes',
       'JS mechanics'
     ],
     category: 'JavaScript',
@@ -1323,6 +1326,7 @@ export const questions = [
     answer: 'assets/content/ukr/answers/53-Vlastyvist-Fprototype-i-stvorennya-obektiv-cherez-new.md',
     tags: [
       'JavaScript',
+      'Prototypes',
       'JS mechanics'
     ],
     category: 'JavaScript',

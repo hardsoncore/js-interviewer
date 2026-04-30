@@ -1332,7 +1332,13 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'F.prototype',
+        name: 'F.prototype - для чего он нужен?',
+      },
+      {
+        name: 'Создание объектов через new, что происходит под капотом?',
+      },
+      {
+        name: 'Как new взаимодействует с F.prototype и [[Prototype]]',
       }
     ]
   },

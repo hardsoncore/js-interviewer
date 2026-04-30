@@ -3942,5 +3942,29 @@ export const questions = [
         name: 'How do browsers use GPU for rendering web pages and what benefits does it provide?',
       }
     ]
+  },
+  {
+    id: 172,
+    name: 'SemVer (Semantic Versioning). What is the difference between Major, Minor, and Patch versions? ^ vs ~ in package.json',
+    answer: 'assets/content/eng/answers/172-SemVer.md',
+    tags: [
+      'JavaScript',
+      'SemVer',
+      'Versioning',
+      'Package.json'
+    ],
+    category: 'JavaScript',
+    level: QuestionLevels.middle,
+    structure: [
+      {
+        name: 'What is SemVer and how is it used for version management in JavaScript?',
+      },
+      {
+        name: 'What is the difference between Major, Minor, and Patch versions in SemVer?',
+      },
+      {
+        name: 'How do the ^ and ~ symbols work in package.json and which versions do they allow to install?',
+      }
+    ]
   }
 ] as Question[];

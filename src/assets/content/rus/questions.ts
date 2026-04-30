@@ -3941,5 +3941,29 @@ export const questions = [
         name: 'Как браузеры используют GPU для рендеринга веб-страниц и какие преимущества это дает?',
       }
     ]
+  },
+  {
+    id: 172,
+    name: 'SemVer (Semantic Versioning). В чем разница между Major, Minor и Patch версиями? ^ vs ~ в package.json',
+    answer: 'assets/content/rus/answers/172-SemVer.md',
+    tags: [
+      'JavaScript',
+      'SemVer',
+      'Versioning',
+      'Package.json'
+    ],
+    category: 'JavaScript',
+    level: QuestionLevels.middle,
+    structure: [
+      {
+        name: 'Что такое SemVer и как он используется для управления версиями в JavaScript?',
+      },
+      {
+        name: 'В чем разница между Major, Minor и Patch версиями в SemVer?',
+      },
+      {
+        name: 'Как работают символы ^ и ~ в package.json и какие версии они позволяют устанавливать?',
+      }
+    ]
   }
 ] as Question[];

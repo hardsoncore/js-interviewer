@@ -1525,7 +1525,7 @@ export const questions = [
   },
   {
     id: 62,
-    name: 'LocalStorage VS SessionStorage. Differences, working principle',
+    name: 'LocalStorage VS SessionStorage. Differences, working principle. When to use?',
     answer: 'assets/content/eng/answers/62-LocalStorage-VS-SessionStorage-Differences-working-principle.md',
     tags: [
       'browser',
@@ -1541,6 +1541,15 @@ export const questions = [
       {
         name: 'SessionStorage',
       },
+      {
+        name: 'Main differences and use cases',
+      },
+      {
+        name: 'Storage limits and security considerations',
+      },
+      {
+        name: 'Alternatives: Cookies and IndexedDB',
+      }
     ]
   },
   {

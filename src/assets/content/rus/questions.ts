@@ -1525,7 +1525,7 @@ export const questions = [
   },
   {
     id: 62,
-    name: 'LocalStorage VS SessionStorage. Различия, принцип работы',
+    name: 'LocalStorage VS SessionStorage. Различия, принцип работы. Когда использовать?',
     answer: 'assets/content/rus/answers/62-LocalStorage-VS-SessionStorage-Razlichiya-printsip-raboty.md',
     tags: [
       'browser',
@@ -1541,6 +1541,15 @@ export const questions = [
       {
         name: 'SessionStorage',
       },
+      {
+        name: 'Основные различия и случаи использования',
+      },
+      {
+        name: 'Ограничения хранения и вопросы безопасности',
+      },
+      {
+        name: 'Альтернативы: Cookies и IndexedDB',
+      }
     ]
   },
   {

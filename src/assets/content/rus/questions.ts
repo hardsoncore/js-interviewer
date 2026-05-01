@@ -1519,7 +1519,10 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Теги HTML',
+        name: 'Механика DOM-событий: Всплытие (Bubbling) и Погружение (Capturing)',
+      },
+      {
+        name: 'Делегирование событий (Event Delegation) - когда использовать?',
       }
     ]
   },

@@ -1519,7 +1519,10 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'HTML tags',
+        name: 'DOM events mechanics: Bubbling and Capturing',
+      },
+      {
+        name: 'Event Delegation - when to use?',
       }
     ]
   },

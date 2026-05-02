@@ -22,6 +22,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   profile: Profile;
   avPercent: number;
   daysStreak = 0;
+  hasActivityToday = false;
   appVersion: string;
   languages = Languages;
 
@@ -60,6 +61,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.profileService.profile.pipe(takeUntil(this.destroy$)).subscribe(profile => this.profile = profile);
     this.resultsService.getAveragePercent().pipe(takeUntil(this.destroy$)).subscribe(percent => this.avPercent = percent);
     this.streakService.streak$.pipe(takeUntil(this.destroy$)).subscribe(streak => this.daysStreak = streak);
+    this.streakService.hasActivityToday$.pipe(takeUntil(this.destroy$)).subscribe(hasActivity => this.hasActivityToday = hasActivity);
   }
 
   ngOnDestroy(): void {

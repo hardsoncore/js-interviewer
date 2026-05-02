@@ -33,6 +33,7 @@ ion-item {
 }
 
 .stat-card {
+  position: relative;
   margin: 0;
   border-radius: 14px;
   text-align: center;
@@ -45,6 +46,15 @@ ion-item {
 .stat-value {
   font-size: 22px;
   font-weight: 700;
+.unread-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--ion-color-danger, #eb445a);
+    border-radius: 50%;
+  }
 }
 
 .stat-label {

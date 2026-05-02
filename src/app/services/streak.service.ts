@@ -9,6 +9,7 @@ const MILLIS_IN_DAY = 86400000;
 })
 export class StreakService {
   private _streak: BehaviorSubject<number> = new BehaviorSubject(0);
+  private _hasActivityToday: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor() {
     this._initStreak();
@@ -18,11 +19,16 @@ export class StreakService {
     return this._streak.asObservable();
   }
 
+  get hasActivityToday$(): Observable<boolean> {
+    return this._hasActivityToday.asObservable();
+  }
+
   public recordActivity(): void {
     const today = this._getDateString(new Date());
     const data = this._loadStreakData();
 
     if (data.lastDate === today) {
+      this._hasActivityToday.next(true);
       return;
     }
 
@@ -32,10 +38,12 @@ export class StreakService {
 
     this._saveStreakData(data);
     this._streak.next(data.streak);
+    this._hasActivityToday.next(true);
   }
 
   private _initStreak(): void {
     const data = this._loadStreakData();
+    const today = this._getDateString(new Date());
     const yesterday = this._getDateString(new Date(Date.now() - MILLIS_IN_DAY));
 
     if (data.lastDate && data.lastDate < yesterday) {
@@ -44,6 +52,7 @@ export class StreakService {
     }
 
     this._streak.next(data.streak);
+    this._hasActivityToday.next(data.lastDate === today);
   }
 
   private _getDateString(date: Date): string {

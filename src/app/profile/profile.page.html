@@ -36,7 +36,10 @@
         <ion-col>
           <ion-card class="stat-card">
             <ion-card-content>
-              <div class="stat-value">{{ daysStreak }}</div>
+              <div class="stat-value">
+                {{ daysStreak }}
+                <div class="unread-badge" *ngIf="!hasActivityToday"></div>
+              </div>
               <div class="stat-label">Streak</div>
             </ion-card-content>
           </ion-card>

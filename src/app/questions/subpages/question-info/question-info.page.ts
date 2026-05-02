@@ -47,6 +47,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
       // distinctUntilChanged is needed to prevent reloading the answer content if the same question is emitted again
       distinctUntilChanged((prev, curr) => prev.id === curr.id)
     ).subscribe((question) => {
+      this.isQuestionCompleted = false;
       this.question = question;
       this.loadAnswerContent(this.question.answer); // TODO: ideally, need not to rewrite the field, but to have a separate one for content
     });

@@ -37,6 +37,7 @@ ion-item {
   margin: 0;
   border-radius: 14px;
   text-align: center;
+  border: 1px solid rgba(var(--ion-color-medium-rgb), 0.3);
 
   ion-card-content {
     padding: 16px 8px;
@@ -46,7 +47,8 @@ ion-item {
 .stat-value {
   font-size: 22px;
   font-weight: 700;
-.unread-badge {
+
+  .unread-badge {
     position: absolute;
     top: 6px;
     right: 6px;
@@ -74,6 +76,7 @@ ion-item {
 }
 
 :host::ng-deep ion-list {
+  border: 1px solid rgba(var(--ion-color-medium-rgb), 0.3);
   margin-left: 0 !important;
   margin-right: 0 !important;
 }

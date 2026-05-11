@@ -2111,7 +2111,7 @@ export const questions = [
   },
   {
     id: 87,
-    name: 'Метод оцінки складності алгоритму. O(1), O(n), O(log n) і т.д. Що це і навіщо потрібно',
+    name: 'Метод оцінки складності алгоритму: O(n), O(n^2), O(log n), O(n log n) і т.д. Що це і навіщо потрібно?',
     answer: 'assets/content/ukr/answers/87-Metod-otsinky-skladnosti-algoritmu.md',
     tags: [
       'algorithm',
@@ -2122,13 +2122,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'O(1)',
+        name: 'Що таке Big O Notation?',
       },
       {
-        name: 'O(n)',
+        name: 'Як оцінювати тимчасову складність (Time Complexity) - O(n), O(n^2), O(log n), O(n log n)',
       },
       {
-        name: 'O(log n)',
+        name: 'Як оцінювати просторову складність (Space Complexity)? - O(1), O(n), O(log n)',
+      },
+      {
+        name: 'Правила додавання та множення в Big O',
       }
     ]
   },

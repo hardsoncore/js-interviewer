@@ -2113,7 +2113,7 @@ export const questions = [
   },
   {
     id: 87,
-    name: 'Method for evaluating algorithm complexity. O(1), O(n), O(log n), etc. What it is and why it is needed',
+    name: 'Method for evaluating algorithm complexity: O(n), O(n^2), O(log n), O(n log n), etc. What it is and why it is needed?',
     answer: 'assets/content/eng/answers/87-Method-for-evaluating-algorithm-complexity.md',
     tags: [
       'algorithm',
@@ -2124,13 +2124,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'O(1)',
+        name: 'What is Big O Notation?',
       },
       {
-        name: 'O(n)',
+        name: 'How to evaluate time complexity (Time Complexity) - O(n), O(n^2), O(log n), O(n log n)',
       },
       {
-        name: 'O(log n)',
+        name: 'How to evaluate space complexity (Space Complexity)? - O(1), O(n), O(log n)',
+      },
+      {
+        name: 'Rules for addition and multiplication in Big O',
       }
     ]
   },

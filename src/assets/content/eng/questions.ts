@@ -2101,13 +2101,16 @@ export const questions = [
         name: 'Insertion Sort',
       },
       {
-        name: 'Selection Sort',
+        name: 'Quick Sort',
       },
       {
         name: 'Merge Sort',
       },
       {
-        name: 'Quick Sort',
+        name: 'ECMAScript 2019 (ES10) requirements for the stability of Array.prototype.sort()',
+      },
+      {
+        name: 'Timsort - hybrid sorting. How it works and why it is used in modern JavaScript engines',
       }
     ]
   },

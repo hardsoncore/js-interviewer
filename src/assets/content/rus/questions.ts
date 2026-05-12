@@ -2101,13 +2101,16 @@ export const questions = [
         name: 'Сортировка вставками (Insertion Sort)',
       },
       {
-        name: 'Сортировка выбором (Selection Sort)',
+        name: 'Быстрая сортировка (Quick Sort)',
       },
       {
         name: 'Сортировка слиянием (Merge Sort)',
       },
       {
-        name: 'Быстрая сортировка (Quick Sort)',
+        name: 'Требования спецификации ECMAScript 2019 (ES10) к стабильности Array.prototype.sort()',
+      },
+      {
+        name: 'Timsort - гибридная сортировка. Как она работает и почему используется в современных движках JavaScript',
       }
     ]
   },

@@ -116,7 +116,7 @@
 <p>Це альтернативний синтаксис для стверджень типів, але він може конфліктувати з JSX у React, тому рекомендується використовувати <code>as</code>.</p>
 
 <code class="code">
-  const user = <User>data;
+  const user = &lt;User>data;
 </code>
 
 <h4>2.3 Non-null Assertion Operator (!)</h4>

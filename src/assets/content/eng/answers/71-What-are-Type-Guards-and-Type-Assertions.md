@@ -116,7 +116,7 @@
 <p>This is an alternative syntax for type assertions, but it can conflict with JSX in React, so it is recommended to use <code>as</code>.</p>
 
 <code class="code">
-  const user = <User>data;
+  const user = &lt;User>data;
 </code>
 
 <h4>2.3 Non-null Assertion Operator (!)</h4>
@@ -137,7 +137,7 @@
 <p>
   If you want literal types to be as narrow as possible, you can use <code>as const</code>. This turns <strong>all object properties into <code>readonly</code></strong>. Object properties become immutable at the type system level.
   <br>
-  <code>as const</code> does something like <code>Object.freeze()</code> for types, ensuring that you cannot accidentally change these values in code. Of course, this does not make the object immutable at runtime, but at the type level it makes it something similar to <code>Object.freeze()</code> (only <code>Object.freeze()</code> will be available in runtime, and <code>as const</code> — only at the TypeScript level and will be discarded during transpilation).
+  <code>as const</code> does something like <code>Object.freeze()</code> for types, ensuring that you cannot accidentally change these values in code. Of course, this does not make the object immutable at runtime, but at the type level it makes it something similar to <code>Object.freeze()</code> (but <code>Object.freeze()</code> will be available in runtime, and <code>as const</code> — only at the TypeScript level and will be discarded during transpilation).
   <br>
   This is useful for creating constant configurations or for working with APIs that require exact literal types.
 </p>

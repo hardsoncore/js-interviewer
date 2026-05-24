@@ -2409,7 +2409,7 @@ export const questions = [
   },
   {
     id: 100,
-    name: 'Deferrable Views (@defer): Як працює цей механізм? Які вбудовані тригери (on viewport, on interaction, on idle) існують для лінивої завантаження шматків шаблону?',
+    name: 'Deferrable Views (@defer): Як працює цей механізм і які вбудовані тригери існують?',
     answer: 'assets/content/ukr/answers/100-Deferrable-Views-defer.md',
     tags: [
       'Angular',
@@ -2419,7 +2419,13 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Deferrable Views',
+        name: 'Deferrable Views - що це і для чого потрібно?',
+      },
+      {
+        name: 'Вбудовані тригери для @defer',
+      },
+      {
+        name: 'Як @defer працює під капотом',
       }
     ]
   },

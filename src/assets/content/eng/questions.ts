@@ -2411,7 +2411,7 @@ export const questions = [
   },
   {
     id: 100,
-    name: 'Deferrable Views (@defer): How does this mechanism work?',
+    name: 'Deferrable Views (@defer): How does this mechanism work and what built-in triggers exist?',
     answer: 'assets/content/eng/answers/100-Deferrable-Views-defer.md',
     tags: [
       'Angular',
@@ -2421,7 +2421,13 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Deferrable Views',
+        name: 'Deferrable Views - what it is and what it is for?',
+      },
+      {
+        name: 'Built-in triggers for @defer',
+      },
+      {
+        name: 'How @defer works under the hood',
       }
     ]
   },

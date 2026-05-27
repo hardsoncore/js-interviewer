@@ -2645,6 +2645,9 @@ export const questions = [
       {
         name: 'Higher-Order Functions - what they are and their advantages',
       },
+      {
+        name: 'Examples of Higher-Order Functions in JavaScript (map, filter, reduce, sort, etc.)',
+      }
     ]
   },
   {

@@ -2642,6 +2642,9 @@ export const questions = [
       {
         name: 'Higher-Order Functions (Функції вищого порядку) - що це і в чому їх переваги',
       },
+      {
+        name: 'Приклади Higher-Order Functions в JavaScript (map, filter, reduce, sort і т.д.)',
+      }
     ]
   },
   {

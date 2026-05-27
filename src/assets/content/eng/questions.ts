@@ -2901,13 +2901,13 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Services in Angular - what is it',
-      },
-      {
-        name: 'Why services are needed in Angular',
+        name: 'Services in Angular - what is it, what are they for, and what problems do they solve',
       },
       {
         name: 'Lifecycle of services in Angular',
+      },
+      {
+        name: 'Ways to inject services in Angular',
       }
     ]
   },

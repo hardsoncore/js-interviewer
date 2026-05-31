@@ -2928,6 +2928,9 @@ export const questions = [
       },
       {
         name: 'Are Angular services singletons by default?',
+      },
+      {
+        name: 'Singletons in route branches in Standalone components',
       }
     ]
   },

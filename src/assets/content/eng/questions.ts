@@ -4008,5 +4008,26 @@ export const questions = [
         name: 'How do the ^ and ~ symbols work in package.json and which versions do they allow to install?',
       }
     ]
+  },
+  {
+    id: 173,
+    name: 'Eager Evaluation vs Lazy Evaluation. What is the difference and when to use each approach?',
+    answer: 'assets/content/eng/answers/173-Eager-vs-Lazy.md',
+    tags: [
+      'JavaScript',
+      'Eager Evaluation',
+      'Lazy Evaluation',
+      'Performance'
+    ],
+    category: 'JavaScript',
+    level: QuestionLevels.senior,
+    structure: [
+      {
+        name: 'What is Eager Evaluation and Lazy Evaluation in JavaScript?',
+      },
+      {
+        name: 'What is the difference between these approaches and when to use each?',
+      }
+    ]
   }
 ] as Question[];

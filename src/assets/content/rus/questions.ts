@@ -4007,5 +4007,26 @@ export const questions = [
         name: 'Как работают символы ^ и ~ в package.json и какие версии они позволяют устанавливать?',
       }
     ]
+  },
+  {
+    id: 173,
+    name: 'Жадные вычисления (Eager Evaluation) vs Ленивые вычисления (Lazy Evaluation). В чем разница и когда какой подход использовать?',
+    answer: 'assets/content/rus/answers/173-Eager-vs-Lazy.md',
+    tags: [
+      'JavaScript',
+      'Eager Evaluation',
+      'Lazy Evaluation',
+      'Performance'
+    ],
+    category: 'JavaScript',
+    level: QuestionLevels.senior,
+    structure: [
+      {
+        name: 'Что такое жадные вычисления (Eager Evaluation) и ленивые вычисления (Lazy Evaluation) в JavaScript?',
+      },
+      {
+        name: 'В чем разница между этими подходами и когда какой использовать?',
+      }
+    ]
   }
 ] as Question[];

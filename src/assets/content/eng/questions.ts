@@ -2615,7 +2615,7 @@ export const questions = [
   },
   {
     id: 109,
-    name: 'Pure Function and its advantages. Examples of pure and impure functions in JavaScript',
+    name: 'Pure Function and its advantages. Referential Transparency',
     answer: 'assets/content/eng/answers/109-Pure-Function.md',
     tags: [
       'JavaScript',
@@ -2628,6 +2628,12 @@ export const questions = [
       {
         name: 'Pure Functions - what they are and their advantages',
       },
+      {
+        name: 'Примеры чистых и нечистых функций в JavaScript',
+      },
+      {
+        name: 'Referential Transparency (Ссылочная прозрачность) - что это и как связано с чистыми функциями',
+      }
     ]
   },
   {

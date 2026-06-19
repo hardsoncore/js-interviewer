@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { QuestionsService } from 'src/app/services/questions.service';
-import { Question, Results } from 'src/app/models/question.model';
+import { Question } from 'src/app/models/question.model';
 import { QueryParams } from 'src/app/models/app.model';
 import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
@@ -17,7 +17,6 @@ import { StreakService } from 'src/app/services/streak.service';
 export class AnswerStructurePage implements OnInit, OnDestroy {
   questionId: number;
   question: Question;
-  results: Results[];
 
   private destroy$ = new Subject<void>();
 
@@ -35,8 +34,6 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
 
       this._initQuestion();
     });
-
-    this._getResults();
   }
 
   ngOnDestroy() {
@@ -56,9 +53,8 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
 
   public saveResult(): void {
     const correctness = this._calculateCorrectness();
-    this._updateResults(correctness);
 
-    this.resultsService.setResults(this.results);
+    this.resultsService.setResult({ id: this.question.id, correctness });
     this.streakService.recordActivity();
     this.backToQuiz(true);
   }
@@ -67,10 +63,6 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
     this.questionsService.questions.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.question = this.questionsService.getQuestionById(this.questionId);
     });
-  }
-
-  private _getResults(): void {
-    this.resultsService.results.pipe(takeUntil(this.destroy$)).subscribe(res => this.results = res);
   }
 
   private _calculateCorrectness(): number {
@@ -83,11 +75,5 @@ export class AnswerStructurePage implements OnInit, OnDestroy {
     this.question.structure.forEach(step => step.isChecked && correctAnswers++);
 
     return Math.round(correctAnswers / this.question.structure.length * 100);
-  }
-
-  private _updateResults(correctness: number) {
-    const oldRes = this.results?.find(res => res.id === this.question.id);
-    if (oldRes) oldRes.correctness = correctness;
-    else this.results.push({id: this.question.id, correctness});
   }
 }

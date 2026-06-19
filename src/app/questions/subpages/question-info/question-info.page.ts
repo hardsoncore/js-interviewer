@@ -21,6 +21,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
   redirectedFromQuiz = false;
   isQuestionCompleted = false;
 
+  private questions: Question[] = [];
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -39,11 +40,12 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
       this.questionsService.questions
     ]).pipe(
       takeUntil(this.destroy$), // unsubscribe when component is destroyed
-      map(([params, _]) => {
-        this.questionId = +params.questionId;
-        return this.questionsService.getQuestionById(this.questionId);
+      map(([params, questions]) => {
+        this.questions = questions;
+        this.questionId = Number(params.questionId);
+        return questions.find(q => Number(q.id) === this.questionId) ?? null;
       }),
-      filter(question => !!question), // skip if question not found
+      filter((question): question is Question => !!question), // skip if question not found
       // distinctUntilChanged is needed to prevent reloading the answer content if the same question is emitted again
       distinctUntilChanged((prev, curr) => prev.id === curr.id)
     ).subscribe((question) => {
@@ -90,37 +92,38 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
   }
 
   public goToPrevQuestion(): void {
-    const prevQuestionId = this.questionId - 1;
-    if (prevQuestionId < 1) return; // prevent navigating to non-existent question
-
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        questionId: prevQuestionId,
-      } as QueryParams
-    };
-
-    this.router.navigate(['tabs/questions/question-info'], navigationExtras);
+    this._navigateByOffset(-1);
   }
 
   public goToNextQuestion(): void {
-    const nextQuestionId = this.questionId + 1;
-    if (nextQuestionId > this.questionsService.getQuestionsCount()) return; // prevent navigating to non-existent question
+    this._navigateByOffset(1);
+  }
+
+  public isFirstQuestion(): boolean {
+    // -1 (not found) also disables the button — safe fallback
+    return this._getCurrentIndex() <= 0;
+  }
+
+  public isLastQuestion(): boolean {
+    const index = this._getCurrentIndex();
+    return index === -1 || index >= this.questions.length - 1;
+  }
+
+  private _getCurrentIndex(): number {
+    return this.questions.findIndex(q => Number(q.id) === Number(this.questionId));
+  }
+
+  private _navigateByOffset(offset: number): void {
+    const target = this.questions[this._getCurrentIndex() + offset];
+    if (!target) return; // out of bounds — do nothing
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        questionId: nextQuestionId,
+        questionId: target.id,
       } as QueryParams
     };
 
     this.router.navigate(['tabs/questions/question-info'], navigationExtras);
-  }
-
-  public isFirstQuestion(): boolean {
-    return this.questionId === 1;
-  }
-
-  public isLastQuestion(): boolean {
-    return this.questionId >= this.questionsService.getQuestionsCount();
   }
 
   private loadAnswerContent(path: string) {

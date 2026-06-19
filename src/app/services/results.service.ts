@@ -46,12 +46,15 @@ export class ResultsService {
 
   setResult(result: Results): void {
     const currentResults = this._results.getValue();
-    const existingResultIndex = currentResults.findIndex(r => r.id === result.id);
-    const updatedResults = existingResultIndex !== -1
-      ? (currentResults[existingResultIndex] = result, currentResults) : [...currentResults, result];
+    const exists = currentResults.some(r => Number(r.id) === Number(result.id));
 
-    this._results.next(updatedResults);
-    localStorage.setItem('results', JSON.stringify(updatedResults));
+    // Immutable update: build a new array (and new object for the changed item)
+    // so the BehaviorSubject emits a fresh reference and never mutates its own state.
+    const updatedResults = exists
+      ? currentResults.map(r => (Number(r.id) === Number(result.id) ? { ...r, ...result } : r))
+      : [...currentResults, result];
+
+    this.setResults(updatedResults);
   }
 
   getAveragePercent(): Observable<number> {

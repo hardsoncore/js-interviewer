@@ -33,10 +33,6 @@ export class QuestionsService {
     return this._questions.getValue().find(q => Number(q.id) === Number(id));
   }
 
-  public getQuestionsCount(): number {
-    return ((this._questions.getValue().length - 1) || 0);
-  }
-
   private setQuestions() {
     const language = this.appService.language;
 

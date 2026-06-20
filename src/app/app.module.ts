@@ -9,18 +9,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot({
-      mode: 'ios', // force iOS mode for all platforms
-      swipeBackEnabled: false, // disable swipe back gesture on iOS
-    }),
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot({
+            mode: 'ios',
+            swipeBackEnabled: false, // disable swipe back gesture on iOS
+        }),
+        AppRoutingModule,
+        HttpClientModule
+    ],
+    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

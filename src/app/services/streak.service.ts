@@ -8,8 +8,8 @@ const MILLIS_IN_DAY = 86400000;
   providedIn: 'root'
 })
 export class StreakService {
-  private _streak: BehaviorSubject<number> = new BehaviorSubject(0);
-  private _hasActivityToday: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private _streak = new BehaviorSubject<number>(0);
+  private _hasActivityToday = new BehaviorSubject<boolean>(false);
 
   constructor() {
     this._initStreak();
@@ -65,7 +65,9 @@ export class StreakService {
       if (stored) {
         return JSON.parse(stored) as StreakData;
       }
-    } catch { }
+    } catch {
+      // ignore corrupted streak data and fall back to defaults
+    }
     return { streak: 0, lastDate: '' };
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,27 +8,27 @@ import { Question } from 'src/app/models/question.model';
 import { QueryParams } from 'src/app/models/app.model';
 import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-answer-structure',
     templateUrl: './answer-structure.page.html',
     styleUrls: ['./answer-structure.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [IonicModule, FormsModule]
 })
 export class AnswerStructurePage implements OnInit, OnDestroy {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private questionsService = inject(QuestionsService);
+  private resultsService = inject(ResultsService);
+  private streakService = inject(StreakService);
+
   questionId: number;
   question: Question;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private questionsService: QuestionsService,
-    private resultsService: ResultsService,
-    private streakService: StreakService,
-  ) { }
 
   ngOnInit() {
     this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: QueryParams) => {

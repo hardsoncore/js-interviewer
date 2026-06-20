@@ -14,7 +14,7 @@
   <div class="container">
     <div class="profile-info">
       <ion-avatar class="profile-info__avatar" [ngClass]="{'not-displayed': !imgLoaded}">
-        <img [src]="profile.avatarUrl" (load)="onImageLoad()">
+        <img [src]="profile.avatarUrl" (load)="onImageLoad()" alt="Profile avatar">
       </ion-avatar>
       @if (!imgLoaded) {
         <div>

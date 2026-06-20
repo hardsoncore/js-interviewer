@@ -11,10 +11,9 @@ describe('QuestionInfoPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuestionInfoPage ],
-      imports: [IonicModule.forRoot()],
-      providers: [provideRouter([]), provideHttpClient()]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), QuestionInfoPage],
+    providers: [provideRouter([]), provideHttpClient()]
+}).compileComponents();
 
     fixture = TestBed.createComponent(QuestionInfoPage);
     component = fixture.componentInstance;

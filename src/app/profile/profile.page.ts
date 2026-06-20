@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -11,15 +11,24 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { ResultsService } from 'src/app/services/results.service';
 import { AppService } from 'src/app/services/app.service';
 import { StreakService } from '../services/streak.service';
+import { NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-profile',
     templateUrl: 'profile.page.html',
     styleUrls: ['profile.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [IonicModule, NgClass, FormsModule]
 })
 export class ProfilePage implements OnInit, OnDestroy {
+  private theme = inject(ThemeService);
+  private alertController = inject(AlertController);
+  private profileService = inject(ProfileService);
+  private resultsService = inject(ResultsService);
+  private streakService = inject(StreakService);
+  private appService = inject(AppService);
+
   imgLoaded = false;
   profile: Profile;
   avPercent: number;
@@ -29,16 +38,9 @@ export class ProfilePage implements OnInit, OnDestroy {
   languages = Languages;
 
   private destroy$ = new Subject<void>();
-  private timerId: any;
+  private timerId?: ReturnType<typeof setTimeout>;
 
-  constructor(
-    private theme: ThemeService,
-    private alertController: AlertController,
-    private profileService: ProfileService,
-    private resultsService: ResultsService,
-    private streakService: StreakService,
-    private appService: AppService
-  ) {
+  constructor() {
     this.appVersion = this.appService.appVersion;
   }
 
@@ -50,7 +52,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.theme.toggleDarkTheme(value === Themes.dark);
   }
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
+   
   get currentLanguage(): Languages {
     return this.appService.language;
   }

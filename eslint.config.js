@@ -28,6 +28,8 @@ module.exports = tseslint.config(
       ],
       'no-underscore-dangle': ['error', { allowAfterThis: true }],
       curly: ['error', 'multi-line'],
+      // The app intentionally relies on the default change detection strategy.
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
     },
   },
   {

@@ -10,10 +10,9 @@ describe('AnswerStructurePage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnswerStructurePage ],
-      imports: [IonicModule.forRoot()],
-      providers: [provideRouter([])]
-    }).compileComponents();
+    imports: [IonicModule.forRoot(), AnswerStructurePage],
+    providers: [provideRouter([])]
+}).compileComponents();
 
     fixture = TestBed.createComponent(AnswerStructurePage);
     component = fixture.componentInstance;

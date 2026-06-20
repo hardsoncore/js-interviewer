@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
@@ -8,26 +8,26 @@ import { Question, Results } from 'src/app/models/question.model';
 import { QueryParams } from 'src/app/models/app.model';
 import { ResultsService } from 'src/app/services/results.service';
 import { QuestionLevels } from 'src/app/enums/questions.enum';
+import { IonicModule } from '@ionic/angular';
+import { AsyncPipe } from '@angular/common';
 @Component({
     selector: 'app-questions',
     templateUrl: 'questions.page.html',
     styleUrls: ['questions.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [IonicModule, AsyncPipe]
 })
 export class QuestionsPage implements OnInit, OnDestroy {
+  private questionsService = inject(QuestionsService);
+  private router = inject(Router);
+  private resultsService = inject(ResultsService);
+
   questions: Question[] = [];
   filteredQuestions: Question[] = [];
   results: Results[];
   questionLevels = QuestionLevels;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private questionsService: QuestionsService,
-    private router: Router,
-    private resultsService: ResultsService,
-  ) { }
 
   ngOnInit() {
     this.questionsService.questions.pipe(takeUntil(this.destroy$)).subscribe(questions => {
@@ -42,8 +42,9 @@ export class QuestionsPage implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public handleInput(event: any) {
-    const query = event.target.value?.toLowerCase() || '';
+  public handleInput(event: Event) {
+    const target = event.target as HTMLInputElement | null;
+    const query = target?.value?.toLowerCase() || '';
 
     if (!query.trim()) {
       this.filteredQuestions = [...this.questions];

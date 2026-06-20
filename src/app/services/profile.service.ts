@@ -7,8 +7,6 @@ import { Profile } from '../models/profile.model';
   providedIn: 'root'
 })
 export class ProfileService {
-  constructor() { }
-
   get profile(): Observable<Profile> {
     return of(this._getDefaultProfile());
   }

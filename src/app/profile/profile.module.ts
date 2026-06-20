@@ -8,13 +8,13 @@ import { ProfilePage } from './profile.page';
 import { ProfilePageRoutingModule } from './profile-routing.module';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild([{ path: '', component: ProfilePage }]),
-    ProfilePageRoutingModule,
-  ],
-  declarations: [ProfilePage]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        RouterModule.forChild([{ path: '', component: ProfilePage }]),
+        ProfilePageRoutingModule,
+        ProfilePage,
+    ]
 })
 export class ProfilePageModule {}

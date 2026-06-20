@@ -13,9 +13,10 @@ import { AppService } from 'src/app/services/app.service';
 import { StreakService } from '../services/streak.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: 'profile.page.html',
-  styleUrls: ['profile.page.scss']
+    selector: 'app-profile',
+    templateUrl: 'profile.page.html',
+    styleUrls: ['profile.page.scss'],
+    standalone: false
 })
 export class ProfilePage implements OnInit, OnDestroy {
   imgLoaded = false;

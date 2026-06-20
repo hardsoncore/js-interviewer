@@ -11,9 +11,10 @@ import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
 
 @Component({
-  selector: 'app-question-info',
-  templateUrl: './question-info.page.html',
-  styleUrls: ['./question-info.page.scss'],
+    selector: 'app-question-info',
+    templateUrl: './question-info.page.html',
+    styleUrls: ['./question-info.page.scss'],
+    standalone: false
 })
 export class QuestionInfoPage implements OnInit, OnDestroy {
   questionId: number;

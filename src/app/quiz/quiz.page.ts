@@ -10,9 +10,10 @@ import { ResultsService } from '../services/results.service';
 import { QuestionLevels } from '../enums/questions.enum';
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: 'quiz.page.html',
-  styleUrls: ['quiz.page.scss']
+    selector: 'app-quiz',
+    templateUrl: 'quiz.page.html',
+    styleUrls: ['quiz.page.scss'],
+    standalone: false
 })
 export class QuizPage implements OnInit, OnDestroy {
   questionLevels = QuestionLevels;

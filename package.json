@@ -15,12 +15,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^18.2.14",
-    "@angular/core": "^18.2.14",
-    "@angular/forms": "^18.2.14",
-    "@angular/platform-browser": "^18.2.14",
-    "@angular/platform-browser-dynamic": "^18.2.14",
-    "@angular/router": "^18.2.14",
+    "@angular/common": "^19.2.25",
+    "@angular/core": "^19.2.25",
+    "@angular/forms": "^19.2.25",
+    "@angular/platform-browser": "^19.2.25",
+    "@angular/platform-browser-dynamic": "^19.2.25",
+    "@angular/router": "^19.2.25",
     "@capacitor/android": "3.3.3",
     "@capacitor/app": "1.0.7",
     "@capacitor/core": "3.3.3",
@@ -31,18 +31,18 @@
     "git-describe": "^4.1.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.2.0",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.21",
+    "@angular-devkit/build-angular": "^19.2.27",
     "@angular-eslint/builder": "~13.0.1",
     "@angular-eslint/eslint-plugin": "~13.0.1",
     "@angular-eslint/eslint-plugin-template": "~13.0.1",
     "@angular-eslint/template-parser": "~13.0.1",
-    "@angular/cli": "^18.2.21",
-    "@angular/compiler": "^18.2.14",
-    "@angular/compiler-cli": "^18.2.14",
-    "@angular/language-service": "^18.2.14",
+    "@angular/cli": "^19.2.27",
+    "@angular/compiler": "^19.2.25",
+    "@angular/compiler-cli": "^19.2.25",
+    "@angular/language-service": "^19.2.25",
     "@capacitor/cli": "3.3.3",
     "@ionic/angular-toolkit": "^11.0.1",
     "@types/jasmine": "~3.6.0",
@@ -64,7 +64,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~5.4.5"
+    "typescript": "~5.8.3"
   },
   "description": "Job Interviewer is a cross-platform mobile application (iOS/Android) built with Ionic Framework, Angular, and Capacitor. Designed to help frontend developers prepare for technical interviews through curated questions, interactive practice modes, and progress tracking."
 }

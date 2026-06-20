@@ -10,9 +10,10 @@ import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
 
 @Component({
-  selector: 'app-answer-structure',
-  templateUrl: './answer-structure.page.html',
-  styleUrls: ['./answer-structure.page.scss'],
+    selector: 'app-answer-structure',
+    templateUrl: './answer-structure.page.html',
+    styleUrls: ['./answer-structure.page.scss'],
+    standalone: false
 })
 export class AnswerStructurePage implements OnInit, OnDestroy {
   questionId: number;

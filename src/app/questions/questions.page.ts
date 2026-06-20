@@ -9,9 +9,10 @@ import { QueryParams } from 'src/app/models/app.model';
 import { ResultsService } from 'src/app/services/results.service';
 import { QuestionLevels } from 'src/app/enums/questions.enum';
 @Component({
-  selector: 'app-questions',
-  templateUrl: 'questions.page.html',
-  styleUrls: ['questions.page.scss']
+    selector: 'app-questions',
+    templateUrl: 'questions.page.html',
+    styleUrls: ['questions.page.scss'],
+    standalone: false
 })
 export class QuestionsPage implements OnInit, OnDestroy {
   questions: Question[] = [];

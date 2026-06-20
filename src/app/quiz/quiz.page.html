@@ -9,16 +9,14 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense" class="header">
     <ion-toolbar>
-      <ion-title size="large">
-        <div class="header__title">
-          <span>Quiz</span>
+      <div class="header__title">
+        <h1 class="header__large-text">Quiz</h1>
 
-          <ion-label class="header__toggle">
-            Random
-            <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
-          </ion-label>
-        </div>
-      </ion-title>
+        <ion-label class="header__toggle">
+          Random
+          <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
+        </ion-label>
+      </div>
     </ion-toolbar>
   </ion-header>
 
@@ -32,8 +30,9 @@
               <span>
                 Level:
                 <ion-text
-              [color]="question.level === questionLevels.junior && 'success' ||
-                question.level === questionLevels.middle && 'warning' || 'danger'">
+                  [color]="question.level === questionLevels.junior && 'success' ||
+                  question.level === questionLevels.middle && 'warning' || 'danger'"
+                >
                   {{ question.level }}
                 </ion-text>
               </span>

@@ -1,14 +1,19 @@
-:host::ng-deep ion-title[size="large"] {
-  height: fit-content;
-}
 
 .header {
   &__title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: fit-content;
-    width: 100%;
+    width: 55%;
+    min-width: 768px;
+    margin: 0 auto;
+  }
+    
+  &__large-text {
+    font-size: 34px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.01em;
   }
 
   &__toggle {
@@ -84,6 +89,14 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    &__title {
+      width: 100%;
+      min-width: 100%;
+      padding: 0 1rem;
+    }
+  }
+
   .question__name {
     font-size: 1.8rem !important;
   }

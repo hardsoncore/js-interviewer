@@ -2,13 +2,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "paths": {
+      "get-version": ["./get-version"],
+      "src/*": ["./src/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "downlevelIteration": true,
+    "strict": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,

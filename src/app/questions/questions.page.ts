@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { QuestionLevels } from 'src/app/enums/questions.enum';
     selector: 'app-questions',
     templateUrl: 'questions.page.html',
     styleUrls: ['questions.page.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class QuestionsPage implements OnInit, OnDestroy {

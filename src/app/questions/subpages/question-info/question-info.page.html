@@ -15,32 +15,34 @@
       class="item-transparent"
       lines="none"
       detail="false"
-    >
+      >
       <ion-label>Mark question as complete</ion-label>
       <ion-checkbox [(ngModel)]="isQuestionCompleted" (ionChange)="markAsComplete($event)" slot="end" color="success"></ion-checkbox>
     </ion-item>
 
-    <div class="navigation-buttons" *ngIf="!redirectedFromQuiz">
-      <ion-button
-        (click)="goToPrevQuestion()"
-        [disabled]="isFirstQuestion()"
-        color="danger"
-        fill="outline"
-        expand="block"
-        size="large"
-      >
-        < Prev
-      </ion-button>
-      <ion-button
-        (click)="goToNextQuestion()"
-        [disabled]="isLastQuestion()"
-        color="success"
-        fill="outline"
-        expand="block"
-        size="large"
-      >
-        Next >
-      </ion-button>
-    </div>
+    @if (!redirectedFromQuiz) {
+      <div class="navigation-buttons">
+        <ion-button
+          (click)="goToPrevQuestion()"
+          [disabled]="isFirstQuestion()"
+          color="danger"
+          fill="outline"
+          expand="block"
+          size="large"
+          >
+          < Prev
+        </ion-button>
+        <ion-button
+          (click)="goToNextQuestion()"
+          [disabled]="isLastQuestion()"
+          color="success"
+          fill="outline"
+          expand="block"
+          size="large"
+          >
+          Next >
+        </ion-button>
+      </div>
+    }
   </div>
 </ion-content>

@@ -12,28 +12,29 @@
     </h1>
 
     <ion-popover trigger="hover-trigger" triggerAction="click">
-        <ng-template>
-          <ion-content class="ion-padding">Select the points you covered in your answer - this helps indicate how complete your response was.</ion-content>
-        </ng-template>
-      </ion-popover>
+      <ng-template>
+        <ion-content class="ion-padding">Select the points you covered in your answer - this helps indicate how complete your response was.</ion-content>
+      </ng-template>
+    </ion-popover>
 
     <br>
-    <br>
+      <br>
 
-    <ion-item
-      *ngFor="let step of question?.structure"
-      class="step"
-      lines="none"
-      detail="false"
-    >
-      <ion-label>{{ step?.name }}</ion-label>
-      <ion-checkbox [(ngModel)]="step.isChecked" slot="end" color="success"></ion-checkbox>
-    </ion-item>
+        @for (step of question?.structure; track step) {
+          <ion-item
+            class="step"
+            lines="none"
+            detail="false"
+            >
+            <ion-label>{{ step?.name }}</ion-label>
+            <ion-checkbox [(ngModel)]="step.isChecked" slot="end" color="success"></ion-checkbox>
+          </ion-item>
+        }
 
-    <br>
+        <br>
 
-    <ion-button (click)="saveResult()" color="tertiary" fill="outline" expand="block" size="large">
-      Save your answer progress
-    </ion-button>
-  </div>
-</ion-content>
+          <ion-button (click)="saveResult()" color="tertiary" fill="outline" expand="block" size="large">
+            Save your answer progress
+          </ion-button>
+        </div>
+      </ion-content>

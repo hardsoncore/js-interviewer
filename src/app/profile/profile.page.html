@@ -16,11 +16,13 @@
       <ion-avatar class="profile-info__avatar" [ngClass]="{'not-displayed': !imgLoaded}">
         <img [src]="profile.avatarUrl" (load)="onImageLoad()">
       </ion-avatar>
-      <div *ngIf="!imgLoaded">
-        <ion-avatar class="profile-info__avatar">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-avatar>
-      </div>
+      @if (!imgLoaded) {
+        <div>
+          <ion-avatar class="profile-info__avatar">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+        </div>
+      }
     </div>
 
     <ion-grid class="stats-grid">
@@ -38,7 +40,9 @@
             <ion-card-content>
               <div class="stat-value">
                 {{ daysStreak }}
-                <div class="unread-badge" *ngIf="!hasActivityToday"></div>
+                @if (!hasActivityToday) {
+                  <div class="unread-badge"></div>
+                }
               </div>
               <div class="stat-label">Streak</div>
             </ion-card-content>

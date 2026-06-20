@@ -7,16 +7,13 @@
     "sourceMap": true,
     "declaration": false,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

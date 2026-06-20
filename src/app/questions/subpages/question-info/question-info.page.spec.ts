@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 import { QuestionInfoPage } from './question-info.page';
 
@@ -10,7 +12,8 @@ describe('QuestionInfoPage', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ QuestionInfoPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      providers: [provideRouter([]), provideHttpClient()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(QuestionInfoPage);

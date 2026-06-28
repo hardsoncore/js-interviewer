@@ -4,6 +4,7 @@ import { RouteReuseStrategy, provideRouter, withHashLocation } from '@angular/ro
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { Capacitor } from '@capacitor/core';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
@@ -11,6 +12,14 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+}
+
+// Register the service worker only for the web PWA (not inside the native
+// Capacitor webview) so Chrome can offer "Install" and run it standalone.
+if (environment.production && !Capacitor.isNativePlatform() && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed', err));
+  });
 }
 
 bootstrapApplication(AppComponent, {

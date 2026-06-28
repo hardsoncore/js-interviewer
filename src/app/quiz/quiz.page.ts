@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
@@ -8,27 +8,29 @@ import { Question } from '../models/question.model';
 import { QuestionsService } from '../services/questions.service';
 import { ResultsService } from '../services/results.service';
 import { QuestionLevels } from '../enums/questions.enum';
+import { IonicModule } from '@ionic/angular';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: 'quiz.page.html',
-  styleUrls: ['quiz.page.scss']
+    selector: 'app-quiz',
+    templateUrl: 'quiz.page.html',
+    styleUrls: ['quiz.page.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [IonicModule, AsyncPipe]
 })
 export class QuizPage implements OnInit, OnDestroy {
+  private questionsService = inject(QuestionsService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private resultsService = inject(ResultsService);
+
   questionLevels = QuestionLevels;
   question: Question | null = null;
   percent$: Observable<number> | null = null;
   isRandomized = JSON.parse(localStorage.getItem('isRandomized') || 'false');
 
   private destroy$ = new Subject<void>();
-  private timerId: any;
-
-  constructor(
-    private questionsService: QuestionsService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private resultsService: ResultsService,
-  ) {}
+  private timerId?: ReturnType<typeof setTimeout>;
 
   ngOnInit() {
     this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: QueryParams) => {
@@ -70,7 +72,7 @@ export class QuizPage implements OnInit, OnDestroy {
     this.router.navigate(['tabs/quiz/answer-structure'], navigationExtras);
   }
 
-  public toggleQuiz(event: any): void {
+  public toggleQuiz(event: CustomEvent<{ checked: boolean }>): void {
     this.isRandomized = event.detail.checked;
     localStorage.setItem('isRandomized', JSON.stringify(this.isRandomized));
 

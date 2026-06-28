@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -9,11 +9,11 @@ import { QuestionsService } from './questions.service';
   providedIn: 'root'
 })
 export class ResultsService {
-  private _results: BehaviorSubject<Results[]> = new BehaviorSubject([]);
+  private questionsService = inject(QuestionsService);
 
-  constructor(
-    private questionsService: QuestionsService,
-  ) {
+  private _results = new BehaviorSubject<Results[]>([]);
+
+  constructor() {
     this.questionsService.questions.subscribe(questions => {
       let storageResults: Results[] = [];
       const stored = localStorage.getItem('results');

@@ -81,6 +81,17 @@ ion-item {
   margin-right: 0 !important;
 }
 
+:host::ng-deep ion-list ion-item {
+  --inner-border-width: 0;
+  --border-width: 0 0 1px 0;
+  --border-color: rgba(var(--ion-color-medium-rgb), 0.2);
+}
+
+// Right-align the selected value (Ionic 8: ::part pierces the shadow DOM)
+ion-select::part(text) {
+  color: var(--ion-color-medium);
+}
+
 :host::ng-deep ion-col {
   padding: 0 !important;
 }

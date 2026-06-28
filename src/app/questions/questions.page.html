@@ -16,30 +16,31 @@
   <div class="container">
     <ion-searchbar animated="true" placeholder="Type related keywords to find question" (ionInput)="handleInput($event)"></ion-searchbar>
 
-    <ion-item
-      *ngFor="let question of filteredQuestions; trackBy: trackById"
-      class="question"
-      button
-      (click)="clickOnQuestion(question)"
-      lines="none"
-      detail="false"
-    >
-      <ion-icon name="arrow-forward" slot="end"></ion-icon>
-      <ion-label>
-        <h2 class="question__name">{{ question.id }}. {{ question.name }}</h2>
-        <p class="question__details">
-          <span *ngIf="question.level">
-            Level:
-            <ion-text
+    @for (question of filteredQuestions; track trackById($index, question)) {
+      <ion-item
+        class="question"
+        button
+        (click)="clickOnQuestion(question)"
+        lines="none"
+        detail="false"
+        >
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+        <ion-label>
+          <h2 class="question__name">{{ question.id }}. {{ question.name }}</h2>
+          <p class="question__details">
+            @if (question.level) {
+              <span>
+                Level:
+                <ion-text
               [color]="question.level === questionLevels.junior && 'success' ||
                 question.level === questionLevels.middle && 'warning' || 'danger'">
                   {{ question.level }}
                 </ion-text>
-          </span>
-
-          <span>
-            Progress:
-            <ion-text
+              </span>
+            }
+            <span>
+              Progress:
+              <ion-text
               [color]="(getPercentById(question.id) | async) < 33 && 'danger' ||
                 (getPercentById(question.id) | async) < 66 && 'warning' || 'success'">
                   {{getPercentById(question.id) | async}}%
@@ -48,5 +49,6 @@
         </p>
       </ion-label>
     </ion-item>
+}
   </div>
 </ion-content>

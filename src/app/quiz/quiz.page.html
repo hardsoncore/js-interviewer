@@ -9,105 +9,118 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense" class="header">
     <ion-toolbar>
-      <ion-title size="large">
-        <div class="header__title">
-          <span>Quiz</span>
+      <div class="header__title">
+        <h1 class="header__large-text">Quiz</h1>
 
-          <ion-label class="header__toggle">
-            Random
-            <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
-          </ion-label>
-        </div>
-      </ion-title>
+        <ion-label class="header__toggle">
+          Random
+          <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
+        </ion-label>
+      </div>
     </ion-toolbar>
   </ion-header>
 
   <div class="container">
     <ion-card class="question" (click)="visitTheoryPage()">
-      <ion-card-header *ngIf="question" class="header">
-        <ion-card-subtitle class="question__id">
-          <span>Question №{{ question.id }}</span>
-
-          <span *ngIf="question.level">
-            Level:
-            <ion-text
-              [color]="question.level === questionLevels.junior && 'success' ||
-                question.level === questionLevels.middle && 'warning' || 'danger'">
+      @if (question) {
+        <ion-card-header class="header">
+          <ion-card-subtitle class="question__id">
+            <span>Question №{{ question.id }}</span>
+            @if (question.level) {
+              <span>
+                Level:
+                <ion-text
+                  [color]="question.level === questionLevels.junior && 'success' ||
+                  question.level === questionLevels.middle && 'warning' || 'danger'"
+                >
                   {{ question.level }}
                 </ion-text>
-          </span>
-        </ion-card-subtitle>
-
-        <ion-card-title class="question__name">{{ question.name }}</ion-card-title>
-      </ion-card-header>
+              </span>
+            }
+          </ion-card-subtitle>
+          <ion-card-title class="question__name">{{ question.name }}</ion-card-title>
+        </ion-card-header>
+      }
       <!-- skeleton -->
-      <ion-card-header *ngIf="!question">
-        <ion-card-subtitle>
-          <ion-skeleton-text style="width: 40%; max-width: 150px;" animated></ion-skeleton-text>
-          <ion-skeleton-text style="width: 40%; max-width: 150px;" animated></ion-skeleton-text>
+      @if (!question) {
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-skeleton-text style="width: 40%; max-width: 150px;" animated></ion-skeleton-text>
+            <ion-skeleton-text style="width: 40%; max-width: 150px;" animated></ion-skeleton-text>
+          </ion-card-subtitle>
+          <ion-card-title>
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-card-title>
+        </ion-card-header>
+      }
 
-        </ion-card-subtitle>
-        <ion-card-title>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content *ngIf="question">
-        <ul class="tags-list">
-          <li *ngFor="let tag of question.tags">
-            <ion-badge color="warning">{{ tag }}</ion-badge>
-          </li>
-        </ul>
-      </ion-card-content>
+      @if (question) {
+        <ion-card-content>
+          <ul class="tags-list">
+            @for (tag of question.tags; track tag) {
+              <li>
+                <ion-badge color="warning">{{ tag }}</ion-badge>
+              </li>
+            }
+          </ul>
+        </ion-card-content>
+      }
       <!-- skeleton -->
-      <ion-card-content *ngIf="!question">
-        <ul class="tags-list">
-          <li>
-            <ion-badge color="warning">
-              <ion-skeleton-text style="width: 10vw; max-width: 50px;" animated></ion-skeleton-text>
-            </ion-badge>
-          </li>
-        </ul>
-      </ion-card-content>
+      @if (!question) {
+        <ion-card-content>
+          <ul class="tags-list">
+            <li>
+              <ion-badge color="warning">
+                <ion-skeleton-text style="width: 10vw; max-width: 50px;" animated></ion-skeleton-text>
+              </ion-badge>
+            </li>
+          </ul>
+        </ion-card-content>
+      }
 
       <div class="progress-wrapper">
         <p>Progress: {{ question ? (percent$ | async) : 0 }}%</p>
-        <ion-progress-bar *ngIf="question" [value]="((percent$ | async) || 0) / 100"></ion-progress-bar>
-        <ion-progress-bar *ngIf="!question" type="indeterminate"></ion-progress-bar>
+        @if (question) {
+          <ion-progress-bar [value]="((percent$ | async) || 0) / 100"></ion-progress-bar>
+        }
+        @if (!question) {
+          <ion-progress-bar type="indeterminate"></ion-progress-bar>
+        }
       </div>
 
       <div class="buttons">
-        <ion-button
-          *ngIf="isRandomized"
-          (click)="getNextQuestion(); $event.stopPropagation();"
-          color="tertiary"
-          fill="outline"
-          size="large">
+        @if (isRandomized) {
+          <ion-button
+            (click)="getNextQuestion(); $event.stopPropagation();"
+            color="tertiary"
+            fill="outline"
+            size="large">
             Skip
-        </ion-button>
+          </ion-button>
+        }
 
         <ion-button
           (click)="submitAnswer(); $event.stopPropagation();"
           color="tertiary"
           size="large">
-            Check your answer
+          Check your answer
         </ion-button>
       </div>
 
       <!-- <ion-button
-        (click)="visitTheoryPage()"
-        color="tertiary"
-        fill="clear"
-        expand="block"
-        size="large">
-          Read theory
-      </ion-button>
-      <br> -->
-    </ion-card>
-  </div>
+      (click)="visitTheoryPage()"
+      color="tertiary"
+      fill="clear"
+      expand="block"
+      size="large">
+      Read theory
+    </ion-button>
+    <br> -->
+  </ion-card>
+</div>
 </ion-content>

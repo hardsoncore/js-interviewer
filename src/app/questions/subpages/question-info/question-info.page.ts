@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
@@ -9,13 +9,24 @@ import { combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-question-info',
-  templateUrl: './question-info.page.html',
-  styleUrls: ['./question-info.page.scss'],
+    selector: 'app-question-info',
+    templateUrl: './question-info.page.html',
+    styleUrls: ['./question-info.page.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [IonicModule, FormsModule]
 })
 export class QuestionInfoPage implements OnInit, OnDestroy {
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private questionsService = inject(QuestionsService);
+  private http = inject(HttpClient);
+  private resultsService = inject(ResultsService);
+  private streakService = inject(StreakService);
+
   questionId: number;
   question: Question;
   redirectedFromQuiz = false;
@@ -23,15 +34,6 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
 
   private questions: Question[] = [];
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private questionsService: QuestionsService,
-    private http: HttpClient,
-    private resultsService: ResultsService,
-    private streakService: StreakService,
-  ) { }
 
   ngOnInit() {
     // subscribe to both query params and questions list, so we can react to changes in either of them
@@ -143,7 +145,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
               <p class="load-answer-error__emoji">💔</p>
               <h3 class="load-answer-error__title">404 - Answer Text Not Found</h3>
               <p class="load-answer-error__text">
-                Help us fill the gap — we\'d love your contribution via a
+                Help us fill the gap — we'd love your contribution via a
                 <a class="load-answer-error__link" href="https://github.com/hardsoncore/js-interviewer/pulls" target="_blank">
                   Pull Request on GitHub
                 </a>

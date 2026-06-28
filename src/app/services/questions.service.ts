@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Question } from '../models/question.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,9 +13,11 @@ import { Languages } from 'src/app/enums/app.enum';
   providedIn: 'root'
 })
 export class QuestionsService {
-  private _questions: BehaviorSubject<Question[]> = new BehaviorSubject([]);
+  private appService = inject(AppService);
 
-  constructor(private appService: AppService) {
+  private _questions = new BehaviorSubject<Question[]>([]);
+
+  constructor() {
     this.setQuestions();
   }
 

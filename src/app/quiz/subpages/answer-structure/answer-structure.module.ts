@@ -9,12 +9,12 @@ import { AnswerStructurePageRoutingModule } from './answer-structure-routing.mod
 import { AnswerStructurePage } from './answer-structure.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AnswerStructurePageRoutingModule
-  ],
-  declarations: [AnswerStructurePage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        AnswerStructurePageRoutingModule,
+        AnswerStructurePage
+    ]
 })
 export class AnswerStructurePageModule {}

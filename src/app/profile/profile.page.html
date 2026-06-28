@@ -14,13 +14,15 @@
   <div class="container">
     <div class="profile-info">
       <ion-avatar class="profile-info__avatar" [ngClass]="{'not-displayed': !imgLoaded}">
-        <img [src]="profile.avatarUrl" (load)="onImageLoad()">
+        <img [src]="profile.avatarUrl" (load)="onImageLoad()" alt="Profile avatar">
       </ion-avatar>
-      <div *ngIf="!imgLoaded">
-        <ion-avatar class="profile-info__avatar">
-          <ion-skeleton-text animated></ion-skeleton-text>
-        </ion-avatar>
-      </div>
+      @if (!imgLoaded) {
+        <div>
+          <ion-avatar class="profile-info__avatar">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+        </div>
+      }
     </div>
 
     <ion-grid class="stats-grid">
@@ -38,7 +40,9 @@
             <ion-card-content>
               <div class="stat-value">
                 {{ daysStreak }}
-                <div class="unread-badge" *ngIf="!hasActivityToday"></div>
+                @if (!hasActivityToday) {
+                  <div class="unread-badge"></div>
+                }
               </div>
               <div class="stat-label">Streak</div>
             </ion-card-content>
@@ -53,8 +57,7 @@
         <div slot="start" class="item-icon item-icon--theme">
           <ion-icon name="sunny"></ion-icon>
         </div>
-        <ion-label>Theme</ion-label>
-        <ion-select [(ngModel)]="currentTheme">
+        <ion-select label="Theme" labelPlacement="start" justify="space-between" [(ngModel)]="currentTheme">
           <ion-select-option value="light">Light</ion-select-option>
           <ion-select-option value="dark">Dark</ion-select-option>
         </ion-select>
@@ -63,8 +66,7 @@
         <div slot="start" class="item-icon item-icon--language">
           <ion-icon name="language"></ion-icon>
         </div>
-        <ion-label>Language</ion-label>
-        <ion-select [(ngModel)]="currentLanguage">
+        <ion-select label="Language" labelPlacement="start" justify="space-between" [(ngModel)]="currentLanguage">
           <ion-select-option [value]="languages.eng">English</ion-select-option>
           <ion-select-option [value]="languages.ukr">Ukrainian</ion-select-option>
           <ion-select-option [value]="languages.rus">ru</ion-select-option>

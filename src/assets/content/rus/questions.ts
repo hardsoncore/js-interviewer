@@ -324,7 +324,7 @@ export const questions = [
   {
     id: 12,
     name: 'Resource Hints (preload, prefetch, preconnect): В чем разница между ними на уровне сетевого стека браузера?',
-    answer: 'assets/content/rus/answers/11-Resource-Hints.md',
+    answer: 'assets/content/rus/answers/12-Resource-Hints.md',
     tags: [
       'HTML',
       'markup',

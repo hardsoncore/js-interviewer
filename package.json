@@ -10,6 +10,7 @@
     "build-apk": "node git-version.js && ionic capacitor build android",
     "build-apk-release": "node git-version.js && ionic capacitor build android --prod --release",
     "test": "ng test",
+    "test:ci": "ng test --configuration=ci --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -55,7 +55,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
     ).subscribe((question) => {
       this.isQuestionCompleted = false;
       this.question = question;
-      debugger
+
       // read the date before loadAnswerContent overwrites question.answer with the content
       this.lastUpdated = answersMeta[question.answer] || null;
       this.loadAnswerContent(this.question.answer); // TODO: ideally, need not to rewrite the field, but to have a separate one for content

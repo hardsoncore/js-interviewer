@@ -72,6 +72,19 @@
   --ion-background-color: #f4f1e9;
   --ion-text-color: #3d3d3d;
   --ion-border-color: #d8d6cf;
+
+  /** Root/html canvas behind the app — drives installed-PWA system bars.
+   ** Kept separate from --ion-background-color because it must resolve at the
+   ** <html> level (the .dark class lives on <body>). See global.scss. **/
+  --app-root-background: #f4f1e9;
+}
+
+/* First-paint fallback for system-preference dark; ThemeService overrides
+ * --app-root-background at runtime for the manual theme toggle. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-root-background: #1a1b1e;
+  }
 }
   /*
    * Dark Colors

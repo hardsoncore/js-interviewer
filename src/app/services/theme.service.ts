@@ -22,19 +22,6 @@ export class ThemeService {
     document.body.classList.toggle(Themes.dark, shouldAdd);
     this._currentTheme = shouldAdd ? Themes.dark : Themes.light;
     localStorage.setItem('theme', this._currentTheme);
-    this._syncSystemBars();
-  }
-
-  // Paint the html root + theme-color meta so the OS status/navigation bars
-  // match the active theme in an installed PWA (otherwise they default to white).
-  private _syncSystemBars(): void {
-    const background = getComputedStyle(document.body).backgroundColor;
-    if (!background) return;
-
-    document.documentElement.style.backgroundColor = background;
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', background);
   }
 
   private _initTheme(): void {

@@ -42,11 +42,3 @@
 ion-content {
   scrollbar-color: var(--ion-color-medium) transparent !important;
 }
-
-/* Paint the root element so the installed-PWA system bars (top status /
- * bottom navigation) match the theme instead of defaulting to white.
- * Colors live in theme/variables.scss (--app-root-background); ThemeService
- * keeps this in sync after bootstrap. */
-html {
-  background-color: var(--app-root-background);
-}

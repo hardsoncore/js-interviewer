@@ -32,6 +32,17 @@ export class QuizPage implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private timerId?: ReturnType<typeof setTimeout>;
 
+  get levelColor(): string {
+    switch (this.question?.level) {
+      case QuestionLevels.junior:
+        return 'success';
+      case QuestionLevels.middle:
+        return 'warning';
+      default:
+        return 'danger';
+    }
+  }
+
   ngOnInit() {
     this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params: QueryParams) => {
       if (params.needToUpdate) {

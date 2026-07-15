@@ -1,126 +1,96 @@
-<ion-header [translucent]="true">
+<ion-header class="quiz-header">
   <ion-toolbar>
-    <ion-title>
-      Quiz
+    <ion-title class="quiz-header__toggle">
+        Randomize Questions
+        <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense" class="header">
-    <ion-toolbar>
-      <div class="header__title">
-        <h1 class="header__large-text">Quiz</h1>
-
-        <ion-label class="header__toggle">
-          Random
-          <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
-        </ion-label>
-      </div>
-    </ion-toolbar>
-  </ion-header>
-
-  <div class="container">
-    <ion-card class="question" (click)="visitTheoryPage()">
+<ion-content>
+  <div class="quiz">
+    <div class="quiz__body" (click)="visitTheoryPage()">
       @if (question) {
-        <ion-card-header class="header">
-          <ion-card-subtitle class="question__id">
-            <span>Question №{{ question.id }}</span>
-            @if (question.level) {
-              <span>
-                Level:
-                <ion-text
-                  [color]="question.level === questionLevels.junior && 'success' ||
-                  question.level === questionLevels.middle && 'warning' || 'danger'"
-                >
-                  {{ question.level }}
-                </ion-text>
-              </span>
-            }
-          </ion-card-subtitle>
-          <ion-card-title class="question__name">{{ question.name }}</ion-card-title>
-        </ion-card-header>
-      }
-      <!-- skeleton -->
-      @if (!question) {
-        <ion-card-header>
-          <ion-card-subtitle>
-            <ion-skeleton-text style="width: 40%; max-width: 150px;" animated></ion-skeleton-text>
-            <ion-skeleton-text style="width: 40%; max-width: 150px;" animated></ion-skeleton-text>
-          </ion-card-subtitle>
-          <ion-card-title>
-            <ion-skeleton-text animated></ion-skeleton-text>
-            <ion-skeleton-text animated></ion-skeleton-text>
-            <ion-skeleton-text animated></ion-skeleton-text>
-            <ion-skeleton-text animated></ion-skeleton-text>
-            <ion-skeleton-text animated></ion-skeleton-text>
-            <ion-skeleton-text animated></ion-skeleton-text>
-          </ion-card-title>
-        </ion-card-header>
-      }
+        <div class="quiz__meta">
+          <span class="quiz__chip quiz__chip--id">№{{ question.id }}</span>
+          @if (question.level) {
+            <span class="quiz__chip quiz__chip--level quiz__chip--{{ levelColor }}">
+              {{ question.level }}
+            </span>
+          }
+        </div>
 
-      @if (question) {
-        <ion-card-content>
-          <ul class="tags-list">
+        <h1 class="quiz__question">{{ question.name }}</h1>
+
+        @if (question.tags?.length) {
+          <ul class="quiz__tags">
             @for (tag of question.tags; track tag) {
-              <li>
-                <ion-badge color="warning">{{ tag }}</ion-badge>
-              </li>
+              <li>{{ tag }}</li>
             }
           </ul>
-        </ion-card-content>
+        }
+
+        <span class="quiz__hint">
+          Tap to read theory
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </span>
       }
+
       <!-- skeleton -->
       @if (!question) {
-        <ion-card-content>
-          <ul class="tags-list">
-            <li>
-              <ion-badge color="warning">
-                <ion-skeleton-text style="width: 10vw; max-width: 50px;" animated></ion-skeleton-text>
-              </ion-badge>
-            </li>
-          </ul>
-        </ion-card-content>
+        <div class="quiz__meta">
+          <ion-skeleton-text class="quiz__chip-skeleton" animated></ion-skeleton-text>
+          <ion-skeleton-text class="quiz__chip-skeleton" animated></ion-skeleton-text>
+        </div>
+
+        <div class="quiz__question-skeleton">
+          <ion-skeleton-text style="width: 90%;" animated></ion-skeleton-text>
+          <ion-skeleton-text style="width: 70%;" animated></ion-skeleton-text>
+          <ion-skeleton-text style="width: 80%;" animated></ion-skeleton-text>
+        </div>
+      }
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="quiz-footer">
+  <div class="quiz-footer__inner">
+    <div class="quiz-footer__progress">
+      <div class="quiz-footer__progress-head">
+        <span>Progress</span>
+        <span>{{ question ? (percent$ | async) : 0 }}%</span>
+      </div>
+
+      @if (question) {
+        <ion-progress-bar
+          class="quiz-footer__bar"
+          [value]="((percent$ | async) || 0) / 100">
+        </ion-progress-bar>
+      } @else {
+        <ion-progress-bar class="quiz-footer__bar" type="indeterminate"></ion-progress-bar>
+      }
+    </div>
+
+    <div class="quiz-footer__actions">
+      @if (isRandomized) {
+        <ion-button
+          class="quiz-footer__skip"
+          (click)="getNextQuestion()"
+          color="medium"
+          fill="clear"
+          size="large">
+          Skip
+        </ion-button>
       }
 
-      <div class="progress-wrapper">
-        <p>Progress: {{ question ? (percent$ | async) : 0 }}%</p>
-        @if (question) {
-          <ion-progress-bar [value]="((percent$ | async) || 0) / 100"></ion-progress-bar>
-        }
-        @if (!question) {
-          <ion-progress-bar type="indeterminate"></ion-progress-bar>
-        }
-      </div>
-
-      <div class="buttons">
-        @if (isRandomized) {
-          <ion-button
-            (click)="getNextQuestion(); $event.stopPropagation();"
-            color="tertiary"
-            fill="outline"
-            size="large">
-            Skip
-          </ion-button>
-        }
-
-        <ion-button
-          (click)="submitAnswer(); $event.stopPropagation();"
-          color="tertiary"
-          size="large">
-          Check your answer
-        </ion-button>
-      </div>
-
-      <!-- <ion-button
-      (click)="visitTheoryPage()"
-      color="tertiary"
-      fill="clear"
-      expand="block"
-      size="large">
-      Read theory
-    </ion-button>
-    <br> -->
-  </ion-card>
-</div>
-</ion-content>
+      <ion-button
+        class="quiz-footer__check"
+        [disabled]="!question"
+        (click)="submitAnswer()"
+        expand="block"
+        size="large">
+        Check your answer
+      </ion-button>
+    </div>
+  </div>
+</ion-footer>

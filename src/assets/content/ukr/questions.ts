@@ -380,6 +380,9 @@ export const questions = [
       },
       {
         name: 'sticky',
+      },
+      {
+        name: 'Містковий блок і stacking context',
       }
     ]
   },

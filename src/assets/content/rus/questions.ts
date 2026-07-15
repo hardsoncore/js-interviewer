@@ -379,6 +379,9 @@ export const questions = [
       },
       {
         name: 'sticky',
+      },
+      {
+        name: 'Содержащий блок и stacking context',
       }
     ]
   },

@@ -4,6 +4,7 @@
   "compilerOptions": {
     "paths": {
       "get-version": ["./get-version"],
+      "answers-meta": ["./answers-meta"],
       "src/*": ["./src/*"]
     },
     "outDir": "./dist/out-tsc",

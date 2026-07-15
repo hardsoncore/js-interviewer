@@ -15,6 +15,12 @@
   line-height: 1.5;
 }
 
+.last-updated {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
 :host ::ng-deep code {
   background-color: #b0b0b0b8;
   display: inline-block;

@@ -5,12 +5,12 @@
   "homepage": "https://github.com/hardsoncore/js-interviewer",
   "scripts": {
     "ng": "ng",
-    "start": "node git-version.js && ng serve",
-    "build": "node git-version.js && ng build --base-href=/js-interviewer/",
-    "build-apk": "node git-version.js && ionic capacitor build android",
-    "build-apk-release": "node git-version.js && ionic capacitor build android --prod --release",
+    "start": "node git-version.js && node answers-meta.js && ng serve",
+    "build": "node git-version.js && node answers-meta.js && ng build --base-href=/js-interviewer/",
+    "build-apk": "node git-version.js && node answers-meta.js && ionic capacitor build android",
+    "build-apk-release": "node git-version.js && node answers-meta.js && ionic capacitor build android --prod --release",
     "test": "ng test",
-    "test:ci": "node git-version.js && ng test --configuration=ci --browsers=ChromeHeadlessCI",
+    "test:ci": "node git-version.js && node answers-meta.js && ng test --configuration=ci --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

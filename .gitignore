@@ -17,6 +17,7 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 git-version.json
+answers-meta.json
 
 /.angular/cache/
 /.idea

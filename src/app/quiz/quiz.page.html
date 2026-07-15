@@ -1,9 +1,9 @@
 <ion-header class="quiz-header">
   <ion-toolbar>
-    <ion-title class="quiz-header__toggle">
-        Randomize Questions
-        <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
-    </ion-title>
+    <div class="quiz-header__toggle">
+      <span class="quiz-header__label">Randomize Questions</span>
+      <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
+    </div>
   </ion-toolbar>
 </ion-header>
 

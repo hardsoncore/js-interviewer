@@ -37,7 +37,24 @@ JS Interviewer is a powerful mobile application designed to turn your interview 
 <br>
 Preparing for interviews is often chaotic. This project solves that by organizing the most critical "must-know" topics in one place. It’s not just a list of questions; it’s a comprehensive tool to track your progress and identify your weak spots before the recruiter does.
 
+## 🎯 The Method: Pareto-Driven Preparation
+
+There are plenty of interview prep apps and guides out there. Most share the same flaw: they dump walls of text on you and hope you will memorize everything. You won't — and you don't need to.
+
+JS Interviewer takes a concrete stance built on the **Pareto principle: ~20% of the material gives you ~80% of the interview result.** So every answer is designed as two layers:
+
+- **The Core** — a compact summary you can say out loud in 1–2 minutes: a clear definition, the key idea behind the topic, a minimal code example, and the classic pitfalls. This is what interviewers actually expect to hear first. Small enough to review on your phone in a queue, structured enough to stick in memory.
+- **Deep Dive** — the remaining 20%: under-the-hood mechanics, edge cases, and senior-level details. This is what you reach for when the interviewer starts digging — or when you want 100% mastery of a topic.
+
+Why it works: an interview is an oral exam, not an essay. You get 60–90 seconds to deliver a confident, structured answer before the follow-up questions begin. Preparing in the same format you'll be tested in — short spoken cores first, depth second — puts your effort exactly where it pays off, and your brain doesn't boil trying to swallow an encyclopedia.
+
+The whole system in three steps: first pass — read the Cores. Second pass — unfold the Deep Dives. The night before the interview — skim the Cores again. Done.
+
+> The knowledge base is actively being migrated to this two-layer format, answer by answer.
+
 ## 🛠 Key Features
+ - Pareto-Structured Answers: every answer is a 1–2 minute spoken Core plus a Deep Dive for senior-level depth.
+
  - Comprehensive Question Bank: Hundreds of curated questions on JavaScript, CSS, and Web Technologies.
 
  - Deep Dive into Browser Mechanics: Understand how engines work, the Event Loop, rendering phases, and optimization.

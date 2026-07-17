@@ -726,6 +726,9 @@ export const questions = [
       {
         name: 'Практика: погано через геометрію, добре через transform, will-change',
       },
+      {
+        name: 'Під капотом',
+      },
     ]
   },
   {

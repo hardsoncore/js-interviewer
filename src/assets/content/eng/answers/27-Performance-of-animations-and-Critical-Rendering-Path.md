@@ -1,24 +1,21 @@
-<p>
-  The <span class="accent">Critical Rendering Path (CRP)</span> is the pipeline through which the browser
-  turns HTML, CSS, and JavaScript into pixels on the screen.
-</p>
+<h3>Introduction</h3>
 
 <p>
-  The main idea: <strong>animation is that same pipeline, walked again on every frame</strong>. So the fewer
-  pipeline stages we touch per frame, the smoother the animation. Hence the single practical conclusion that
-  covers most of this question:
+  The <span class="accent">Critical Rendering Path (CRP)</span> is the pipeline through which the browser turns HTML, CSS,
+  and JavaScript into pixels on the screen. Animation is that same pipeline, walked again on every frame.
 </p>
 
-<p class="info info--blue">
-  <strong>Animate only <code>transform</code> and <code>opacity</code>.</strong> Only these two properties let you
-  skip the most expensive pipeline stages — Layout and Paint — and run almost for free.
+<p class="info">
+  <strong>The main idea:</strong> the fewer pipeline stages touched per frame, the smoother the animation. So
+  <strong>animate only <code>transform</code> and <code>opacity</code></strong> — the only properties that skip the
+  expensive Layout and Paint stages and get away with the almost-free Composite.
 </p>
 
 <hr />
 
 <h3>The three pipeline stages and the cascade rule</h3>
 
-<p>For animation we care about the last three stages of the CRP. They run strictly in order:</p>
+<p>For animation we care about the last three stages of the CRP, and they run strictly in order:</p>
 
 <ul>
   <li>
@@ -33,13 +30,11 @@
   </li>
 </ul>
 
-<p class="info info--orange">
-  <strong>The cascade rule:</strong> the stages fire "top-down". Trigger Layout — Paint and Composite <strong>necessarily</strong>
-  follow. Trigger Paint — Composite follows. But not the other way around: you can do Composite only, without touching
-  Layout and Paint. The whole animation optimization is about staying on the lowest stage.
+<p class="info info--blue">
+  <strong>The cascade rule:</strong> the stages fire "top-down": trigger Layout — Paint and Composite necessarily follow;
+  trigger Paint — Composite follows. Never the other way around. The whole animation optimization is about staying on the
+  lowest stage.
 </p>
-
-<h4>What triggers which stage</h4>
 
 <code class="code">
   /* Layout + Paint + Composite — DO NOT animate */
@@ -56,49 +51,27 @@
 
 <hr />
 
-<h3>The frame budget: why everything comes down to 16.7 ms</h3>
+<h3>The frame budget: 60 FPS and 16.7 ms</h3>
 
 <p>
-  The screen refreshes 60 times per second, so the browser has <strong>1000 / 60 ≈ 16.7 ms</strong> per frame. And this is
-  a budget not only for your code — within those same 16.7 ms the browser must fit styles, Layout, Paint, Composite, and
-  garbage collection.
-</p>
-
-<p>
-  Miss the frame — the frame is dropped (<strong>dropped frame</strong>), and the user sees a stutter (jank). An animation of
-  <code>transform</code> is cheap for exactly this reason: it barely spends this budget.
-</p>
-
-<p class="info info--blue">
-  There is no smooth transition between 60 FPS and 30 FPS — there is a cliff. Either the frame fits the budget, or it does not.
+  The screen refreshes 60 times per second, so the browser has <strong>1000 / 60 ≈ 16.7 ms</strong> per frame — and
+  JavaScript, styles, Layout, Paint, and Composite must all fit into it. Miss it — the frame is dropped
+  (<strong>dropped frame</strong>), and the user sees a stutter (jank). A <code>transform</code> animation is cheap for
+  exactly this reason: it barely spends this budget.
 </p>
 
 <hr />
 
 <h3>How to animate correctly: practice</h3>
 
-<h4>Bad — via geometry (Layout + Paint every frame)</h4>
-
 <code class="code">
-  .box {
-    position: absolute;
-    left: 0;
-    transition: left 300ms;
-  }
-  .box:hover {
-    left: 300px;
-  }
-</code>
+  /* Bad: Layout + Paint every frame */
+  .box { transition: left 300ms; }
+  .box:hover { left: 300px; }
 
-<h4>Good — via transform (Composite only every frame)</h4>
-
-<code class="code">
-  .box {
-    transition: transform 300ms;
-  }
-  .box:hover {
-    transform: translateX(300px);
-  }
+  /* Good: Composite only every frame */
+  .box { transition: transform 300ms; }
+  .box:hover { transform: translateX(300px); }
 </code>
 
 <p>Visually the same, but the price of the frame differs. Keep this substitution table in your head:</p>
@@ -109,23 +82,15 @@
   <li><code>display / visibility</code> → <code>opacity</code> (+ <code>pointer-events: none</code>)</li>
 </ul>
 
-<h4>will-change — a hint to the browser</h4>
-
 <p>
-  To animate an element on the Composite stage only, the browser promotes it into a separate layer (a texture on the GPU).
-  The <code>will-change</code> property warns it about this in advance:
+  To animate on the Composite stage, the browser promotes the element into a separate layer (a texture on the GPU). The
+  <code>will-change: transform</code> hint warns it about this in advance.
 </p>
 
-<code class="code">
-  .modal {
-    will-change: transform, opacity;
-  }
-</code>
-
 <p class="info info--orange">
-  But <code>will-change</code> is not a "make it fast" switch, it is a promise to the browser. Every layer eats GPU memory.
+  But <code>will-change</code> is not a "make it fast" switch — it is a promise to the browser: every layer eats GPU memory.
   Slap it on everything "just in case" and you will get a drop in performance instead of a gain. Set it selectively, only on
-  what is genuinely about to be animated.
+  what is about to be animated.
 </p>
 
 <hr />
@@ -144,6 +109,14 @@
 </ol>
 
 <p>The first three steps are one-off work at load; animation only spins the last three.</p>
+
+<h4>The frame budget: a cliff instead of degradation</h4>
+
+<p>
+  Frames are synchronized with the screen refresh (vsync), so there is no smooth transition between 60 FPS and 30 FPS —
+  there is a cliff: either the frame fits into 16.7 ms and makes the current screen refresh, or it waits for the next one.
+  An animation that misses by just a little visually drops straight to half the frame rate.
+</p>
 
 <h4>The main thread versus the compositor thread</h4>
 

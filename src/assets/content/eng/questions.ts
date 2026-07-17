@@ -725,6 +725,9 @@ export const questions = [
       {
         name: 'Practice: bad via geometry, good via transform, will-change',
       },
+      {
+        name: 'Under the hood',
+      },
     ]
   },
   {

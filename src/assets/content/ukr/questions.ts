@@ -708,16 +708,23 @@ export const questions = [
       'CSS',
       'markup',
       'CSS performance',
-      'CSS animations'
+      'CSS animations',
+      'browser'
     ],
     category: 'Markup',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Критичний шлях рендерингу (Critical Rendering Path) і його вплив на продуктивність анімацій',
+        name: 'Суть: анімація — той самий CRP на кожному кадрі, анімуємо лише transform і opacity',
       },
       {
-        name: 'Які CSS-властивості викликають Layout, Paint і Composite',
+        name: 'Три етапи конвеєра (Layout, Paint, Composite) і правило каскаду',
+      },
+      {
+        name: 'Бюджет кадра: 60 FPS і 16.7 мс',
+      },
+      {
+        name: 'Практика: погано через геометрію, добре через transform, will-change',
       },
     ]
   },

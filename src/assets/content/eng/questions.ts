@@ -707,16 +707,23 @@ export const questions = [
       'CSS',
       'markup',
       'CSS performance',
-      'CSS animations'
+      'CSS animations',
+      'browser'
     ],
     category: 'Markup',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Critical Rendering Path (CRP) and its impact on animation performance',
+        name: 'The gist: animation is the same CRP every frame, animate only transform and opacity',
       },
       {
-        name: 'Which CSS properties trigger Layout, Paint, and Composite',
+        name: 'The three pipeline stages (Layout, Paint, Composite) and the cascade rule',
+      },
+      {
+        name: 'The frame budget: 60 FPS and 16.7 ms',
+      },
+      {
+        name: 'Practice: bad via geometry, good via transform, will-change',
       },
     ]
   },

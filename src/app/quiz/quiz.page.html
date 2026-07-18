@@ -1,9 +1,18 @@
-<ion-header class="quiz-header">
+<ion-header class="quiz-header" [translucent]="true">
   <ion-toolbar>
-    <div class="quiz-header__toggle">
-      <span class="quiz-header__label">{{ 'QUIZ.RANDOMIZE' | translate }}</span>
-      <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
-    </div>
+    <ion-title>{{ 'TABS.QUIZ' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <button
+        type="button"
+        class="quiz-header__shuffle"
+        [class.quiz-header__shuffle--active]="isRandomized"
+        [attr.aria-pressed]="isRandomized"
+        [attr.aria-label]="'QUIZ.RANDOMIZE' | translate"
+        [title]="'QUIZ.RANDOMIZE' | translate"
+        (click)="toggleRandom()">
+        <ion-icon name="shuffle-outline" aria-hidden="true"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

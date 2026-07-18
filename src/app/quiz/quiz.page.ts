@@ -84,8 +84,8 @@ export class QuizPage implements OnInit, OnDestroy {
     this.router.navigate(['tabs/quiz/answer-structure'], navigationExtras);
   }
 
-  public toggleQuiz(event: CustomEvent<{ checked: boolean }>): void {
-    this.isRandomized = event.detail.checked;
+  public toggleRandom(): void {
+    this.isRandomized = !this.isRandomized;
     localStorage.setItem('isRandomized', JSON.stringify(this.isRandomized));
 
     this.getNextQuestion();

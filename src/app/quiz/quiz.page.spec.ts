@@ -139,9 +139,10 @@ describe('QuizPage', () => {
     }));
   });
 
-  describe('toggleQuiz', () => {
+  describe('toggleRandom', () => {
     it('should persist the randomize flag and load a new question', fakeAsync(() => {
-      component.toggleQuiz({ detail: { checked: true } } as CustomEvent<{ checked: boolean }>);
+      component.isRandomized = false;
+      component.toggleRandom();
 
       expect(component.isRandomized).toBeTrue();
       expect(localStorage.getItem('isRandomized')).toBe('true');

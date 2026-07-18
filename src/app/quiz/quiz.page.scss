@@ -56,6 +56,16 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.quiz__body > * {
+  animation: fade-up 0.45s ease both;
+}
+
+@for $i from 1 through 4 {
+  .quiz__body > *:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 0.045}s;
+  }
+}
+
 /* ---------- Meta chips ---------- */
 .quiz__meta {
   display: flex;
@@ -249,6 +259,19 @@
     font-weight: 700;
     letter-spacing: 0.01em;
     text-transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz__body > * {
+    animation: none;
   }
 }
 

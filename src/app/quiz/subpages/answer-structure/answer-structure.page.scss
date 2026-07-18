@@ -2,6 +2,31 @@ ion-button {
   margin: 1rem;
 }
 
+// steps list can reach ~21 children, so items beyond the stagger share the last delay
+.container > * {
+  animation: fade-up 0.45s ease both;
+  animation-delay: #{9 * 0.045}s;
+}
+
+@for $i from 1 through 10 {
+  .container > *:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 0.045}s;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container > * {
+    animation: none;
+  }
+}
+
 .step {
   margin-bottom: .5rem;
   border: 1px solid rgba(var(--ion-color-medium-rgb), 0.3);

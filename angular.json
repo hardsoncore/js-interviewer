@@ -41,16 +41,19 @@
               }
             ],
             "styles": ["src/global.scss", "src/theme/variables.scss"],
-            "scripts": [],
-            "aot": false,
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
+          "defaultConfiguration": "production",
           "configurations": {
+            "development": {
+              "aot": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "buildOptimizer": false,
+              "sourceMap": true,
+              "optimization": false,
+              "namedChunks": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -81,15 +84,17 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "app:build"
-          },
+          "defaultConfiguration": "development",
           "configurations": {
+            "development": {
+              "buildTarget": "app:build:development"
+            },
             "production": {
               "buildTarget": "app:build:production"
             },
             "ci": {
-              "progress": false
+              "progress": false,
+              "buildTarget": "app:build:development"
             }
           }
         },

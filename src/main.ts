@@ -1,6 +1,6 @@
 import { enableProdMode, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { RouteReuseStrategy, provideRouter, withHashLocation } from '@angular/router';
+import { PreloadAllModules, RouteReuseStrategy, provideRouter, withHashLocation, withPreloading } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -33,6 +33,6 @@ bootstrapApplication(AppComponent, {
       })
     ),
     provideHttpClient(withXhr(), withInterceptorsFromDi()),
-    provideRouter(routes, withHashLocation()),
+    provideRouter(routes, withHashLocation(), withPreloading(PreloadAllModules)),
   ],
 }).catch(err => console.log(err));

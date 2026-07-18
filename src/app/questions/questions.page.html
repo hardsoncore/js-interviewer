@@ -14,41 +14,33 @@
   </ion-header>
 
   <div class="container">
-    <ion-searchbar animated="true" placeholder="Type related keywords to find question" (ionInput)="handleInput($event)"></ion-searchbar>
+    <ion-searchbar animated="true" placeholder="Search by topic, keyword or ID" (ionInput)="handleInput($event)"></ion-searchbar>
 
-    @for (question of filteredQuestions; track trackById($index, question)) {
-      <ion-item
-        class="question"
-        button
-        (click)="clickOnQuestion(question)"
-        lines="none"
-        detail="false"
-        >
-        <ion-icon name="arrow-forward" slot="end"></ion-icon>
-        <ion-label>
-          <h2 class="question__name">{{ question.id }}. {{ question.name }}</h2>
-          <p class="question__details">
-            @if (question.level) {
-              <span>
-                Level:
-                <ion-text
-              [color]="question.level === questionLevels.junior && 'success' ||
-                question.level === questionLevels.middle && 'warning' || 'danger'">
-                  {{ question.level }}
-                </ion-text>
-              </span>
-            }
-            <span>
-              Progress:
-              <ion-text
-              [color]="(getPercentById(question.id) | async) < 33 && 'danger' ||
-                (getPercentById(question.id) | async) < 66 && 'warning' || 'success'">
-                  {{getPercentById(question.id) | async}}%
-                </ion-text>
-          </span>
-        </p>
-      </ion-label>
-    </ion-item>
-}
+    <div class="question-list">
+      @for (question of filteredQuestions; track trackById($index, question)) {
+        <ion-item
+          class="question"
+          button
+          (click)="clickOnQuestion(question)"
+          lines="none"
+          detail="false"
+          >
+          <ion-icon name="arrow-forward" slot="end" class="chevron-icon"></ion-icon>
+          <ion-label>
+            <h2 class="question__name">{{ question.id }}. {{ question.name }}</h2>
+            @let pct = (getPercentById(question.id) | async) ?? 0;
+            <div class="question__details">
+              @if (question.level) {
+                <span class="level-pill level-pill--{{ levelColor(question.level) }}">{{ question.level }}</span>
+              }
+              <div class="progress-track">
+                <div class="progress-fill progress-fill--{{ progressColor(pct) }}" [style.width.%]="pct"></div>
+              </div>
+              <span class="progress-pct">{{ pct }}%</span>
+            </div>
+          </ion-label>
+        </ion-item>
+      }
+    </div>
   </div>
 </ion-content>

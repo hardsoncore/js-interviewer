@@ -8,3 +8,9 @@ export enum Languages {
   ukr = 'ukr',
   rus = 'rus'
 }
+
+export enum Colors {
+  success = 'success',
+  warning = 'warning',
+  danger = 'danger'
+}

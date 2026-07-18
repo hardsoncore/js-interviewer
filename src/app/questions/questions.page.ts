@@ -8,6 +8,7 @@ import { Question, Results } from 'src/app/models/question.model';
 import { QueryParams } from 'src/app/models/app.model';
 import { ResultsService } from 'src/app/services/results.service';
 import { QuestionLevels } from 'src/app/enums/questions.enum';
+import { Colors } from 'src/app/enums/app.enum';
 import { IonicModule } from '@ionic/angular';
 import { AsyncPipe } from '@angular/common';
 @Component({
@@ -25,7 +26,6 @@ export class QuestionsPage implements OnInit, OnDestroy {
   questions: Question[] = [];
   filteredQuestions: Question[] = [];
   results: Results[];
-  questionLevels = QuestionLevels;
 
   private destroy$ = new Subject<void>();
 
@@ -67,6 +67,18 @@ export class QuestionsPage implements OnInit, OnDestroy {
 
   public getPercentById(id: number): Observable<number> {
     return this.resultsService.getPercentById(id);
+  }
+
+  public levelColor(level: QuestionLevels): Colors {
+    if (level === QuestionLevels.junior) return Colors.success;
+    if (level === QuestionLevels.middle) return Colors.warning;
+    return Colors.danger;
+  }
+
+  public progressColor(percent: number): Colors {
+    if (percent < 33) return Colors.danger;
+    if (percent < 66) return Colors.warning;
+    return Colors.success;
   }
 
   public clickOnQuestion(question: Question): void {

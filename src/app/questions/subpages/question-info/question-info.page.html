@@ -7,15 +7,22 @@
 <ion-content>
   <div class="container">
     <section class="content">
-      <h1>{{ question?.name }}</h1>
-      @if (lastUpdated) {
-        <p class="last-updated">Last updated: {{ lastUpdated }}</p>
+      <h1 class="question-title">{{ question?.name }}</h1>
+      @if (question?.level || lastUpdated) {
+        <div class="question-meta">
+          @if (question?.level) {
+            <span class="level-pill level-pill--{{ levelColor(question.level) }}">{{ question.level }}</span>
+          }
+          @if (lastUpdated) {
+            <span class="last-updated">Updated {{ lastUpdated }}</span>
+          }
+        </div>
       }
       <pre class="pre-text" [innerHTML]="question?.answer"></pre>
     </section>
 
     <ion-item
-      class="item-transparent"
+      class="complete-item"
       lines="none"
       detail="false"
       >
@@ -26,24 +33,26 @@
     @if (!redirectedFromQuiz) {
       <div class="navigation-buttons">
         <ion-button
+          class="nav-btn nav-btn--prev"
           (click)="goToPrevQuestion()"
           [disabled]="isFirstQuestion()"
-          color="danger"
-          fill="outline"
+          fill="clear"
           expand="block"
           size="large"
           >
-          < Prev
+          <ion-icon name="chevron-back" slot="start"></ion-icon>
+          Prev
         </ion-button>
         <ion-button
+          class="nav-btn nav-btn--next"
           (click)="goToNextQuestion()"
           [disabled]="isLastQuestion()"
-          color="success"
-          fill="outline"
+          fill="clear"
           expand="block"
           size="large"
           >
-          Next >
+          Next
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
         </ion-button>
       </div>
     }

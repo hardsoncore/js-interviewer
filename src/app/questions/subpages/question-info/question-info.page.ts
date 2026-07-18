@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 import { Question } from 'src/app/models/question.model';
+import { QuestionLevels } from 'src/app/enums/questions.enum';
+import { Colors } from 'src/app/enums/app.enum';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { QueryParams } from 'src/app/models/app.model';
 import { combineLatest, Subject } from 'rxjs';
@@ -86,6 +88,12 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
         this.backToQuiz();
       }, 100);
     }
+  }
+
+  public levelColor(level: QuestionLevels): Colors {
+    if (level === QuestionLevels.junior) return Colors.success;
+    if (level === QuestionLevels.middle) return Colors.warning;
+    return Colors.danger;
   }
 
   public backToQuiz(): void {

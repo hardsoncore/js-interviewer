@@ -42,3 +42,27 @@
 ion-content {
   scrollbar-color: var(--ion-color-medium) transparent !important;
 }
+
+.level-pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+
+  &--success {
+    background: rgba(var(--ion-color-success-rgb), 0.16);
+    color: var(--ion-color-success-shade);
+  }
+
+  &--warning {
+    background: rgba(var(--ion-color-warning-rgb), 0.18);
+    color: var(--ion-color-warning-shade);
+  }
+
+  &--danger {
+    background: rgba(var(--ion-color-danger-rgb), 0.15);
+    color: var(--ion-color-danger-shade);
+  }
+}

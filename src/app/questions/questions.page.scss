@@ -1,7 +1,26 @@
+.container {
+  margin-bottom: 2rem;
+}
+
+.container > * {
+  animation: fade-up 0.45s ease both;
+}
+
+.container > *:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+ion-searchbar {
+  --border-radius: 12px;
+  --box-shadow: none;
+  --background: rgba(var(--ion-color-medium-rgb), 0.12);
+}
+
 .question {
-  margin-bottom: .5rem;
-  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
   border: 1px solid rgba(var(--ion-color-medium-rgb), 0.3);
+  overflow: hidden;
 }
 
 ion-item {
@@ -9,15 +28,8 @@ ion-item {
   --padding-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-  .question {
-    margin-left: .5rem;
-    margin-right: .5rem;
-  }
-}
-
 .question__name {
-  font-weight: 500;
+  font-weight: 600;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -26,11 +38,71 @@ ion-item {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  margin-bottom: .5rem;
+  margin-bottom: 0.6rem;
 }
 
 .question__details {
   display: flex;
-  justify-content: start;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.progress-track {
+  flex: 1;
+  max-width: 9rem;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(var(--ion-color-medium-rgb), 0.2);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+
+  &--success {
+    background: var(--ion-color-success);
+  }
+
+  &--warning {
+    background: var(--ion-color-warning);
+  }
+
+  &--danger {
+    background: var(--ion-color-danger);
+  }
+}
+
+.progress-pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ion-color-medium);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.chevron-icon {
+  color: var(--ion-color-medium);
+  font-size: 21px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container > * {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .question {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
 }

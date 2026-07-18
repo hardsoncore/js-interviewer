@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { QuestionsPage } from './questions.page';
 import { QuestionsService } from 'src/app/services/questions.service';
@@ -26,7 +26,7 @@ describe('QuestionsPage', () => {
   let fixture: ComponentFixture<QuestionsPage>;
 
   let questionsServiceMock: { questions: BehaviorSubject<Question[]> };
-  let resultsServiceMock: { results: BehaviorSubject<Results[]>; getPercentById: jasmine.Spy };
+  let resultsServiceMock: { results: BehaviorSubject<Results[]> };
   let routerMock: { navigate: jasmine.Spy };
 
   const questions: Question[] = [
@@ -39,7 +39,6 @@ describe('QuestionsPage', () => {
     questionsServiceMock = { questions: new BehaviorSubject<Question[]>(questions) };
     resultsServiceMock = {
       results: new BehaviorSubject<Results[]>([{ id: 1, correctness: 80 }]),
-      getPercentById: jasmine.createSpy('getPercentById').and.returnValue(of(80)),
     };
     routerMock = { navigate: jasmine.createSpy('navigate') };
 
@@ -68,7 +67,36 @@ describe('QuestionsPage', () => {
 
       expect(component.questions).toEqual(questions);
       expect(component.filteredQuestions).toEqual(questions);
+      expect(component.visibleQuestions).toEqual(questions);
       expect(component.results).toEqual([{ id: 1, correctness: 80 }]);
+      expect(component.percentById.get(1)).toBe(80);
+    });
+
+    it('should render only the first batch when there are many questions', () => {
+      const manyQuestions = Array.from({ length: 80 }, (_, i) => makeQuestion({ id: i + 1 }));
+      questionsServiceMock.questions.next(manyQuestions);
+
+      component.ngOnInit();
+
+      expect(component.filteredQuestions.length).toBe(80);
+      expect(component.visibleQuestions.length).toBe(30);
+    });
+  });
+
+  describe('loadMore', () => {
+    it('should append the next batch and complete the infinite scroll event', () => {
+      const manyQuestions = Array.from({ length: 80 }, (_, i) => makeQuestion({ id: i + 1 }));
+      questionsServiceMock.questions.next(manyQuestions);
+      component.ngOnInit();
+
+      const event = { target: { complete: jasmine.createSpy('complete') } };
+      component.loadMore(event as never);
+
+      expect(component.visibleQuestions.length).toBe(60);
+      expect(event.target.complete).toHaveBeenCalled();
+
+      component.loadMore(event as never);
+      expect(component.visibleQuestions.length).toBe(80);
     });
   });
 
@@ -84,6 +112,7 @@ describe('QuestionsPage', () => {
 
       expect(component.filteredQuestions.length).toBe(1);
       expect(component.filteredQuestions[0].id).toBe(2);
+      expect(component.visibleQuestions).toEqual(component.filteredQuestions);
     });
 
     it('should filter by tag', () => {
@@ -109,6 +138,7 @@ describe('QuestionsPage', () => {
       component.handleInput(inputEvent('   '));
 
       expect(component.filteredQuestions).toEqual(questions);
+      expect(component.visibleQuestions).toEqual(questions);
     });
 
     it('should return an empty list when nothing matches', () => {
@@ -123,12 +153,11 @@ describe('QuestionsPage', () => {
       expect(component.trackById(0, questions[0])).toBe(1);
     });
 
-    it('getPercentById should delegate to ResultsService', (done) => {
-      component.getPercentById(1).subscribe(percent => {
-        expect(percent).toBe(80);
-        expect(resultsServiceMock.getPercentById).toHaveBeenCalledWith(1);
-        done();
-      });
+    it('getPercent should return the stored percent or 0', () => {
+      component.ngOnInit();
+
+      expect(component.getPercent(1)).toBe(80);
+      expect(component.getPercent(999)).toBe(0);
     });
 
     it('clickOnQuestion should navigate to question-info with the question id', () => {

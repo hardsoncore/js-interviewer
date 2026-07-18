@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
 
@@ -10,22 +10,26 @@ import { ResultsService } from 'src/app/services/results.service';
 import { QuestionLevels } from 'src/app/enums/questions.enum';
 import { Colors } from 'src/app/enums/app.enum';
 import { IonicModule } from '@ionic/angular';
-import { AsyncPipe } from '@angular/common';
+import type { InfiniteScrollCustomEvent } from '@ionic/angular';
 @Component({
     selector: 'app-questions',
     templateUrl: 'questions.page.html',
     styleUrls: ['questions.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule, AsyncPipe]
+    imports: [IonicModule]
 })
 export class QuestionsPage implements OnInit, OnDestroy {
+  private static readonly BATCH_SIZE = 30;
+
   private questionsService = inject(QuestionsService);
   private router = inject(Router);
   private resultsService = inject(ResultsService);
 
   questions: Question[] = [];
   filteredQuestions: Question[] = [];
+  visibleQuestions: Question[] = [];
   results: Results[];
+  percentById = new Map<number, number>();
 
   private destroy$ = new Subject<void>();
 
@@ -33,8 +37,12 @@ export class QuestionsPage implements OnInit, OnDestroy {
     this.questionsService.questions.pipe(takeUntil(this.destroy$)).subscribe(questions => {
       this.questions = questions;
       this.filteredQuestions = questions;
+      this.visibleQuestions = questions.slice(0, QuestionsPage.BATCH_SIZE);
     });
-    this.resultsService.results.pipe(takeUntil(this.destroy$)).subscribe(results => this.results = results);
+    this.resultsService.results.pipe(takeUntil(this.destroy$)).subscribe(results => {
+      this.results = results;
+      this.percentById = new Map(results.map(r => [Number(r.id), r.correctness]));
+    });
   }
 
   ngOnDestroy() {
@@ -48,6 +56,7 @@ export class QuestionsPage implements OnInit, OnDestroy {
 
     if (!query.trim()) {
       this.filteredQuestions = [...this.questions];
+      this.visibleQuestions = this.filteredQuestions.slice(0, QuestionsPage.BATCH_SIZE);
       return;
     }
 
@@ -59,14 +68,20 @@ export class QuestionsPage implements OnInit, OnDestroy {
 
       return matchTags || matchCategory || matchName || matchId;
     });
+    this.visibleQuestions = this.filteredQuestions.slice(0, QuestionsPage.BATCH_SIZE);
+  }
+
+  public loadMore(event: InfiniteScrollCustomEvent) {
+    this.visibleQuestions = this.filteredQuestions.slice(0, this.visibleQuestions.length + QuestionsPage.BATCH_SIZE);
+    event.target.complete();
   }
 
   public trackById(index: number, item: Question) {
     return item.id;
   }
 
-  public getPercentById(id: number): Observable<number> {
-    return this.resultsService.getPercentById(id);
+  public getPercent(id: number): number {
+    return this.percentById.get(Number(id)) ?? 0;
   }
 
   public levelColor(level: QuestionLevels): Colors {

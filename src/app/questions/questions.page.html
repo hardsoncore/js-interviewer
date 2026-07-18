@@ -17,7 +17,7 @@
     <ion-searchbar animated="true" placeholder="Search by topic, keyword or ID" (ionInput)="handleInput($event)"></ion-searchbar>
 
     <div class="question-list">
-      @for (question of filteredQuestions; track trackById($index, question)) {
+      @for (question of visibleQuestions; track trackById($index, question)) {
         <ion-item
           class="question"
           button
@@ -28,7 +28,7 @@
           <ion-icon name="arrow-forward" slot="end" class="chevron-icon"></ion-icon>
           <ion-label>
             <h2 class="question__name">{{ question.id }}. {{ question.name }}</h2>
-            @let pct = (getPercentById(question.id) | async) ?? 0;
+            @let pct = getPercent(question.id);
             <div class="question__details">
               @if (question.level) {
                 <span class="level-pill level-pill--{{ levelColor(question.level) }}">{{ question.level }}</span>
@@ -42,5 +42,13 @@
         </ion-item>
       }
     </div>
+
+    <ion-infinite-scroll
+      threshold="100px"
+      [disabled]="visibleQuestions.length >= filteredQuestions.length"
+      (ionInfinite)="loadMore($event)"
+      >
+      <ion-infinite-scroll-content loadingSpinner="crescent"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
 </ion-content>

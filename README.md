@@ -67,7 +67,9 @@ npm run start
 
 ## 🤝 Project status & contributing
 
-The focus of this project is **high-quality, up-to-date interview content**. The UI framework (Angular/Ionic) is frozen — the code may be a bit older, but the knowledge base is fresh and growing.
+The focus of this project is **high-quality, up-to-date interview content**.
+
+If you use Claude Code or Copilot, the `add-answer` skill scaffolds well-structured answers that follow the app's content guidelines. **Always double-check the generated answer for correctness before opening a PR** — the skill speeds up the boilerplate, but the accuracy is on you.
 
 Content PRs are welcome: questions and answers live in `src/assets/content/` (per-language `questions.ts` + Markdown answers).
 

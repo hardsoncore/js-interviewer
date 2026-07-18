@@ -32,8 +32,8 @@ export const rus: Translations = {
     },
   },
   QUESTIONS: {
-    TITLE: 'Теоретические вопросы',
-    SEARCH_PLACEHOLDER: 'Поиск по теме, ключевому слову или ID',
+    TITLE: 'Вопросы',
+    SEARCH_PLACEHOLDER: 'Поиск по теме, названию или ID',
   },
   QUESTION_INFO: {
     TITLE: 'Вопрос №{{id}}',

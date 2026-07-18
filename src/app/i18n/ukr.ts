@@ -32,8 +32,8 @@ export const ukr: Translations = {
     },
   },
   QUESTIONS: {
-    TITLE: 'Теоретичні питання',
-    SEARCH_PLACEHOLDER: 'Пошук за темою, ключовим словом або ID',
+    TITLE: 'Питання',
+    SEARCH_PLACEHOLDER: 'Пошук за темою, назвою або ID',
   },
   QUESTION_INFO: {
     TITLE: 'Питання №{{id}}',

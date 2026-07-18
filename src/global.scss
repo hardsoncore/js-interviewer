@@ -43,6 +43,24 @@ ion-content {
   scrollbar-color: var(--ion-color-medium) transparent !important;
 }
 
+/*
+ * Touch browsers keep :hover on the last-tapped control until the next
+ * interaction, so in the installed PWA an Ionic button stays visibly dimmed
+ * (clear buttons drop to opacity .6, solid ones show a tint overlay) after it
+ * triggers navigation. Neutralize hover styling where the primary pointer
+ * can't actually hover; real hover devices keep their feedback untouched.
+ */
+@media (hover: none) {
+  ion-button:not(.button-disabled):hover {
+    opacity: 1 !important;
+  }
+
+  ion-button {
+    --background-hover: transparent;
+    --background-hover-opacity: 0;
+  }
+}
+
 .level-pill {
   font-size: 11px;
   font-weight: 700;

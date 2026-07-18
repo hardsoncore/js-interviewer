@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: ProfilePage,
   },
+  {
+    path: 'how-to-learn',
+    loadChildren: () => import('./subpages/how-to-learn/how-to-learn.module').then( m => m.HowToLearnPageModule)
+  },
 ];
 
 @NgModule({

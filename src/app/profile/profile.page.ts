@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     imports: [IonicModule, NgClass, FormsModule]
 })
 export class ProfilePage implements OnInit, OnDestroy {
+  private router = inject(Router);
   private theme = inject(ThemeService);
   private alertController = inject(AlertController);
   private profileService = inject(ProfileService);
@@ -81,6 +83,10 @@ export class ProfilePage implements OnInit, OnDestroy {
     this.timerId = setTimeout(() => {
       this.imgLoaded = true;
     }, 1000);
+  }
+
+  public goToHowToLearn(): void {
+    this.router.navigate(['tabs/profile/how-to-learn']);
   }
 
   public async clearResults() {

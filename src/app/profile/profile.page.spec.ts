@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 
@@ -19,6 +20,7 @@ describe('ProfilePage', () => {
   let resultsServiceMock: { getAveragePercent: jasmine.Spy; setResults: jasmine.Spy };
   let streakServiceMock: { streak$: Observable<number>; hasActivityToday$: Observable<boolean> };
   let appServiceMock: { appVersion: string; language: Languages };
+  let routerMock: { navigate: jasmine.Spy };
   let alertMock: { present: jasmine.Spy; onDidDismiss: jasmine.Spy };
   let alertControllerMock: { create: jasmine.Spy };
   let dismissRole: string;
@@ -36,6 +38,7 @@ describe('ProfilePage', () => {
     };
     streakServiceMock = { streak$: of(5), hasActivityToday$: of(true) };
     appServiceMock = { appVersion: 'v1.2.3', language: Languages.eng };
+    routerMock = { navigate: jasmine.createSpy('navigate') };
 
     alertMock = {
       present: jasmine.createSpy('present').and.resolveTo(),
@@ -51,6 +54,7 @@ describe('ProfilePage', () => {
         { provide: ResultsService, useValue: resultsServiceMock },
         { provide: StreakService, useValue: streakServiceMock },
         { provide: AppService, useValue: appServiceMock },
+        { provide: Router, useValue: routerMock },
         { provide: AlertController, useValue: alertControllerMock },
       ],
     }).compileComponents();
@@ -137,6 +141,13 @@ describe('ProfilePage', () => {
       tick(1000);
       expect(component.imgLoaded).toBeFalse();
     }));
+  });
+
+  describe('goToHowToLearn', () => {
+    it('should navigate to the how-to-learn subpage', () => {
+      component.goToHowToLearn();
+      expect(routerMock.navigate).toHaveBeenCalledWith(['tabs/profile/how-to-learn']);
+    });
   });
 
   describe('clearResults', () => {

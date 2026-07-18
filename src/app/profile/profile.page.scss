@@ -205,6 +205,14 @@ ion-select::part(text) {
   }
 }
 
+.item-icon--learn {
+  background: rgba(var(--ion-color-success-rgb), 0.14);
+
+  ion-icon {
+    color: var(--ion-color-success);
+  }
+}
+
 .item-icon--github {
   background: rgba(var(--ion-color-dark-rgb), 0.1);
 

@@ -15,25 +15,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Критический путь рендеринга',
+        name: 'Critical Rendering Path',
       },
       {
-        name: 'Как браузер строит DOM, CSSOM и Render Tree',
+        name: 'Парсинг HTML → DOM, CSS → CSSOM',
       },
       {
-        name: 'Как браузер выполняет JavaScript и как это влияет на рендеринг',
+        name: 'JavaScript блокирует парсинг (defer / async)',
       },
       {
-        name: 'Что такое Layout / Reflow',
+        name: 'Render Tree → Layout → Paint → Composite',
       },
       {
-        name: 'Что такое Repaint',
-      },
-      {
-        name: 'Composite (композитинг)',
-      },
-      {
-        name: 'Ивенты DOMContentLoaded и Load - в чем разница?',
+        name: 'DOMContentLoaded vs load',
       }
     ]
   },

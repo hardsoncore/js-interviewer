@@ -18,22 +18,16 @@ export const questions = [
         name: 'Critical Rendering Path',
       },
       {
-        name: 'How the browser builds the DOM, CSSOM, and Render Tree',
+        name: 'Parsing HTML → DOM, CSS → CSSOM',
       },
       {
-        name: 'How the browser executes JavaScript and how it affects rendering',
+        name: 'JavaScript blocks parsing (defer / async)',
       },
       {
-        name: 'What is Layout / Reflow',
+        name: 'Render Tree → Layout → Paint → Composite',
       },
       {
-        name: 'What is Repaint',
-      },
-      {
-        name: 'Composite',
-      },
-      {
-        name: 'Events DOMContentLoaded and Load - what is the difference?',
+        name: 'DOMContentLoaded vs load',
       }
     ]
   },

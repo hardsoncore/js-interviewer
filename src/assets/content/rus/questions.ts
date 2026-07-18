@@ -99,19 +99,23 @@ export const questions = [
     answer: 'assets/content/rus/answers/4-Tegi-HTML5-Semantika-Dostupnost.md',
     tags: [
       'HTML',
-      'markup'
+      'markup',
+      'a11y'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Что такое семантическая вёрстка и зачем она нужна',
+        name: 'Семантическая вёрстка: что это и зачем',
       },
       {
-        name: 'Основные семантические теги HTML',
+        name: 'Основные семантические теги HTML5',
       },
       {
-        name: 'Как разметить страницу с точки зрения семантики',
+        name: 'article vs section vs div',
+      },
+      {
+        name: 'Доступность и ARIA',
       }
     ]
   },

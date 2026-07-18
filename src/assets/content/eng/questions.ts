@@ -99,19 +99,23 @@ export const questions = [
     answer: 'assets/content/eng/answers/4-HTML5-Tags-Semantics-Accessibility.md',
     tags: [
       'HTML',
-      'markup'
+      'markup',
+      'a11y'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'What is semantic markup and why is it needed',
+        name: 'Semantic markup: what it is and why',
       },
       {
-        name: 'Main semantic HTML tags',
+        name: 'Main semantic HTML5 tags',
       },
       {
-        name: 'How to markup a page from a semantic perspective',
+        name: 'article vs section vs div',
+      },
+      {
+        name: 'Accessibility and ARIA',
       }
     ]
   },

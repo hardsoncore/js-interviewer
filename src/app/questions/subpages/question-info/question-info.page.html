@@ -26,8 +26,15 @@
       lines="none"
       detail="false"
       >
-      <ion-label>Mark question as complete</ion-label>
-      <ion-checkbox [(ngModel)]="isQuestionCompleted" (ionChange)="markAsComplete($event)" slot="end" color="success"></ion-checkbox>
+        <ion-checkbox
+          [(ngModel)]="isQuestionCompleted"
+          (ionChange)="markAsComplete($event)"
+          justify="space-between"
+          labelPlacement="start"
+          color="success"
+          >
+          Mark question as complete
+        </ion-checkbox>
     </ion-item>
 
     @if (!redirectedFromQuiz) {

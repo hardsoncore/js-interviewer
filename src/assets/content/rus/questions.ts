@@ -803,7 +803,6 @@ export const questions = [
     answer: 'assets/content/rus/answers/31-Kakie-tipy-uzlov-est-v-DOM.md',
     tags: [
       'browser',
-      'performance',
       'markup',
       'DOM'
     ],
@@ -811,13 +810,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Какие типы узлов есть в DOM?',
+        name: 'DOM — дерево узлов (Node); типов 12, реально используются ~5',
       },
       {
-        name: 'Чем они отличаются?',
+        name: 'Основные типы: Document, Element, Text, Comment, DocumentFragment',
       },
       {
-        name: 'Для чего нужны разные типы узлов?',
+        name: 'Отличия: nodeType, nodeName, nodeValue; children vs childNodes',
+      },
+      {
+        name: 'Ловушка: пробелы между тегами — тоже Text-узлы',
+      },
+      {
+        name: 'Зачем: у каждого типа своя роль и свой API',
       }
     ]
   },

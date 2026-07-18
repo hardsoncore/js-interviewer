@@ -804,7 +804,6 @@ export const questions = [
     answer: 'assets/content/ukr/answers/31-Yaki-typy-vuzliv-ye-v-DOM.md',
     tags: [
       'browser',
-      'performance',
       'markup',
       'DOM'
     ],
@@ -812,13 +811,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Які типи вузлів є в DOM?',
+        name: 'DOM — дерево вузлів (Node); типів 12, реально використовуються ~5',
       },
       {
-        name: 'Чим вони відрізняються?',
+        name: 'Основні типи: Document, Element, Text, Comment, DocumentFragment',
       },
       {
-        name: 'Для чого потрібні різні типи вузлів?',
+        name: 'Відмінності: nodeType, nodeName, nodeValue; children vs childNodes',
+      },
+      {
+        name: 'Пастка: пробіли між тегами — теж Text-вузли',
+      },
+      {
+        name: 'Навіщо: у кожного типу своя роль і свій API',
       }
     ]
   },

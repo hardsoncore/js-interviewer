@@ -803,7 +803,6 @@ export const questions = [
     answer: 'assets/content/eng/answers/31-What-types-of-nodes-exist-in-the-DOM.md',
     tags: [
       'browser',
-      'performance',
       'markup',
       'DOM'
     ],
@@ -811,13 +810,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'What types of nodes exist in the DOM?',
+        name: 'The DOM is a tree of nodes (Node); 12 types defined, ~5 actually used',
       },
       {
-        name: 'How do they differ?',
+        name: 'Main types: Document, Element, Text, Comment, DocumentFragment',
       },
       {
-        name: 'What are the different types of nodes used for?',
+        name: 'Differences: nodeType, nodeName, nodeValue; children vs childNodes',
+      },
+      {
+        name: 'Trap: whitespace between tags is also a Text node',
+      },
+      {
+        name: 'Why: each type has its own role and its own API',
       }
     ]
   },

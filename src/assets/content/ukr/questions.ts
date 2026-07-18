@@ -73,25 +73,23 @@ export const questions = [
     answer: 'assets/content/ukr/answers/3-Sho-take-DOCTYPE-Navishcho-vin-potriben.md',
     tags: [
       'HTML',
-      'markup'
+      'markup',
+      'browser'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Що таке цей тег DOCTYPE',
+        name: 'Що таке DOCTYPE',
       },
       {
-        name: 'Навіщо потрібен DOCTYPE',
+        name: 'Навіщо потрібен: standards mode vs quirks mode',
       },
       {
-        name: 'Розповісти про те, що є різні види DOCTYPE',
+        name: 'Види DOCTYPE: старі DTD і короткий HTML5',
       },
       {
-        name: 'Чи можна взагалі обійтися без DOCTYPE?',
-      },
-      {
-        name: 'Зараз практично завжди варто використовувати DOCTYPE HTML5',
+        name: 'Чи можна обійтися без DOCTYPE?',
       }
     ]
   },

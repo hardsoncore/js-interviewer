@@ -73,25 +73,23 @@ export const questions = [
     answer: 'assets/content/rus/answers/3-Chto-takoe-DOCTYPE-Zachem-on-nuzhen.md',
     tags: [
       'HTML',
-      'markup'
+      'markup',
+      'browser'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Что такое этот тег DOCTYPE',
+        name: 'Что такое DOCTYPE',
       },
       {
-        name: 'Зачем нужен DOCTYPE',
+        name: 'Зачем нужен: standards mode vs quirks mode',
       },
       {
-        name: 'Рассказать, про то что есть разные виды DOCTYPE',
+        name: 'Виды DOCTYPE: старые DTD и короткий HTML5',
       },
       {
-        name: 'Можно ли вообще обойтись без DOCTYPE?',
-      },
-      {
-        name: 'Сейчас практически всегда стоит юзать DOCTYPE HTML5',
+        name: 'Можно ли обойтись без DOCTYPE?',
       }
     ]
   },

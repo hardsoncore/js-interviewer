@@ -73,25 +73,23 @@ export const questions = [
     answer: 'assets/content/eng/answers/3-What-is-DOCTYPE-Why-is-it-needed.md',
     tags: [
       'HTML',
-      'markup'
+      'markup',
+      'browser'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'What is this DOCTYPE tag',
+        name: 'What is DOCTYPE',
       },
       {
-        name: 'Why is DOCTYPE needed',
+        name: 'Why it is needed: standards mode vs quirks mode',
       },
       {
-        name: 'Explain that there are different types of DOCTYPE',
+        name: 'Types of DOCTYPE: legacy DTDs and the short HTML5 one',
       },
       {
-        name: 'Is it possible to do without DOCTYPE?',
-      },
-      {
-        name: 'Nowadays, it is almost always recommended to use DOCTYPE HTML5',
+        name: 'Can you do without DOCTYPE?',
       }
     ]
   },

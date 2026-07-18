@@ -1,59 +1,111 @@
-<h3>1. Розуміння Critical Rendering Path (CRP)</h3>
+<h3>Critical Rendering Path</h3>
+<p>Оптимізація рендерингу — це прискорення <span class="accent">Critical Rendering Path</span> (DOM → CSSOM → Render Tree → Layout → Paint → Composite): що менше роботи й блокувань на шляху, то раніше користувач бачить контент.</p>
 
-<p><span class="accent"> Critical Rendering Path (CRP)</span> — це послідовність кроків, які проходить браузер для перетворення HTML, CSS та JavaScript на пікселі на екрані. Оптимізація рендерингу — це, по суті, мінімізація часу проходження цього шляху.</p>
+<p class="info"><strong>Головна думка:</strong> менше блокувань на критичному шляху: легкий DOM, критичний CSS інлайном, скрипти з <code>defer</code>, важкі ресурси — ліниво, ефект міряємо Core Web Vitals.</p>
 
-<p><strong>Кроки:</strong> Побудова DOM -> Побудова CSSOM -> Формування Render Tree (дерева рендерингу) -> Layout (розрахунок геометрії) -> Paint (відмальовування пікселів).</p>
+<h3>Оптимізація DOM (HTML)</h3>
+<ul>
+  <li>Менше вузлів і вкладеності: що більше дерево, то дорожчий кожен Layout (Lighthouse свариться від ~800 вузлів).</li>
+  <li>Довгі списки — віртуальний скрол; контент за екраном — <code>content-visibility: auto</code>.</li>
+</ul>
 
-<p><strong>Головне правило:</strong> Чим швидше браузер збере Render Tree, тим швидше користувач побачить контент. Тому важливо оптимізувати завантаження та обробку ресурсів, щоб мінімізувати час до першого відображення (<strong>First Contentful Paint</strong>) та час до повної інтерактивності (<strong>Time to Interactive</strong>).</p>
+<h3>Оптимізація CSSOM (CSS)</h3>
+<ul>
+  <li>CSS блокує рендер: критичні стилі першого екрана інлайнимо в <code>&lt;head&gt;</code>, решту — асинхронно.</li>
+  <li>Анімуємо лише <code>transform</code> і <code>opacity</code> — вони оминають Layout і Paint, працюючи на GPU (Composite).</li>
+</ul>
 
-<h3>2. Оптимізація DOM (HTML)</h3>
-<p>Дерево елементів має бути максимально легким.</p>
+<h3>Оптимізація JavaScript</h3>
+<ul>
+  <li>JS блокує парсинг HTML — зовнішні скрипти з <code>defer</code>/<code>async</code>.</li>
+  <li>Code Splitting + Lazy Loading: вантажимо код за маршрутами, а не весь бандл одразу.</li>
+  <li>Важкі обчислення — у Web Worker, не блокуючи головний потік.</li>
+</ul>
 
-<p><strong>Зменшення глибини вкладеності:</strong> Уникай зайвих обгорток (<code>&lt;div&gt;</code> всередині <code>&lt;div&gt;</code> заради одного відступу). Чим глибше DOM, тим складніше браузеру перераховувати Layout.</p>
+<h3>Медіа та шрифти</h3>
+<ul>
+  <li>Формати WebP/AVIF та явні <code>width</code>/<code>height</code> — захист від стрибків макета (CLS).</li>
+  <li><code>loading="lazy"</code> для картинок та iframe нижче першого екрана.</li>
+  <li>Шрифти: <code>font-display: swap</code> — текст одразу видно системним шрифтом (немає FOIT).</li>
+</ul>
 
-<p><strong>Розмір DOM:</strong> Намагайся тримати кількість вузлів на сторінці в розумних межах (рекомендується не більше 1500 вузлів).</p>
+<h3>Мережа та доставка</h3>
+<ul>
+  <li>Resource Hints: <code>preconnect</code> до критичних доменів, <code>preload</code> для шрифтів і hero-картинки.</li>
+  <li>Стиснення (Brotli), HTTP-кешування, CDN, HTTP/2+.</li>
+  <li>SSR/SSG — готова розмітка з сервера різко прискорює FCP/LCP.</li>
+</ul>
 
-<p><strong>Семантика:</strong> Правильні теги прискорюють парсинг та покращують доступність.</p>
+<h3>Профілювання та метрики</h3>
+<p>Орієнтир — <span class="accent">Core Web Vitals</span>: <strong>LCP</strong> (відмальовування основного контенту), <strong>INP</strong> (відгук, замінила FID), <strong>CLS</strong> (стабільність макета). Інструменти: Lighthouse і Performance у DevTools.</p>
 
-<h3>3. Оптимізація CSSOM (CSS)</h3>
-<p>CSS блокує рендеринг. Браузер не відмалює сторінку, поки не завантажить і не розпарсить усі синхронні стилі.</p>
+<p class="info info--orange">Часта помилка — оптимізувати «на око» на потужній дев-машині: профілюй із CPU/network throttling і виправляй найдорожче, а не перше-ліпше.</p>
 
-<p><strong>Critical CSS:</strong> Виділяй стилі, необхідні для відмальовування першого екрана (Above the Fold), і вбудовуй їх прямо в <code>&lt;head&gt;</code> (інлайн).</p>
+<p class="deep-dive">Поглиблений конспект</p>
 
-<p><strong>Асинхронне завантаження решти CSS:</strong> Інші стилі завантажуй асинхронно (наприклад, через <code>&lt;link rel="preload"&gt;</code> або медіа-запити).</p>
+<h3>Як виглядає оптимізоване завантаження</h3>
+<code class="code">
+  &lt;head&gt;
+    &lt;link rel="preconnect" href="https://cdn.example.com"&gt;
+    &lt;style&gt;/* критичний CSS першого екрана */&lt;/style&gt;
+    &lt;link rel="stylesheet" href="rest.css" media="print" onload="this.media='all'"&gt;
+    &lt;script src="app.js" defer&gt;&lt;/script&gt;
+  &lt;/head&gt;
 
-<p><strong>Складність селекторів:</strong> Уникай універсальних і надмірно вкладених селекторів (на кшталт <code>.wrapper ul li a span</code>). Браузер читає селектори справа наліво, і складні ланцюжки змушують його робити багато зайвих перевірок.</p>
+  &lt;!-- LCP-елемент: високий пріоритет, без lazy --&gt;
+  &lt;img src="hero.avif" width="800" height="400" fetchpriority="high" alt="..."&gt;
+  &lt;!-- нижче першого екрана --&gt;
+  &lt;img src="feed.webp" width="400" height="300" loading="lazy" alt="..."&gt;
+</code>
+<p>Трюк із <code>media="print"</code> завантажує некритичні стилі з низьким пріоритетом, не блокуючи рендер, а <code>onload</code> вмикає їх. <code>fetchpriority="high"</code> піднімає пріоритет LCP-картинки в мережевій черзі.</p>
 
-<p><strong>Анімації:</strong> Анімуй лише властивості <code>transform</code> та <code>opacity</code>. Вони не викликають перерахунок геометрії (Layout) та перемальовування (Paint), а обробляються на рівні композитингу (Composite) силами GPU.</p>
+<h3>Reflow, Repaint і Layout Thrashing</h3>
+<p>Зміна геометрії (<code>width</code>, <code>top</code>, додавання вузлів) запускає Reflow, зміна зовнішності (<code>color</code>, <code>box-shadow</code>) — Repaint. Читання layout-властивостей (<code>offsetHeight</code>, <code>getBoundingClientRect()</code>) за «брудного» дерева змушує браузер перерахувати Layout синхронно. Чергування читання й запису в циклі — <span class="accent">layout thrashing</span>: N примусових reflow замість одного.</p>
+<ul>
+  <li>Групуй операції: спершу всі читання, потім усі записи; візуальні зміни — через <code>requestAnimationFrame</code>.</li>
+  <li>Змінюй клас цілком замість серії інлайн-стилів; масові вставки — через <code>DocumentFragment</code>.</li>
+</ul>
 
-<h3>4. Оптимізація JavaScript та роботи фреймворків</h3>
-<p>JS блокує парсинг HTML. Коли парсер зустрічає <code>&lt;script&gt;</code>, він зупиняється, завантажує та виконує його.</p>
+<h3>Композитні шари та GPU</h3>
+<p><code>will-change: transform</code> (або <code>translateZ(0)</code>) виносить елемент на окремий композитний шар: його рух обробляє компоситор на GPU, не чіпаючи Layout/Paint решти сторінки.</p>
+<p class="info info--blue">Кожен шар займає пам'ять GPU. <code>will-change</code> — точковий інструмент для реально анімованих елементів, а не глобальний «прискорювач»: розвішаний усюди, він спричиняє layer explosion і сповільнює сторінку.</p>
 
-<p><code>defer</code> та <code>async</code>: Завжди використовуй ці атрибути для зовнішніх скриптів, щоб не блокувати парсинг сторінки.</p>
+<h3>content-visibility: auto</h3>
+<p>Змушує браузер пропускати Layout і Paint вмісту блока, поки той не наблизиться до вьюпорта; під час скролу контент промальовується на льоту. На відміну від віртуального скролу вузли лишаються в DOM (їх знаходить Ctrl+F, вони доступні для скрінрідерів) — ріжеться лише вартість рендерингу, а не сам DOM. Зручно для довгої сторінки з важких різнорідних секцій (стаття, стрічка карток), тоді як віртуалізація — для тисяч однотипних рядків.</p>
+<p><code>contain-intrinsic-size</code> задає блоку приблизну висоту-заглушку, поки він не промальований, — без неї скролбар і розкладка стрибатимуть (CLS) у міру рендерингу секцій.</p>
+<code class="code">
+  .section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px; /* приблизна висота до рендера */
+  }
+</code>
+<p class="info info--blue">Оцінка висоти в <code>contain-intrinsic-size</code> — компроміс: сильне розходження з реальною висотою дає стрибки скролу. Значення <code>auto</code> просить браузер запам'ятати фактичний розмір після першого рендера й перевикористати його.</p>
 
-<p><strong>Code Splitting та Lazy Loading:</strong> Не вантаж весь бандл застосунку відразу. Розділяй код за маршрутами (routes) або компонентами.</p>
+<h3>Оптимізації на рівні фреймворків</h3>
+<ul>
+  <li><strong>Angular:</strong> <code>ChangeDetectionStrategy.OnPush</code> і Signals — перевірка змін лише там, де реально змінилися дані; <code>trackBy</code> у списках; <code>@defer</code> для відкладених блоків шаблону.</li>
+  <li><strong>Vue:</strong> <code>v-once</code>/<code>v-memo</code> для статичних шматків шаблону, <code>shallowRef</code> для великих структур без глибокої реактивності.</li>
+  <li>Загальний принцип — звузити зону перемальовування: віртуалізація списків, мемоізація обчислень, розбиття важких компонентів.</li>
+</ul>
 
-<p><strong>Робота з реактивністю:</strong> У Vue 2 стеж за тим, що ти кладеш у <code>data()</code>. Якщо об'єкт великий і не потребує реактивності, використовуй <code>Object.freeze()</code>. Для статичних шматків шаблону чудово підходить директива <code>v-once</code>.</p>
+<h3>Шрифти детальніше</h3>
+<ul>
+  <li>Лише WOFF2, сабсетинг за <code>unicode-range</code> (не вантажити кирилицю на англомовній сторінці й навпаки).</li>
+  <li><code>&lt;link rel="preload" as="font"&gt;</code> для шрифту першого екрана + self-hosting замість сторонніх CDN.</li>
+  <li>Підгонка фолбек-шрифту через <code>size-adjust</code>/<code>ascent-override</code> прибирає CLS під час підміни шрифту.</li>
+</ul>
 
-<p><strong>В Angular:</strong> За замовчуванням кожна асинхронна подія запускає повну перевірку (Change Detection). Обов'язково переводь компоненти на стратегію <code>ChangeDetectionStrategy.OnPush</code>, щоб перевірка спрацьовувала лише при зміні <code>@Input()</code> посилань.</p>
+<h3>Доставка: деталі</h3>
+<ul>
+  <li>HTTP/2 мультиплексує запити в одному з'єднанні; HTTP/3 (QUIC) прискорює хендшейк і живучість у мобільних мережах.</li>
+  <li>Brotli стискає текст на ~15–20% краще за gzip.</li>
+  <li>Кешування: хеші в іменах бандлів + довгий <code>Cache-Control: immutable</code>; Service Worker для миттєвих повторних візитів.</li>
+  <li>103 Early Hints: сервер віддає preload/preconnect-підказки ще до того, як згенеровано HTML.</li>
+</ul>
 
-<p><strong>Web Workers:</strong> Винось важкі обчислення (наприклад, парсинг великих JSON або складну математику) у фонові потоки, щоб не блокувати головний потік (Main Thread).</p>
-
-<h3>5. Оптимізація медіа та шрифтів (Ресурси)</h3>
-<p>Важкі ресурси затримують завантаження корисного контенту.</p>
-
-<p><strong>Зображення:</strong> Використовуй сучасні формати (WebP, AVIF), обов'язково вказуй атрибути <code>width</code> та <code>height</code> для запобігання стрибкам контенту (Cumulative Layout Shift - CLS).</p>
-
-<p><strong>Ліниве завантаження:</strong> Використовуй <code>loading="lazy"</code> для зображень та <code>iframe</code>, які знаходяться поза зоною видимості (нижче першого екрана).</p>
-
-<p><strong>Шрифти:</strong> Використовуй <code>font-display: swap</code> у <code>@font-face</code>. Це дозволить браузеру відразу показати текст системним шрифтом, поки кастомний ще завантажується, уникаючи ефекту "невидимого тексту" (FOIT).</p>
-
-<h3>6. Мережеві оптимізації та доставка контенту</h3>
-<p><strong>Resource Hints:</strong> Використовуй <code>&lt;link rel="preconnect"&gt;</code> для раннього підключення до важливих сторонніх доменів (наприклад, API або CDN). Застосовуй <code>&lt;link rel="preload"&gt;</code> для критично важливих ресурсів (шрифтів, Hero-зображень).</p>
-
-<p><strong>SSR / SSG:</strong> Для складних SPA (Single Page Applications) генерація розмітки на сервері (Server-Side Rendering) або на етапі збирання (Static Site Generation) кардинально прискорює час до першого відмальовування контенту (FCP) і спрощує життя пошуковим роботам.</p>
-
-<h3>7. Профілювання та метрики</h3>
-<p><strong>Троттлінг:</strong> Під час локальної розробки на потужному залізі сторінка завжди буде "літати". Обов'язково вмикай уповільнення процесора (CPU throttling) та мережі в Chrome DevTools (вкладка Performance), щоб побачити реальну картину, з якою стикаються користувачі на середніх смартфонах.</p>
-
-<p><strong>Core Web Vitals:</strong> Орієнтуйся на ключові метрики Google: LCP (Largest Contentful Paint - швидкість відмальовування основного контенту), FID/INP (затримка реакції на дії) та CLS (стабільність верстки).</p>
+<h3>Метрики: пороги та практика</h3>
+<ul>
+  <li>«Зелені» пороги: LCP ≤ 2.5 с, INP ≤ 200 мс, CLS ≤ 0.1 — за 75-м перцентилем реальних користувачів.</li>
+  <li>INP замінила FID (2024): FID міряв затримку лише першого вводу, INP — найгіршу взаємодію за весь візит.</li>
+  <li>Lab-дані (Lighthouse, DevTools) — для налагодження; польові (RUM, CrUX) — джерело істини про реальних користувачів.</li>
+</ul>

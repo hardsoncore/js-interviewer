@@ -38,7 +38,8 @@ export const questions = [
     tags: [
       'markup',
       'CSS',
-      'browser'
+      'browser',
+      'Performance'
     ],
     category: 'Markup',
     level: QuestionLevels.middle,

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Question №{{ question?.id }}</ion-title>
+    <ion-title>{{ 'QUESTION_INFO.TITLE' | translate: { id: question?.id } }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
             <span class="level-pill level-pill--{{ levelColor(question.level) }}">{{ question.level }}</span>
           }
           @if (lastUpdated) {
-            <span class="last-updated">Updated {{ lastUpdated }}</span>
+            <span class="last-updated">{{ 'QUESTION_INFO.UPDATED' | translate: { date: lastUpdated } }}</span>
           }
         </div>
       }
@@ -33,7 +33,7 @@
           labelPlacement="start"
           color="success"
           >
-          Mark question as complete
+          {{ 'QUESTION_INFO.MARK_COMPLETE' | translate }}
         </ion-checkbox>
     </ion-item>
 
@@ -48,7 +48,7 @@
           size="large"
           >
           <ion-icon name="chevron-back" slot="start"></ion-icon>
-          Prev
+          {{ 'QUESTION_INFO.PREV' | translate }}
         </ion-button>
         <ion-button
           class="nav-btn nav-btn--next"
@@ -58,7 +58,7 @@
           expand="block"
           size="large"
           >
-          Next
+          {{ 'QUESTION_INFO.NEXT' | translate }}
           <ion-icon name="chevron-forward" slot="end"></ion-icon>
         </ion-button>
       </div>

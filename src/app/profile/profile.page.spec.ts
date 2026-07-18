@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AlertController, IonicModule } from '@ionic/angular';
+import { provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
+
+import { StaticTranslateLoader } from 'src/app/i18n/static-translate.loader';
 
 import { ProfilePage } from './profile.page';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -56,6 +59,7 @@ describe('ProfilePage', () => {
         { provide: AppService, useValue: appServiceMock },
         { provide: Router, useValue: routerMock },
         { provide: AlertController, useValue: alertControllerMock },
+        provideTranslateService({ loader: provideTranslateLoader(StaticTranslateLoader), fallbackLang: Languages.eng, lang: Languages.eng }),
       ],
     }).compileComponents();
 

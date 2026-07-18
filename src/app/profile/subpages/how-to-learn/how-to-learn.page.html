@@ -1,37 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/profile"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/profile" [text]="'COMMON.BACK' | translate"></ion-back-button>
     </ion-buttons>
-    <ion-title>How to learn</ion-title>
+    <ion-title>{{ 'HOW_TO_LEARN.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="container">
-    <h1 class="hero">Interview-ready in three passes</h1>
-    <p class="intro">
-      An interview is an oral exam: you get 60–90 seconds to give a clear,
-      confident answer before the follow-ups begin. Good news — about 20% of
-      the material delivers 80% of the result, and this app is built around
-      exactly that 20%. Here is the whole plan:
-    </p>
+    <h1 class="hero">{{ 'HOW_TO_LEARN.HERO' | translate }}</h1>
+    <p class="intro">{{ 'HOW_TO_LEARN.INTRO' | translate }}</p>
 
-    @for (step of steps; track step.title) {
+    @for (step of steps; track step.titleKey) {
       <div class="step-card">
         <div class="step-card__icon step-card__icon--{{ step.color }}">
           <ion-icon [name]="step.icon" aria-hidden="true"></ion-icon>
         </div>
         <div class="step-card__body">
-          <h2 class="step-card__title">{{ step.title }}</h2>
-          <p class="step-card__text">{{ step.text }}</p>
+          <h2 class="step-card__title">{{ step.titleKey | translate }}</h2>
+          <p class="step-card__text">{{ step.textKey | translate }}</p>
         </div>
       </div>
     }
 
-    <p class="outro">
-      That's it — no walls of text, no cramming marathons. Just a simple loop
-      that fits into your day. Good luck out there! 🚀
-    </p>
+    <p class="outro">{{ 'HOW_TO_LEARN.OUTRO' | translate }}</p>
   </div>
 </ion-content>

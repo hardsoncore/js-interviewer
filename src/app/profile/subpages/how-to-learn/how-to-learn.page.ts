@@ -1,11 +1,12 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { TranslatePipe } from '@ngx-translate/core';
 
 interface LearnStep {
   icon: string;
   color: string;
-  title: string;
-  text: string;
+  titleKey: string;
+  textKey: string;
 }
 
 @Component({
@@ -13,39 +14,39 @@ interface LearnStep {
     templateUrl: './how-to-learn.page.html',
     styleUrls: ['./how-to-learn.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule]
+    imports: [IonicModule, TranslatePipe]
 })
 export class HowToLearnPage {
   steps: LearnStep[] = [
     {
       icon: 'book',
       color: 'primary',
-      title: 'Pass 1 — read the Cores',
-      text: 'Every answer starts with a Core: the 1–2 minute spoken version — definition, key idea, a minimal example, classic pitfalls. That is exactly what interviewers expect to hear first, so simply read the Cores topic by topic.',
+      titleKey: 'HOW_TO_LEARN.STEPS.S1.TITLE',
+      textKey: 'HOW_TO_LEARN.STEPS.S1.TEXT',
     },
     {
       icon: 'mic',
       color: 'secondary',
-      title: 'Rehearse out loud in the Quiz',
-      text: 'Answer every question aloud, as if the interviewer were already in the room. Then open the answer structure and honestly tick only the points you actually said — anything below 100% will keep coming back until you own it.',
+      titleKey: 'HOW_TO_LEARN.STEPS.S2.TITLE',
+      textKey: 'HOW_TO_LEARN.STEPS.S2.TEXT',
     },
     {
       icon: 'layers',
       color: 'tertiary',
-      title: 'Pass 2 — unfold the Deep Dives',
-      text: 'Once the Cores feel easy, open the Deep Dives: under-the-hood mechanics, edge cases and senior-level details for when the interviewer starts digging.',
+      titleKey: 'HOW_TO_LEARN.STEPS.S3.TITLE',
+      textKey: 'HOW_TO_LEARN.STEPS.S3.TEXT',
     },
     {
       icon: 'flame',
       color: 'warning',
-      title: '15 minutes a day is enough',
-      text: 'Cores are phone-sized on purpose — perfect for a commute or a coffee queue. A short daily session beats any cramming marathon and keeps your streak alive.',
+      titleKey: 'HOW_TO_LEARN.STEPS.S4.TITLE',
+      textKey: 'HOW_TO_LEARN.STEPS.S4.TEXT',
     },
     {
       icon: 'moon',
       color: 'success',
-      title: 'Pass 3 — the night before',
-      text: 'Skim the Cores one last time and run the Quiz in random order as a final dress rehearsal. Then walk in and nail the first 90 seconds of every answer.',
+      titleKey: 'HOW_TO_LEARN.STEPS.S5.TITLE',
+      textKey: 'HOW_TO_LEARN.STEPS.S5.TEXT',
     },
   ];
 }

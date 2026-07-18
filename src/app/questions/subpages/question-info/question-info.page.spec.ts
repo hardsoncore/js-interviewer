@@ -2,7 +2,11 @@ import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angul
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, of, throwError } from 'rxjs';
+
+import { StaticTranslateLoader } from 'src/app/i18n/static-translate.loader';
+import { Languages } from 'src/app/enums/app.enum';
 
 import { QuestionInfoPage } from './question-info.page';
 import { QuestionsService } from 'src/app/services/questions.service';
@@ -54,6 +58,7 @@ describe('QuestionInfoPage', () => {
         { provide: ResultsService, useValue: resultsServiceMock },
         { provide: StreakService, useValue: streakServiceMock },
         { provide: HttpClient, useValue: httpMock },
+        provideTranslateService({ loader: provideTranslateLoader(StaticTranslateLoader), fallbackLang: Languages.eng, lang: Languages.eng }),
       ],
     }).compileComponents();
 

@@ -13,6 +13,7 @@ import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { answersMeta } from 'answers-meta';
 
 @Component({
@@ -20,7 +21,7 @@ import { answersMeta } from 'answers-meta';
     templateUrl: './question-info.page.html',
     styleUrls: ['./question-info.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule, FormsModule]
+    imports: [IonicModule, FormsModule, TranslatePipe]
 })
 export class QuestionInfoPage implements OnInit, OnDestroy {
   private router = inject(Router);
@@ -29,6 +30,7 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
   private http = inject(HttpClient);
   private resultsService = inject(ResultsService);
   private streakService = inject(StreakService);
+  private translate = inject(TranslateService);
 
   questionId: number;
   question: Question;
@@ -156,11 +158,11 @@ export class QuestionInfoPage implements OnInit, OnDestroy {
           answer: `
             <section class="load-answer-error">
               <p class="load-answer-error__emoji">💔</p>
-              <h3 class="load-answer-error__title">404 - Answer Text Not Found</h3>
+              <h3 class="load-answer-error__title">${this.translate.instant('QUESTION_INFO.LOAD_ERROR.TITLE')}</h3>
               <p class="load-answer-error__text">
-                Help us fill the gap — we'd love your contribution via a
+                ${this.translate.instant('QUESTION_INFO.LOAD_ERROR.TEXT')}
                 <a class="load-answer-error__link" href="https://github.com/hardsoncore/js-interviewer/pulls" target="_blank">
-                  Pull Request on GitHub
+                  ${this.translate.instant('QUESTION_INFO.LOAD_ERROR.LINK')}
                 </a>
               </p>
             </section>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Answer structure for question №{{ question?.id }}</ion-title>
+    <ion-title>{{ 'ANSWER_STRUCTURE.TITLE' | translate: { id: question?.id } }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
 
     <ion-popover trigger="hover-trigger" triggerAction="click">
       <ng-template>
-        <ion-content class="ion-padding">Select the points you covered in your answer - this helps indicate how complete your response was.</ion-content>
+        <ion-content class="ion-padding">{{ 'ANSWER_STRUCTURE.HINT' | translate }}</ion-content>
       </ng-template>
     </ion-popover>
 
@@ -34,7 +34,7 @@
         <br>
 
           <ion-button (click)="saveResult()" color="tertiary" fill="outline" expand="block" size="large">
-            Save your answer progress
+            {{ 'ANSWER_STRUCTURE.SAVE' | translate }}
           </ion-button>
         </div>
       </ion-content>

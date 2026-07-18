@@ -11,12 +11,13 @@ import { QuestionLevels } from 'src/app/enums/questions.enum';
 import { Colors } from 'src/app/enums/app.enum';
 import { IonicModule } from '@ionic/angular';
 import type { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
     selector: 'app-questions',
     templateUrl: 'questions.page.html',
     styleUrls: ['questions.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule]
+    imports: [IonicModule, TranslatePipe]
 })
 export class QuestionsPage implements OnInit, OnDestroy {
   private static readonly BATCH_SIZE = 30;

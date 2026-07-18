@@ -14,13 +14,14 @@ import { AppService } from 'src/app/services/app.service';
 import { StreakService } from '../services/streak.service';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-profile',
     templateUrl: 'profile.page.html',
     styleUrls: ['profile.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule, NgClass, FormsModule]
+    imports: [IonicModule, NgClass, FormsModule, TranslatePipe]
 })
 export class ProfilePage implements OnInit, OnDestroy {
   private router = inject(Router);
@@ -30,6 +31,7 @@ export class ProfilePage implements OnInit, OnDestroy {
   private resultsService = inject(ResultsService);
   private streakService = inject(StreakService);
   private appService = inject(AppService);
+  private translate = inject(TranslateService);
 
   imgLoaded = false;
   profile: Profile;
@@ -100,12 +102,12 @@ export class ProfilePage implements OnInit, OnDestroy {
   private async _presentAlert(): Promise<string> {
     const alert = await this.alertController.create({
       cssClass: 'clear-storage-alert',
-      header: 'All your progress will be lost',
-      message: 'Are you sure you want to clear your progress and start over again?',
+      header: this.translate.instant('PROFILE.CLEAR_ALERT.HEADER'),
+      message: this.translate.instant('PROFILE.CLEAR_ALERT.MESSAGE'),
       buttons: [
-        'Cancel',
+        this.translate.instant('PROFILE.CLEAR_ALERT.CANCEL'),
         {
-          text: 'Clear',
+          text: this.translate.instant('PROFILE.CLEAR_ALERT.CONFIRM'),
           cssClass: 'danger-button',
           role: 'ok'
         }

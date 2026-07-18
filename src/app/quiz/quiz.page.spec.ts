@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, of } from 'rxjs';
 
 import { QuizPage } from './quiz.page';
+import { StaticTranslateLoader } from 'src/app/i18n/static-translate.loader';
+import { Languages } from 'src/app/enums/app.enum';
 import { QuestionsService } from '../services/questions.service';
 import { ResultsService } from '../services/results.service';
 import { QueryParams } from '../models/app.model';
@@ -59,6 +62,7 @@ describe('QuizPage', () => {
         { provide: ResultsService, useValue: resultsServiceMock },
         { provide: Router, useValue: routerMock },
         { provide: ActivatedRoute, useValue: { queryParams: queryParams$ } },
+        provideTranslateService({ loader: provideTranslateLoader(StaticTranslateLoader), fallbackLang: Languages.eng, lang: Languages.eng }),
       ],
     }).compileComponents();
 

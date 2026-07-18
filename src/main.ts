@@ -1,13 +1,17 @@
-import { enableProdMode, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { enableProdMode, importProvidersFrom, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { PreloadAllModules, RouteReuseStrategy, provideRouter, withHashLocation, withPreloading } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Capacitor } from '@capacitor/core';
+import { TranslateService, provideTranslateLoader, provideTranslateService } from '@ngx-translate/core';
 
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
+import { StaticTranslateLoader } from './app/i18n/static-translate.loader';
+import { Languages } from './app/enums/app.enum';
+import { AppService } from './app/services/app.service';
 import { environment } from './environments/environment';
 
 if (environment.production) {
@@ -34,5 +38,10 @@ bootstrapApplication(AppComponent, {
     ),
     provideHttpClient(withXhr(), withInterceptorsFromDi()),
     provideRouter(routes, withHashLocation(), withPreloading(PreloadAllModules)),
+    provideTranslateService({
+      loader: provideTranslateLoader(StaticTranslateLoader),
+      fallbackLang: Languages.eng,
+    }),
+    provideAppInitializer(() => inject(TranslateService).use(inject(AppService).language)),
   ],
 }).catch(err => console.log(err));

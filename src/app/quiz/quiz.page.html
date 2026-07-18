@@ -1,7 +1,7 @@
 <ion-header class="quiz-header">
   <ion-toolbar>
     <div class="quiz-header__toggle">
-      <span class="quiz-header__label">Randomize Questions</span>
+      <span class="quiz-header__label">{{ 'QUIZ.RANDOMIZE' | translate }}</span>
       <ion-toggle [checked]="isRandomized" (ionChange)="toggleQuiz($event)"></ion-toggle>
     </div>
   </ion-toolbar>
@@ -12,7 +12,7 @@
     <div class="quiz__body" (click)="visitTheoryPage()">
       @if (question) {
         <div class="quiz__meta">
-          <span class="quiz__chip quiz__chip--id">№{{ question.id }}</span>
+          <span class="quiz__chip quiz__chip--id">{{ 'QUIZ.NUMBER' | translate: { id: question.id } }}</span>
           @if (question.level) {
             <span class="quiz__chip quiz__chip--level quiz__chip--{{ levelColor }}">
               {{ question.level }}
@@ -31,7 +31,7 @@
         }
 
         <span class="quiz__hint">
-          Tap to read theory
+          {{ 'QUIZ.TAP_TO_READ' | translate }}
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </span>
       }
@@ -57,7 +57,7 @@
   <div class="quiz-footer__inner">
     <div class="quiz-footer__progress">
       <div class="quiz-footer__progress-head">
-        <span>Progress</span>
+        <span>{{ 'QUIZ.PROGRESS' | translate }}</span>
         <span>{{ question ? (percent$ | async) : 0 }}%</span>
       </div>
 
@@ -79,7 +79,7 @@
           color="medium"
           fill="clear"
           size="large">
-          Skip
+          {{ 'QUIZ.SKIP' | translate }}
         </ion-button>
       }
 
@@ -89,7 +89,7 @@
         (click)="submitAnswer()"
         expand="block"
         size="large">
-        Check your answer
+        {{ 'QUIZ.CHECK_ANSWER' | translate }}
       </ion-button>
     </div>
   </div>

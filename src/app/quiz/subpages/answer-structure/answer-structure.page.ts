@@ -10,13 +10,14 @@ import { ResultsService } from 'src/app/services/results.service';
 import { StreakService } from 'src/app/services/streak.service';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-answer-structure',
     templateUrl: './answer-structure.page.html',
     styleUrls: ['./answer-structure.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule, FormsModule]
+    imports: [IonicModule, FormsModule, TranslatePipe]
 })
 export class AnswerStructurePage implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);

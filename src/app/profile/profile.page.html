@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>{{ 'PROFILE.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Profile</ion-title>
+      <ion-title size="large">{{ 'PROFILE.TITLE' | translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -15,7 +15,7 @@
     <div class="profile-info">
       <div class="avatar-ring" [ngClass]="{'not-displayed': !imgLoaded}">
         <ion-avatar class="profile-info__avatar">
-          <img [src]="profile.avatarUrl" (load)="onImageLoad()" alt="Profile avatar">
+          <img [src]="profile.avatarUrl" (load)="onImageLoad()" [alt]="'PROFILE.AVATAR_ALT' | translate">
         </ion-avatar>
       </div>
       @if (!imgLoaded) {
@@ -34,7 +34,7 @@
           <ion-card class="stat-card stat-card--progress">
             <ion-card-content>
               <div class="stat-value">{{ avPercent }}%</div>
-              <div class="stat-label">Progress</div>
+              <div class="stat-label">{{ 'PROFILE.PROGRESS' | translate }}</div>
               <ion-icon name="trending-up" class="stat-bg-icon" aria-hidden="true"></ion-icon>
             </ion-card-content>
           </ion-card>
@@ -48,7 +48,7 @@
                   <div class="unread-badge"></div>
                 }
               </div>
-              <div class="stat-label">Days streak</div>
+              <div class="stat-label">{{ 'PROFILE.DAYS_STREAK' | translate }}</div>
               <ion-icon name="flame" class="stat-bg-icon" aria-hidden="true"></ion-icon>
             </ion-card-content>
           </ion-card>
@@ -56,24 +56,25 @@
       </ion-row>
     </ion-grid>
 
-    <ion-list-header class="section-header">Settings</ion-list-header>
+    <ion-list-header class="section-header">{{ 'PROFILE.SETTINGS' | translate }}</ion-list-header>
     <ion-list [inset]="true">
       <ion-item>
         <div slot="start" class="item-icon item-icon--theme">
           <ion-icon name="sunny"></ion-icon>
         </div>
-        <ion-select label="Theme" labelPlacement="start" justify="space-between" [(ngModel)]="currentTheme">
-          <ion-select-option value="light">Light</ion-select-option>
-          <ion-select-option value="dark">Dark</ion-select-option>
+        <ion-select [label]="'PROFILE.THEME' | translate" labelPlacement="start" justify="space-between" [(ngModel)]="currentTheme">
+          <ion-select-option value="light">{{ 'PROFILE.THEME_LIGHT' | translate }}</ion-select-option>
+          <ion-select-option value="dark">{{ 'PROFILE.THEME_DARK' | translate }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <div slot="start" class="item-icon item-icon--language">
           <ion-icon name="language"></ion-icon>
         </div>
-        <ion-select label="Language" labelPlacement="start" justify="space-between" [(ngModel)]="currentLanguage">
+        <!-- endonyms: intentionally not translated -->
+        <ion-select [label]="'PROFILE.LANGUAGE' | translate" labelPlacement="start" justify="space-between" [(ngModel)]="currentLanguage">
           <ion-select-option [value]="languages.eng">English</ion-select-option>
-          <ion-select-option [value]="languages.ukr">Ukrainian</ion-select-option>
+          <ion-select-option [value]="languages.ukr">Українська</ion-select-option>
           <ion-select-option [value]="languages.rus">ru</ion-select-option>
         </ion-select>
       </ion-item>
@@ -81,25 +82,25 @@
         <div slot="start" class="item-icon item-icon--version">
           <ion-icon name="bar-chart"></ion-icon>
         </div>
-        <ion-label>App version</ion-label>
+        <ion-label>{{ 'PROFILE.APP_VERSION' | translate }}</ion-label>
         <span slot="end" class="item-value">{{ appVersion }}</span>
       </ion-item>
     </ion-list>
 
-    <ion-list-header class="section-header">About</ion-list-header>
+    <ion-list-header class="section-header">{{ 'PROFILE.ABOUT' | translate }}</ion-list-header>
     <ion-list [inset]="true">
       <ion-item button detail="false" (click)="goToHowToLearn()">
         <div slot="start" class="item-icon item-icon--learn">
           <ion-icon name="school"></ion-icon>
         </div>
-        <ion-label>How to learn</ion-label>
+        <ion-label>{{ 'PROFILE.HOW_TO_LEARN' | translate }}</ion-label>
         <ion-icon name="chevron-forward" slot="end" class="chevron-icon"></ion-icon>
       </ion-item>
       <ion-item lines="none" href="https://github.com/hardsoncore/js-interviewer" target="_blank" detail="false">
         <div slot="start" class="item-icon item-icon--github">
           <ion-icon name="logo-github"></ion-icon>
         </div>
-        <ion-label>Star on GitHub</ion-label>
+        <ion-label>{{ 'PROFILE.STAR_ON_GITHUB' | translate }}</ion-label>
         <ion-icon name="arrow-redo" slot="end" class="chevron-icon"></ion-icon>
       </ion-item>
     </ion-list>
@@ -109,7 +110,7 @@
         <div slot="start" class="item-icon item-icon--signout">
           <ion-icon name="trash" color="danger"></ion-icon>
         </div>
-        <ion-label color="danger">Clear Results</ion-label>
+        <ion-label color="danger">{{ 'PROFILE.CLEAR_RESULTS' | translate }}</ion-label>
       </ion-item>
     </ion-list>
   </div>

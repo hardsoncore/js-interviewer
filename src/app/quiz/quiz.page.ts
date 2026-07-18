@@ -10,13 +10,14 @@ import { ResultsService } from '../services/results.service';
 import { QuestionLevels } from '../enums/questions.enum';
 import { IonicModule } from '@ionic/angular';
 import { AsyncPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-quiz',
     templateUrl: 'quiz.page.html',
     styleUrls: ['quiz.page.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
-    imports: [IonicModule, AsyncPipe]
+    imports: [IonicModule, AsyncPipe, TranslatePipe]
 })
 export class QuizPage implements OnInit, OnDestroy {
   private questionsService = inject(QuestionsService);

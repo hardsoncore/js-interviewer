@@ -132,19 +132,19 @@ export const questions = [
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Including CSS through an external stylesheet using the link tag',
+        name: 'External file: the link tag',
       },
       {
-        name: 'Adding CSS using the style tag',
+        name: 'Embedded styles: the style tag',
       },
       {
-        name: 'Importing CSS using the @import rule',
+        name: 'Inline styles: the style attribute',
       },
       {
-        name: 'Inline CSS styles',
+        name: 'Import inside CSS: @import',
       },
       {
-        name: 'CSS styles through JavaScript',
+        name: 'Styles through JavaScript',
       }
     ]
   },

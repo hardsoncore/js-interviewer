@@ -132,19 +132,19 @@ export const questions = [
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Подключение CSS через внешний файл стилей тегом link',
+        name: 'Внешний файл: тег link',
       },
       {
-        name: 'Добавление CSS с помощью тега style',
+        name: 'Встроенные стили: тег style',
       },
       {
-        name: 'Импорт CSS через команду @import',
+        name: 'Inline-стили: атрибут style',
       },
       {
-        name: 'Inline-стили CSS',
+        name: 'Импорт внутри CSS: @import',
       },
       {
-        name: 'Стили CSS через JavaScript',
+        name: 'Стили через JavaScript',
       }
     ]
   },

@@ -247,19 +247,23 @@ export const questions = [
     answer: 'assets/content/ukr/answers/9-Selektory-+-~.md',
     tags: [
       'markup',
-      'CSS'
+      'CSS',
+      'selectors'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: '>',
+        name: 'Що таке комбінатори?',
       },
       {
-        name: '+',
+        name: 'Дочірній комбінатор (>)',
       },
       {
-        name: '~',
+        name: 'Сусідній комбінатор (+)',
+      },
+      {
+        name: 'Загальний сусідній (родинний) комбінатор (~)',
       }
     ]
   },

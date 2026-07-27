@@ -247,19 +247,23 @@ export const questions = [
     answer: 'assets/content/rus/answers/9-Selektory-+-~.md',
     tags: [
       'markup',
-      'CSS'
+      'CSS',
+      'selectors'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: '>',
+        name: 'Что такое комбинаторы?',
       },
       {
-        name: '+',
+        name: 'Дочерний комбинатор (>)',
       },
       {
-        name: '~',
+        name: 'Соседний комбинатор (+)',
+      },
+      {
+        name: 'Общий соседний (родственный) комбинатор (~)',
       }
     ]
   },

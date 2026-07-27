@@ -247,19 +247,23 @@ export const questions = [
     answer: 'assets/content/eng/answers/9-Selectors-+-~.md',
     tags: [
       'markup',
-      'CSS'
+      'CSS',
+      'selectors'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: '>',
+        name: 'What are combinators?',
       },
       {
-        name: '+',
+        name: 'Child combinator (>)',
       },
       {
-        name: '~',
+        name: 'Adjacent sibling combinator (+)',
+      },
+      {
+        name: 'General sibling combinator (~)',
       }
     ]
   },

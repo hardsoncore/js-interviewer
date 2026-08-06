@@ -1271,16 +1271,26 @@ export const questions = [
     answer: 'assets/content/eng/answers/49-Object-conversion-toString-and-valueOf.md',
     tags: [
       'JavaScript',
-      'JS mechanics'
+      'JS mechanics',
+      'Data types'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Object conversion: toString and valueOf',
+        name: 'ToPrimitive: how an object turns into a primitive',
       },
       {
-        name: 'How the assets/content/engine decides which method to call first',
+        name: 'Three hints (string, number, default) and the valueOf/toString call order',
+      },
+      {
+        name: 'Default behavior: why you get "[object Object]"',
+      },
+      {
+        name: 'Customization: your own toString/valueOf and Symbol.toPrimitive',
+      },
+      {
+        name: 'Trap: toString() alone covers both contexts, valueOf does not',
       }
     ]
   },

@@ -1271,16 +1271,26 @@ export const questions = [
     answer: 'assets/content/rus/answers/49-Preobrazovanie-obektov-toString-i-valueOf.md',
     tags: [
       'JavaScript',
-      'JS mechanics'
+      'JS mechanics',
+      'Data types'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Преобразование объектов: toString и valueOf',
+        name: 'ToPrimitive: как объект превращается в примитив',
       },
       {
-        name: 'Как движок решает, какой метод вызвать первым',
+        name: 'Три хинта (string, number, default) и порядок вызова valueOf/toString',
+      },
+      {
+        name: 'Поведение по умолчанию: почему выходит "[object Object]"',
+      },
+      {
+        name: 'Кастомизация: свои toString/valueOf и Symbol.toPrimitive',
+      },
+      {
+        name: 'Ловушка: один toString() покрывает оба контекста, а valueOf — нет',
       }
     ]
   },

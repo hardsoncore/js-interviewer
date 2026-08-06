@@ -1301,16 +1301,27 @@ export const questions = [
     tags: [
       'JavaScript',
       'Event loop',
-      'Browser mechanics'
+      'Async',
+      'JS mechanics',
+      'browser'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Why do we need the Event Loop?',
+        name: 'Why we need the Event Loop: single thread and the Call Stack',
       },
       {
-        name: 'Main entities: Call Stack, Heap, Web APIs, Microtasks and Macrotasks',
+        name: 'The participants: Call Stack, Web APIs, Macrotask and Microtask Queue',
+      },
+      {
+        name: 'The algorithm of a single tick',
+      },
+      {
+        name: 'The formula: sync code → ALL microtasks → render → ONE macrotask',
+      },
+      {
+        name: 'The classic output-order puzzle (setTimeout 0 vs Promise)',
       }
     ]
   },

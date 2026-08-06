@@ -1301,16 +1301,27 @@ export const questions = [
     tags: [
       'JavaScript',
       'Event loop',
-      'Browser mechanics'
+      'Async',
+      'JS mechanics',
+      'browser'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Навіщо потрібен Event Loop',
+        name: 'Навіщо потрібен Event Loop: однопотоковість і Call Stack',
       },
       {
-        name: 'Основні сутності: Call Stack, Heap, Web APIs, Microtasks і Macrotasks',
+        name: 'Учасники: Call Stack, Web APIs, Macrotask і Microtask Queue',
+      },
+      {
+        name: 'Алгоритм одного тіку',
+      },
+      {
+        name: 'Формула: синхронний код → ВСІ мікротаски → рендер → ОДИН макротаск',
+      },
+      {
+        name: 'Класична задача на порядок виводу (setTimeout 0 vs Promise)',
       }
     ]
   },

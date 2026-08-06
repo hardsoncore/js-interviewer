@@ -272,24 +272,27 @@ export const questions = [
     name: 'Pseudo-classes of elements (state pseudo-classes, structural, and advanced selectors Modern CSS), Form pseudo-classes',
     answer: 'assets/content/eng/answers/10-Element-Pseudo-classes.md',
     tags: [
-      'HTML',
       'markup',
-      'CSS'
+      'CSS',
+      'selectors'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'State pseudo-classes (Interactive)',
+        name: 'What a pseudo-class is and how it differs from a pseudo-element',
       },
       {
-        name: 'Structural pseudo-classes',
+        name: 'State pseudo-classes (interactive): :hover, :focus, :focus-visible',
       },
       {
-        name: 'Advanced selectors (Modern CSS)',
+        name: 'Structural pseudo-classes: :nth-child and counting among siblings',
       },
       {
-        name: 'Form pseudo-classes',
+        name: 'Functional pseudo-classes: :is(), :where(), :not(), :has()',
+      },
+      {
+        name: 'Form pseudo-classes: :checked, :valid, :user-invalid, :placeholder-shown',
       }
     ]
   },

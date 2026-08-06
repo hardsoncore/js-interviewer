@@ -272,24 +272,27 @@ export const questions = [
     name: 'Псевдоклассы элементов (псевдоклассы состояния, структурные псевдоклассы и продвинутые селекторы Modern CSS), Псевдоклассы форм',
     answer: 'assets/content/rus/answers/10-Psevdoklassy-elementov.md',
     tags: [
-      'HTML',
       'markup',
-      'CSS'
+      'CSS',
+      'selectors'
     ],
     category: 'Markup',
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Псевдоклассы состояния (Интерактив)',
+        name: 'Что такое псевдокласс и чем он отличается от псевдоэлемента',
       },
       {
-        name: 'Структурные псевдоклассы',
+        name: 'Псевдоклассы состояния (интерактив): :hover, :focus, :focus-visible',
       },
       {
-        name: 'Продвинутые селекторы (Modern CSS)',
+        name: 'Структурные псевдоклассы: :nth-child и счёт среди соседей',
       },
       {
-        name: 'Псевдоклассы форм',
+        name: 'Функциональные псевдоклассы: :is(), :where(), :not(), :has()',
+      },
+      {
+        name: 'Псевдоклассы форм: :checked, :valid, :user-invalid, :placeholder-shown',
       }
     ]
   },

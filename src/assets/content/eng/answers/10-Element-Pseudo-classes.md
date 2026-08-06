@@ -1,90 +1,156 @@
-<p class="info">
-  <span class="accent">Pseudo-classes</span> are special selectors that let you style elements based on their state, position in the document structure, or other conditions. They start with a colon <code>:</code>.
-</p>
-
-<h2>1. State Pseudo-classes (Interactive)</h2>
-<p>These selectors react to user actions:</p>
-
-<ul>
-    <li><code>:hover</code> — when the mouse cursor is over an element.</li>
-    <li><code>:active</code> — the moment of clicking (holding down the mouse button).</li>
-    <li><code>:focus</code> — when an element is selected (e.g., via the Tab key or a click).</li>
-    <li><code>:focus-visible</code> — triggers only when navigating with a keyboard.</li>
-</ul>
-
-<h2>2. Structural Pseudo-classes</h2>
-<p>They help style elements depending on their position in the DOM:</p>
-
-<table>
-    <thead>
-        <tr>
-            <th>Pseudo-class</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><code>:first-child</code></td>
-            <td>The first child of its parent.</td>
-        </tr>
-        <tr>
-            <td><code>:last-child</code></td>
-            <td>The last child of its parent.</td>
-        </tr>
-        <tr>
-            <td><code>:nth-child(n)</code></td>
-            <td>Selection by number or formula (e.g., 2n for even numbers).</td>
-        </tr>
-        <tr>
-            <td><code>:only-child</code></td>
-            <td>If the element is the only child.</td>
-        </tr>
-        <tr>
-            <td><code>:not(selector)</code></td>
-            <td>Exception: selects everything except the specified one.</td>
-        </tr>
-    </tbody>
-</table>
-
-<h2>3. Advanced Selectors (Modern CSS)</h2>
-
-<p><code>:has()</code> — the "parent selector". It allows you to style a parent if it contains a specific element inside.</p>
-
-<p>Example: <code>div:has(img)</code> — selects only those <code>div</code> elements that contain an image.</p>
+<h3>Introduction</h3>
 
 <p>
-  <code>:is()</code> — groups selectors for cleaner code.
-  It allows you to group selectors instead of listing long chains separated by commas.
+  A <span class="accent">pseudo-class</span> is a single-colon selector (<code>:hover</code>) that picks an
+  <strong>already existing</strong> element by its state or position in the tree. It adds nothing to the markup —
+  that separates it from a pseudo-element (<code>::before</code>), which creates a new box.
+</p>
+
+<p class="info">
+  <strong>Key idea:</strong> a pseudo-class is a condition on an element that the browser evaluates itself and
+  recomputes in real time. That is why CSS reacts to the user, form validity and DOM structure without a line of JS.
+</p>
+
+<hr />
+
+<h3>State pseudo-classes (interactive)</h3>
+
+<ul>
+  <li><code>:hover</code> — cursor over element; <code>:active</code> — moment of pressing.</li>
+  <li><code>:focus</code> — focus received anyhow (click, Tab, script).</li>
+  <li><code>:focus-visible</code> — focus the browser chose to highlight (usually keyboard).</li>
+  <li><code>:focus-within</code> — on the parent, if focus is inside it.</li>
+</ul>
+
+<p class="info info--orange">
+  Do not remove <code>outline</code> on <code>:focus</code> — it breaks keyboard accessibility. Trick: drop it on
+  <code>:focus</code>, bring it back on <code>:focus-visible</code> — the mouse won't see it, the keyboard will.
+</p>
+
+<h3>Structural pseudo-classes</h3>
+
+<p>They pick an element by position among <strong>siblings</strong> (children of one parent):</p>
+
+<ul>
+  <li><code>:first-child</code>, <code>:last-child</code>, <code>:only-child</code>.</li>
+  <li><code>:nth-child(An+B)</code> — by formula: <code>2n</code>, <code>odd</code>, <code>3n+1</code>.</li>
+  <li><code>:nth-of-type()</code>, <code>:first-of-type</code> — same, counting only elements of the same tag.</li>
+  <li><code>:empty</code> — no children, no text.</li>
+</ul>
+
+<code class="code">
+  li:nth-child(2n)      /* zebra striping */
+  li:nth-child(-n + 3)  /* first three */
+  p:first-of-type       /* first p, even if an h2 comes before it */
+</code>
+
+<h3>Functional pseudo-classes (Modern CSS)</h3>
+
+<ul>
+  <li><code>:is(a, b)</code> — grouping instead of long comma lists.</li>
+  <li><code>:where(a, b)</code> — same, but with <span class="accent">specificity 0</span>: for base styles and libraries.</li>
+  <li><code>:not(sel)</code> — negation.</li>
+  <li><code>:has(sel)</code> — "parent selector": element with a matching descendant <strong>inside</strong> it.</li>
+</ul>
+
+<code class="code">
+  /* before: 6 comma-separated selectors */
+  :is(.content, .section) :is(h1, h2, h3) { color: red; }
+
+  .card:has(img)                 /* a card containing an image */
+  label:has(+ input:invalid)     /* highlight label before an invalid field */
+</code>
+
+<h3>Form pseudo-classes</h3>
+
+<ul>
+  <li><code>:checked</code> — checked checkbox, radio, <code>option</code>.</li>
+  <li><code>:disabled</code> / <code>:enabled</code>, <code>:required</code> / <code>:optional</code>, <code>:read-only</code>.</li>
+  <li><code>:valid</code> / <code>:invalid</code> — result of built-in HTML validation.</li>
+  <li><code>:user-valid</code> / <code>:user-invalid</code> — same, but only <strong>after</strong> user interaction.</li>
+  <li><code>:placeholder-shown</code> — field empty, placeholder visible (basis for floating labels).</li>
+</ul>
+
+<p class="info info--blue">
+  <code>:checked</code> + <code>~</code>/<code>+</code> gives accordions and tabs without JS, and <code>:has()</code>
+  drops the requirement that the trigger come before the target in the markup.
+</p>
+
+<p class="deep-dive">Deep Dive</p>
+
+<h3>Specificity of functional pseudo-classes</h3>
+
+<p>
+  This is the main trap. <code>:is()</code>, <code>:not()</code> and <code>:has()</code> weigh 0 by themselves, but they take on
+  the specificity of the <strong>heaviest argument</strong> in the list. <code>:where()</code> always weighs 0, no matter what you put in it.
 </p>
 
 <code class="code">
-  /* Without :is() */
-  .content h1,
-  .content h2,
-  .content h3,
-  .section h1,
-  .section h2,
-  .section h3 {
-    color: red;
-  }
-
-  /* With :is() */
-  :is(.content, .section) :is(h1, h2, h3) {
-    color: red;
-  }
+  :is(#main, p) span { }    /* specificity 1,0,1 — same as #main! */
+  :where(#main, p) span { } /* specificity 0,0,1 — same as a single span */
+  li:not(.a, #b) { }        /* 1,0,1 — #b is taken */
 </code>
 
-<p><code>:where()</code> — similar to <code>:is()</code>, but with zero specificity (easily overridden by other styles).</p>
+<p class="info info--orange">
+  Conclusion: <code>:where()</code> is for styles that must be easy to override (reset, design-system defaults).
+  <code>:is()</code> — only when you deliberately need the argument's weight.
+</p>
 
-<h2>4. Form Pseudo-classes</h2>
+<h3>Forgiving selector list</h3>
 
-<p>These selectors apply to form elements depending on their state or attributes:</p>
+<p>
+  <code>:is()</code> and <code>:where()</code> use a forgiving list: if one selector inside is invalid or unknown to the
+  browser, the rest keep working. In a plain comma-separated list a single mistake kills the whole rule —
+  which makes <code>:is()</code> handy for progressively adopting new selectors.
+</p>
 
-<p><code>:disabled</code> — if the field is blocked (disabled).</p>
+<code class="code">
+  /* the rule is dropped entirely */
+  .a, .b:unknown-thing { color: red; }
 
-<p><code>:required</code> — if the field has a required attribute.</p>
+  /* .a still works */
+  :is(.a, .b:unknown-thing) { color: red; }
+</code>
 
-<p><code>:invalid</code> / <code>:valid</code> — automatic validation (for example, if something else is typed into a <code>type="email"</code> field).</p>
-<p><code>:checked</code> — for selected checkboxes and radio buttons.</p>
+<p>
+  <code>:has()</code> and <code>:not()</code> are <strong>not</strong> forgiving: an invalid argument inside them discards the whole selector.
+</p>
 
-<p><code>:placeholder-shown</code> — styles the field while nothing is typed in it yet.</p>
+<h3>:nth-child(An+B of S)</h3>
+
+<p>
+  The extended syntax: first filter the siblings by selector <code>S</code>, then count by the formula.
+  This is not the same as <code>:nth-child(2n).item</code> — there counting runs over all children and the filter is applied at the end.
+</p>
+
+<code class="code">
+  li:nth-child(2n of .visible)  /* every second among the visible ones */
+  li:nth-child(2n).visible      /* every second of ALL, and it must be .visible */
+</code>
+
+<h3>Why :has() took so long to arrive</h3>
+
+<p>
+  The browser matches selectors <span class="accent">right to left</span> — from the candidate element up through its ancestors.
+  A "parent" selector breaks that model: to decide the parent's fate you have to look into the subtree, and that subtree may
+  change later (streaming parsing, dynamic DOM). Style invalidation then has to propagate upwards, not only downwards.
+  Only in 2023 did engines learn to do this cheaply enough, so <code>:has()</code> is safe in practice —
+  but you should not hang it on very broad selectors like <code>*:has(...)</code>.
+</p>
+
+<h3>:focus-visible: the browser heuristic</h3>
+
+<p>
+  The spec does not pin down an exact algorithm. In practice engines highlight focus if it came from the keyboard,
+  if the element is a text field (the caret is always needed there), or if focus was set by a script while the previous
+  interaction was keyboard-based. A mouse click on a button gives <code>:focus</code>, but not <code>:focus-visible</code>.
+</p>
+
+<h3>:valid / :invalid vs :user-valid / :user-invalid</h3>
+
+<p>
+  An empty required field is <code>:invalid</code> right at page load — the form turns red before the user has typed
+  anything. <code>:user-invalid</code> solves this: the browser applies it only after input or a submit attempt.
+  That is exactly why "correct" pure-CSS validation today is written with <code>:user-invalid</code>,
+  not with <code>:invalid</code>.
+</p>

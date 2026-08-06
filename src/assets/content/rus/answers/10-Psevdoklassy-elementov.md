@@ -39,7 +39,7 @@
 </ul>
 
 <code class="code">
-  li:nth-child(2n)      /* «зебра» */
+  li:nth-child(2n)      /* «зебра» - все чётные элементы */
   li:nth-child(-n + 3)  /* первые три */
   p:first-of-type       /* первый p, даже если перед ним h2 */
 </code>
@@ -55,6 +55,10 @@
 
 <code class="code">
   /* было: 6 селекторов через запятую */
+  .content h1, .content h2, .content h3,
+  .section h1, .section h2, .section h3 { color: red; }
+
+  /* стало: */
   :is(.content, .section) :is(h1, h2, h3) { color: red; }
 
   .card:has(img)                 /* карточка, в которой есть картинка */

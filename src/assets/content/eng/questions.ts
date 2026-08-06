@@ -402,10 +402,19 @@ export const questions = [
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Block elements',
+        name: 'The element type is set by display, not by the tag',
       },
       {
-        name: 'Inline elements',
+        name: 'Block: own line, sizes and margins work',
+      },
+      {
+        name: 'Inline: width/height and vertical margins are ignored',
+      },
+      {
+        name: 'inline-block — the hybrid and the 4px gap',
+      },
+      {
+        name: 'Other display values: none, flex/grid, contents',
       },
     ]
   },

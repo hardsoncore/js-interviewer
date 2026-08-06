@@ -402,10 +402,19 @@ export const questions = [
     level: QuestionLevels.junior,
     structure: [
       {
-        name: 'Блочні елементи',
+        name: 'Тип елемента задає display, а не тег',
       },
       {
-        name: 'Рядкові елементи',
+        name: 'Блочні (block): свій рядок, працюють розміри та margin',
+      },
+      {
+        name: 'Рядкові (inline): width/height і вертикальні margin ігноруються',
+      },
+      {
+        name: 'inline-block — гібрид і проміжок 4px',
+      },
+      {
+        name: 'Інші значення display: none, flex/grid, contents',
       },
     ]
   },

@@ -1338,10 +1338,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Inheritance in JavaScript',
+        name: 'Prototypal inheritance — delegation, not copying',
       },
       {
-        name: 'Prototype inheritance and prototype chain',
+        name: 'Prototype chain: property lookup bottom-up until null',
+      },
+      {
+        name: 'Three ways to set up inheritance: class extends, Object.create, F.prototype',
+      },
+      {
+        name: 'Reads go up the chain, writes go to the object itself (shadowing)',
       }
     ]
   },

@@ -1338,10 +1338,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Наследование в JavaScript',
+        name: 'Прототипное наследование — делегирование, а не копирование',
       },
       {
-        name: 'Прототипное наследование и цепочка прототипов',
+        name: 'Цепочка прототипов: поиск свойства снизу вверх до null',
+      },
+      {
+        name: 'Три способа задать наследование: class extends, Object.create, F.prototype',
+      },
+      {
+        name: 'Чтение — по цепочке, запись — в сам объект (shadowing)',
       }
     ]
   },

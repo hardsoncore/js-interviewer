@@ -1338,10 +1338,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Наслідування в JavaScript',
+        name: 'Прототипне наслідування — делегування, а не копіювання',
       },
       {
-        name: 'Прототипне наслідування та ланцюжок прототипів',
+        name: 'Ланцюжок прототипів: пошук властивості знизу вгору до null',
+      },
+      {
+        name: 'Три способи задати наслідування: class extends, Object.create, F.prototype',
+      },
+      {
+        name: 'Читання — ланцюжком, запис — у сам об\'єкт (shadowing)',
       }
     ]
   },

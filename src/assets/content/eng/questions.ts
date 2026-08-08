@@ -1390,13 +1390,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'F.prototype - what is it for?',
+        name: 'F.prototype — a function property, the prototype blueprint for instances',
       },
       {
-        name: 'Creating objects with new, what happens under the hood?',
+        name: 'The four steps of the new operator',
       },
       {
-        name: 'How new interacts with F.prototype and [[Prototype]]',
+        name: 'The constructor property and the back-reference to the function',
+      },
+      {
+        name: 'Pitfalls: overwriting the prototype vs mutating it, losing constructor',
       }
     ]
   },

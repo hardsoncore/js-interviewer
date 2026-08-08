@@ -1390,13 +1390,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'F.prototype - для чего он нужен?',
+        name: 'F.prototype — свойство функции, шаблон прототипа для экземпляров',
       },
       {
-        name: 'Создание объектов через new, что происходит под капотом?',
+        name: 'Четыре шага оператора new',
       },
       {
-        name: 'Как new взаимодействует с F.prototype и [[Prototype]]',
+        name: 'Свойство constructor и обратная ссылка на функцию',
+      },
+      {
+        name: 'Ловушки: перезапись прототипа vs мутация, потеря constructor',
       }
     ]
   },

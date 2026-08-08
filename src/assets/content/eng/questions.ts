@@ -1364,16 +1364,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: '__proto__ - what is it?',
+        name: '__proto__ — a historical accessor to [[Prototype]]',
       },
       {
         name: '__proto__ vs [[Prototype]] vs F.prototype',
       },
       {
-        name: 'Modern alternatives',
+        name: 'Modern alternatives: Object.getPrototypeOf / setPrototypeOf / create',
       },
       {
-        name: 'Performance impact when changing the prototype on the fly',
+        name: 'Performance: why you must not change the prototype on the fly',
       }
     ]
   },

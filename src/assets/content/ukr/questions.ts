@@ -1364,16 +1364,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: '__proto__ - що це?',
+        name: '__proto__ — історичний аксесор до [[Prototype]]',
       },
       {
         name: '__proto__ vs [[Prototype]] vs F.prototype',
       },
       {
-        name: 'Сучасні альтернативи',
+        name: 'Сучасні альтернативи: Object.getPrototypeOf / setPrototypeOf / create',
       },
       {
-        name: 'Шкода продуктивності при зміні прототипу на льоту',
+        name: 'Продуктивність: чому не можна змінювати прототип на льоту',
       }
     ]
   },

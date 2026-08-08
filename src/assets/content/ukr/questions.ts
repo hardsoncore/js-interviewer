@@ -1417,19 +1417,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Що таке Promise, в якій версії ES з\'явився',
+        name: 'Promise — обгортка над результатом асинхронної операції (ES6)',
       },
       {
-        name: 'Яку проблему вирішували проміси',
+        name: 'Яку проблему вирішували: Callback Hell і розрізнена обробка помилок',
       },
       {
-        name: 'Незмінність результату після завершення проміса',
+        name: 'Три стани: pending, fulfilled, rejected',
       },
       {
-        name: 'then, catch, finally',
+        name: 'Результат заморожується назавжди (settled)',
       },
       {
-        name: 'Еволюція промісів та async/await',
+        name: 'then, catch, finally і новий проміс на виході',
       }
     ]
   },

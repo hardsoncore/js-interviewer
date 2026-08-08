@@ -1417,19 +1417,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'What is a Promise, in which version of ES did it appear',
+        name: 'Promise — a wrapper over the result of an async operation (ES6)',
       },
       {
-        name: 'What problem did Promises solve?',
+        name: 'What problem it solved: Callback Hell and scattered error handling',
       },
       {
-        name: 'Immutability of the result after the Promise is settled',
+        name: 'Three states: pending, fulfilled, rejected',
       },
       {
-        name: 'then, catch, finally',
+        name: 'The result is frozen forever (settled)',
       },
       {
-        name: 'Evolution of Promises and async/await',
+        name: 'then, catch, finally and the new promise they return',
       }
     ]
   },

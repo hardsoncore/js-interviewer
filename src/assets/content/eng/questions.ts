@@ -1496,13 +1496,30 @@ export const questions = [
     answer: 'assets/content/eng/answers/57-What-is-new-in-the-language-in-ES6.md',
     tags: [
       'JavaScript',
-      'ES6'
+      'ES6',
+      'Ecmascript',
+      'Syntax'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: '11 main features of ES6',
+        name: 'What ES6 is and why it is the language\'s main update',
+      },
+      {
+        name: 'Variables: let, const and the Temporal Dead Zone',
+      },
+      {
+        name: 'New syntax: arrows, template literals, destructuring, spread/rest',
+      },
+      {
+        name: 'Code structure: classes as sugar over prototypes and import/export modules',
+      },
+      {
+        name: 'Asynchrony and new types: Promise, Map, Set, Symbol, generators',
+      },
+      {
+        name: 'What is wrongly credited to ES6: async/await, object spread, class fields',
       }
     ]
   },

@@ -1496,13 +1496,30 @@ export const questions = [
     answer: 'assets/content/ukr/answers/57-Scho-novoho-z-yavylosya-v-movi-v-ES6.md',
     tags: [
       'JavaScript',
-      'ES6'
+      'ES6',
+      'Ecmascript',
+      'Syntax'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: '11 основних нововведень в ES6',
+        name: 'Що таке ES6 і чому це головне оновлення мови',
+      },
+      {
+        name: 'Змінні: let, const і Temporal Dead Zone',
+      },
+      {
+        name: 'Новий синтаксис: стрілки, шаблонні рядки, деструктуризація, spread/rest',
+      },
+      {
+        name: 'Структура коду: класи як цукор над прототипами і модулі import/export',
+      },
+      {
+        name: 'Асинхронність і нові типи: Promise, Map, Set, Symbol, генератори',
+      },
+      {
+        name: 'Що помилково приписують ES6: async/await, spread об\'єктів, поля класу',
       }
     ]
   },

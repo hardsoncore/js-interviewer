@@ -1465,19 +1465,28 @@ export const questions = [
     name: 'Try - Catch. What is it and why is it needed?',
     answer: 'assets/content/eng/answers/56-Try---Catch-What-is-it-and-why-is-it-needed.md',
     tags: [
-      'JavaScript'
+      'JavaScript',
+      'JS mechanics',
+      'Error handling',
+      'Debugging'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Try - Catch - what is it for?',
+        name: 'What it is and why: catch only catches what is thrown synchronously',
       },
       {
-        name: 'Syntax and mechanics',
+        name: 'Mechanics: throw and stack unwinding',
       },
       {
-        name: 'Finally block',
+        name: 'Syntax, the error object and throwing your own errors',
+      },
+      {
+        name: 'The finally block',
+      },
+      {
+        name: 'The trap: asynchronous errors and try/catch around await',
       }
     ]
   },

@@ -1465,19 +1465,28 @@ export const questions = [
     name: 'Try - Catch. Что это и для чего нужно?',
     answer: 'assets/content/rus/answers/56-Try---Catch-Chto-eto-i-dlya-chego-nuzhno.md',
     tags: [
-      'JavaScript'
+      'JavaScript',
+      'JS mechanics',
+      'Error handling',
+      'Debugging'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Try - Catch - для чего нужно?',
+        name: 'Что это и зачем: catch ловит только синхронно брошенное',
       },
       {
-        name: 'Синтаксис и механика работы',
+        name: 'Механика: throw и раскрутка стека вызовов',
+      },
+      {
+        name: 'Синтаксис, объект ошибки и throw своих ошибок',
       },
       {
         name: 'Блок finally',
+      },
+      {
+        name: 'Ловушка: асинхронные ошибки и try/catch вокруг await',
       }
     ]
   },

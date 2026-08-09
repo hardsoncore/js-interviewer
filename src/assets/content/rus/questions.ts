@@ -1447,13 +1447,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Promise chaining',
+        name: 'Цепочка работает, потому что then, catch и finally возвращают новый промис',
       },
       {
-        name: 'Можно продолжить цепочку вызовов после ошибки',
+        name: 'Правило конвейера: значение, throw, промис или undefined',
       },
       {
-        name: 'Можно строить такие цепочки и с finally',
+        name: 'catch().then() — после ошибки цепочка возвращается на успешный путь',
+      },
+      {
+        name: 'then().finally().then() — finally прозрачен, его return игнорируется',
       }
     ]
   },

@@ -1435,7 +1435,7 @@ export const questions = [
   },
   {
     id: 55,
-    name: 'Promise chaining. Можна ли викликати promise.then().finally().then() або promise.catch().then()? Що отримаємо?',
+    name: 'Promise chaining. Чи можна викликати promise.then().finally().then() або promise.catch().then()? Що отримаємо?',
     answer: 'assets/content/ukr/answers/55-Promise-chaining.md',
     tags: [
       'JavaScript',
@@ -1447,13 +1447,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Promise chaining',
+        name: 'Ланцюжок працює, тому що then, catch і finally повертають новий проміс',
       },
       {
-        name: 'Можна продовжити ланцюжок викликів після помилки',
+        name: 'Правило конвеєра: значення, throw, проміс або undefined',
       },
       {
-        name: 'Можна будувати такі ланцюжки і з finally',
+        name: 'catch().then() — після помилки ланцюжок повертається на успішний шлях',
+      },
+      {
+        name: 'then().finally().then() — finally прозорий, його return ігнорується',
       }
     ]
   },

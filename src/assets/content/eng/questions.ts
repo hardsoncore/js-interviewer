@@ -1447,13 +1447,16 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Promise chaining',
+        name: 'A chain works because then, catch and finally return a new promise',
       },
       {
-        name: 'We can continue the chain after an error',
+        name: 'The conveyor rule: a value, a throw, a promise or undefined',
       },
       {
-        name: 'We can also build such chains with finally',
+        name: 'catch().then() — after an error the chain returns to the success path',
+      },
+      {
+        name: 'then().finally().then() — finally is transparent, its return is ignored',
       }
     ]
   },

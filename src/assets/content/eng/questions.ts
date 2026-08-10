@@ -1529,14 +1529,27 @@ export const questions = [
     answer: 'assets/content/eng/answers/58-What-is-new-in-the-language-after-ES6.md',
     tags: [
       'JavaScript',
+      'Ecmascript',
       'ES6',
-      'ES7'
+      'Syntax'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'HTML tags',
+        name: 'Why there was no second revolution after ES6: the yearly release cycle',
+      },
+      {
+        name: 'Asynchrony: async/await, Promise.finally, allSettled, any, top-level await',
+      },
+      {
+        name: 'Safe access to data: ?., ?? and logical assignments',
+      },
+      {
+        name: 'Classes matured: fields, private #-members, static blocks',
+      },
+      {
+        name: 'New object and array methods: entries/fromEntries, flat, at, toSorted',
       }
     ]
   },

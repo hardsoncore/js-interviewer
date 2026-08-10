@@ -1529,14 +1529,27 @@ export const questions = [
     answer: 'assets/content/rus/answers/58-Chto-novogo-poyavilos-v-yazyke-POSLE-ES6.md',
     tags: [
       'JavaScript',
+      'Ecmascript',
       'ES6',
-      'ES7'
+      'Syntax'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Теги HTML',
+        name: 'Почему после ES6 не было второй революции: ежегодный релизный цикл',
+      },
+      {
+        name: 'Асинхронность: async/await, Promise.finally, allSettled, any, top-level await',
+      },
+      {
+        name: 'Безопасный доступ к данным: ?., ?? и логические присваивания',
+      },
+      {
+        name: 'Классы дозрели: поля, приватные #-члены, статические блоки',
+      },
+      {
+        name: 'Новые методы объектов и массивов: entries/fromEntries, flat, at, toSorted',
       }
     ]
   },

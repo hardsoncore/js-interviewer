@@ -1529,14 +1529,27 @@ export const questions = [
     answer: 'assets/content/ukr/answers/58-Scho-novoho-z-yavylosya-v-movi-PISLYA-ES6.md',
     tags: [
       'JavaScript',
+      'Ecmascript',
       'ES6',
-      'ES7'
+      'Syntax'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Теги HTML',
+        name: 'Чому після ES6 не було другої революції: щорічний реліз-цикл',
+      },
+      {
+        name: 'Асинхронність: async/await, Promise.finally, allSettled, any, top-level await',
+      },
+      {
+        name: 'Безпечний доступ до даних: ?., ?? і логічні присвоєння',
+      },
+      {
+        name: 'Класи дозріли: поля, приватні #-члени, статичні блоки',
+      },
+      {
+        name: 'Нові методи об\'єктів і масивів: entries/fromEntries, flat, at, toSorted',
       }
     ]
   },

@@ -1559,7 +1559,7 @@ export const questions = [
     answer: 'assets/content/eng/answers/59-Async-await-What-problem-do-they-solve.md',
     tags: [
       'JavaScript',
-      'ES6',
+      'JS mechanics',
       'Promise',
       'Async'
     ],
@@ -1567,16 +1567,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Evolution of asynchronous JS in ES8',
+        name: 'async/await — syntactic sugar over promises (ES2017)',
       },
       {
-        name: 'Why do we need async/await? What problem does it solve?',
+        name: 'What problem they solve: noise and branching in .then() chains',
       },
       {
-        name: 'try...catch...finally',
+        name: 'async: always a promise outside; await: pauses the function without blocking the thread',
       },
       {
-        name: 'node.js and support for async/await',
+        name: 'Error handling: reject becomes an exception for try...catch...finally',
+      },
+      {
+        name: 'Pitfall: sequential awaits instead of a parallel Promise.all',
       }
     ]
   },

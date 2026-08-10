@@ -1559,7 +1559,7 @@ export const questions = [
     answer: 'assets/content/rus/answers/59-Async-await-Kakuyu-problemu-reshayut.md',
     tags: [
       'JavaScript',
-      'ES6',
+      'JS mechanics',
       'Promise',
       'Async'
     ],
@@ -1567,16 +1567,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Эволюция асинхронного JS в ES8',
+        name: 'async/await — синтаксический сахар над промисами (ES2017)',
       },
       {
-        name: 'Зачем нужен async/await? Какую проблему решает?',
+        name: 'Какую проблему решают: шум и ветвление цепочек .then()',
       },
       {
-        name: 'try...catch...finally',
+        name: 'async: наружу всегда промис; await: пауза функции без блокировки потока',
       },
       {
-        name: 'node.js и поддержка async/await',
+        name: 'Обработка ошибок: reject становится исключением для try...catch...finally',
+      },
+      {
+        name: 'Ловушка: последовательные await вместо параллельного Promise.all',
       }
     ]
   },

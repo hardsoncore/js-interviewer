@@ -1622,16 +1622,30 @@ export const questions = [
     answer: 'assets/content/rus/answers/61-DOM---chto-eto-i-zachem-DOM-sobytiya-Vsplytie-pogruzhenie-Delegirovanie.md',
     tags: [
       'markup',
-      'browser mechanics',
+      'browser',
+      'DOM',
+      'JS mechanics',
     ],
     category: 'Markup',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Механика DOM-событий: Всплытие (Bubbling) и Погружение (Capturing)',
+        name: 'DOM — живое дерево узлов и API страницы для JavaScript',
       },
       {
-        name: 'Делегирование событий (Event Delegation) - когда использовать?',
+        name: 'Три фазы события: погружение → цель → всплытие',
+      },
+      {
+        name: 'addEventListener слушает всплытие; { capture: true } — погружение',
+      },
+      {
+        name: 'target vs currentTarget, stopPropagation',
+      },
+      {
+        name: 'Делегирование: один обработчик на родителе + event.target',
+      },
+      {
+        name: 'Ловушка: не все события всплывают (focus → focusin/focusout)',
       }
     ]
   },

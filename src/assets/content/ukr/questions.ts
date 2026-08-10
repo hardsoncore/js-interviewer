@@ -1622,16 +1622,30 @@ export const questions = [
     answer: 'assets/content/ukr/answers/61-DOM---shcho-tse-i-navishcho-DOM-podiyi-Splivannya-zanurennya-Deleguvannya.md',
     tags: [
       'markup',
-      'browser mechanics',
+      'browser',
+      'DOM',
+      'JS mechanics',
     ],
     category: 'Markup',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Механіка DOM-подій: Спливання (Bubbling) і Занурення (Capturing)',
+        name: 'DOM — живе дерево вузлів і API сторінки для JavaScript',
       },
       {
-        name: 'Делегування подій (Event Delegation) - коли використовувати?',
+        name: 'Три фази події: занурення → ціль → спливання',
+      },
+      {
+        name: 'addEventListener слухає спливання; { capture: true } — занурення',
+      },
+      {
+        name: 'target vs currentTarget, stopPropagation',
+      },
+      {
+        name: 'Делегування: один обробник на батькові + event.target',
+      },
+      {
+        name: 'Пастка: не всі події спливають (focus → focusin/focusout)',
       }
     ]
   },

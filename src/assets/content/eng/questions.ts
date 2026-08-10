@@ -1622,16 +1622,30 @@ export const questions = [
     answer: 'assets/content/eng/answers/61-DOM---what-is-it-and-why-DOM-events-Bubbling-capturing-Delegation.md',
     tags: [
       'markup',
-      'browser mechanics'
+      'browser',
+      'DOM',
+      'JS mechanics',
     ],
     category: 'Markup',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'DOM events mechanics: Bubbling and Capturing',
+        name: 'DOM — a live tree of nodes and the page API for JavaScript',
       },
       {
-        name: 'Event Delegation - when to use?',
+        name: 'Three phases of an event: capturing → target → bubbling',
+      },
+      {
+        name: 'addEventListener listens to bubbling; { capture: true } — capturing',
+      },
+      {
+        name: 'target vs currentTarget, stopPropagation',
+      },
+      {
+        name: 'Delegation: one handler on the parent + event.target',
+      },
+      {
+        name: 'Trap: not all events bubble (focus → focusin/focusout)',
       }
     ]
   },

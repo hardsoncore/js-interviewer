@@ -1,80 +1,58 @@
-<h3>Event Flow</h3>
+<h3>Introduction</h3>
+<p><span class="accent">DOM (Document Object Model)</span> is the object model of the document: the browser parses HTML and builds a live tree of nodes from it, and JavaScript reads and modifies the page through this tree's API. "Live" means: change a node, and the browser repaints the page. <span class="accent">DOM events</span> are the mechanism for reacting to user and browser actions: click, input, scroll.</p>
 
-<p>When an event occurs (for example, a mouse click), it doesn't just happen on a specific element. It travels through the DOM tree. According to the standard, this journey is divided into three phases:</p>
+<p class="info"><strong>Key idea:</strong> an event does not fire "at a point" — it travels a path through the tree: <strong>capturing → target → bubbling</strong>. Bubbling is the foundation of the main practical pattern — <strong>delegation</strong>: one handler on the parent instead of hundreds on the descendants.</p>
 
-<p><strong>Capturing phase:</strong> The event goes down from the root (<code>Window</code>, <code>Document</code>, <code>&lt;html&gt;</code>, <code>&lt;body&gt;</code>) to the target element.</p>
-
-<p><strong>Target phase:</strong> The event reaches the deepest element where it occurred.</p>
-
-<p><strong>Bubbling phase:</strong> The event goes back up from the target element to the root.</p>
-
-<h3>Capturing ⬇️</h3>
-<p>In this phase, the event goes from top to bottom. In real development, catching events during the capturing phase is rarely used, mostly for tricky analytics or specific intercept logic (when you need to handle the event before it reaches the target).</p>
-
-<p><strong>How to catch it:</strong> By default, <code>addEventListener</code> only listens to the bubbling phase. To catch an event during capturing, you need to pass a third argument — an object <code>{ capture: true }</code> or simply <code>true</code>.</p>
-
-<code class="code">
-  document.body.addEventListener('click', (event) => {
-    console.log('Caught a click on the body during capturing!');
-  }, { capture: true });
-</code>
-
-<h3>Bubbling ⬆️</h3>
-
-<p>In this phase, the event goes from bottom to top. If a user clicks on a <code>&lt;span&gt;</code> tag inside a <code>&lt;button&gt;</code>, which is inside a <code>&lt;div&gt;</code>, the handlers will trigger in this exact order: <code>span -> button -> div -> body</code> and so on.</p>
-
-<h5>Important properties of the <code>event</code> object:</h5>
-
+<h3>Three phases of an event (Event Flow)</h3>
 <ul>
-  <li><code>event.target</code> — the element where the event occurred (for example, <code>&lt;span&gt;</code>).</li>
-  <li><code>event.currentTarget</code> — the element that the handler is attached to (for example, <code>&lt;button&gt;</code> or <code>&lt;div&gt;</code>).</li>
-  <li><code>event.eventPhase</code> — the event phase (1 — capturing, 2 — target, 3 — bubbling).</li>
+  <li><strong>Capturing</strong> — the event descends from <code>window</code> and <code>document</code> down to the target.</li>
+  <li><strong>Target phase</strong> — the event has reached the deepest element on which it occurred.</li>
+  <li><strong>Bubbling</strong> — the event rises back up to the root, calling parent handlers along the way.</li>
 </ul>
+<p><code>addEventListener</code> listens to the bubbling phase by default. To intercept an event during capturing, pass the third argument <code>{ capture: true }</code>.</p>
 
-<h5>How to stop bubbling?</h5>
-
+<h3>target vs currentTarget and stopping</h3>
 <ul>
-  <li><code>event.stopPropagation()</code> — stops the event from moving further up the DOM tree. The event will not be passed to parent elements.</li>
-  <li><code>event.stopImmediatePropagation()</code> — besides stopping the propagation, it also prevents other handlers from running on the same element.</li>
+  <li><code>event.target</code> — the element on which the event occurred (the deepest one);</li>
+  <li><code>event.currentTarget</code> — the element the current handler is attached to;</li>
+  <li><code>event.stopPropagation()</code> — cuts off the event's further path through the tree.</li>
 </ul>
 
 <h3>Event Delegation</h3>
+<p>Instead of a handler on every list element, we attach one to their common parent: bubbling itself carries the event upward, and <code>event.target</code> tells us where exactly the click happened.</p>
+<code class="code">
+  list.addEventListener('click', (event) => {
+    const item = event.target.closest('li');
+    if (!item) return; // click outside list items
 
-<p>This is a powerful design pattern based on the bubbling mechanism.</p>
+    selectItem(item);
+  });
+</code>
+<p>Two benefits: memory savings (one listener instead of thousands) and working with a dynamic DOM — elements added later don't need to be subscribed again: the parent will catch their events anyway.</p>
 
-<p><strong>Core idea:</strong> Instead of attaching a handler to every nested element (for example, to 100 buttons in a list), we attach one single handler to their common parent (for example, to the <code>&lt;ul&gt;</code> list itself).</p>
+<p class="info info--blue">In declarative frameworks, attaching <code>(click)</code> / <code>@click</code> to every list element is a perfectly fine approach: the code stays readable and context is passed directly. Enable delegation deliberately — for huge lists, raw HTML, and third-party libraries (covered in the Deep Dive).</p>
 
-<h5>Why is this needed?</h5>
+<p class="info info--orange">Not all events bubble: <code>focus</code>, <code>blur</code>, <code>mouseenter</code>, <code>mouseleave</code>. For delegating focus there are bubbling counterparts <code>focusin</code>/<code>focusout</code>. And don't confuse them: <code>stopPropagation()</code> stops the path through the tree, while <code>preventDefault()</code> cancels the browser's default action.</p>
 
-<p>1. <strong>Memory saving and performance:</strong> One listener weighs much less than thousands.</p>
-<p>2. <strong>Working with a dynamic DOM:</strong> If you add a new element to the list via JavaScript, you don't need to bind a handler to it again. The parent will still catch the click thanks to bubbling.</p>
+<p class="deep-dive">Deep Dive</p>
 
-<h3>When to use delegation?</h3>
+<h3>Why the capturing phase exists</h3>
+<p>In practice capturing is used rarely: to intercept an event before all other handlers (analytics, temporarily blocking the UI) or to catch a non-bubbling event on an ancestor — the capturing phase always passes through the ancestors, even if the event has no bubbling.</p>
+<p><code>event.eventPhase</code> helps figure out where the event currently is (1 — capturing, 2 — target, 3 — bubbling). And <code>event.stopImmediatePropagation()</code> cuts off not only the path through the tree but also the remaining handlers on the current element.</p>
 
-<p>
-  In most daily tasks, adding <code>@click</code> or <code>(click)</code> to each element of a dynamic list is the right approach, because the code remains declarative, easy to read, and you can directly pass the context (for example, <code>(click)="selectItem(item)"</code>).
-</p>
+<h3>addEventListener options</h3>
+<ul>
+  <li><code>capture</code> — listen during the capturing phase;</li>
+  <li><code>once</code> — the handler removes itself after the first invocation;</li>
+  <li><code>passive</code> — a promise not to call <code>preventDefault()</code>: the browser doesn't wait for the JS to run and scrolls the page immediately. Critical for <code>touchstart</code> and <code>wheel</code>, which is why Chrome enables passive for them by default;</li>
+  <li><code>signal</code> — binding to an <code>AbortController</code>: a single <code>controller.abort()</code> call removes a whole group of handlers without keeping references to the functions.</li>
+</ul>
 
-<p>
-  However, there are clear scenarios when delegation becomes useful and even necessary.
-</p>
+<h3>When delegation is truly necessary</h3>
+<p><strong>A large number of elements.</strong> Hundreds of table rows, cells of a complex calendar: thousands of listeners mean extra memory and time spent subscribing/unsubscribing on every re-render.</p>
+<p><strong>Rendering raw HTML.</strong> If markup arrives from the backend as a string and is inserted via <code>[innerHTML]</code> (Angular) or <code>v-html</code> (Vue), the framework doesn't compile its directives inside it — <code>@click</code> simply won't work there. The only way to catch clicks inside such a block is a listener on the wrapper plus an <code>event.target</code> check.</p>
+<p><strong>Third-party libraries.</strong> Vanilla JS plugins (D3.js charts, Leaflet maps) generate DOM nodes bypassing the framework's engine. Delegation on the root wrapper is the most reliable way to connect their events to component methods.</p>
 
-<h5>1. A large number of elements</h5>
-
-<p>If you have a list with hundreds or thousands of elements, a complex calendar, etc. - attaching a handler to each of them can lead to performance issues. In such cases, delegation allows you to handle events efficiently using just one listener.</p>
-
-<h5>2. Rendering raw HTML (v-html / innerHTML)</h5>
-
-<p>
-  This is a classic case where delegation is a must. If some content comes from the backend as ready-made markup and is inserted via <code>v-html</code> (in Vue) or <code>[innerHTML]</code> (in Angular), the framework does not compile its directives inside this markup.
-</p>
-
-<p>
-  You won't be able to make <code>@click</code> work inside a string that came from the server. The only way to catch clicks on links or buttons inside such a block is to add a listener to the parent <code>div</code> and use delegation with an <code>event.target</code> check.
-</p>
-
-<h5>Integration with third-party libraries</h5>
-
-<p>
-  Often, you have to wrap Vanilla JS plugins in components (for example, D3.js charts, Leaflet maps, or complex calendars), which generate DOM nodes themselves, bypassing the framework's engine. To catch events from these nodes and trigger component methods, delegation on the root wrapper is the most reliable pattern.
-</p>
+<h3>Frameworks and Shadow DOM</h3>
+<p>React itself is built on delegation: synthetic events are listened to not on the elements but on the application's root container (before React 17 — on <code>document</code>). That's why a handler "on every element" in JSX costs almost nothing.</p>
+<p>Shadow DOM adds retargeting: when an event bubbles out of the shadow tree, <code>event.target</code> is replaced with the host element so the component's internals aren't exposed. The event's real path is returned by <code>event.composedPath()</code>, and whether it crosses the shadow boundary is determined by the <code>composed</code> flag.</p>

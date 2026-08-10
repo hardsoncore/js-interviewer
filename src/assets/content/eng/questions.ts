@@ -1589,7 +1589,7 @@ export const questions = [
     answer: 'assets/content/eng/answers/60-Methods-for-managing-a-group-of-promises.md',
     tags: [
       'JavaScript',
-      'ES6',
+      'JS mechanics',
       'Promise',
       'Async'
     ],
@@ -1610,6 +1610,9 @@ export const questions = [
       },
       {
         name: 'Promise.any() — «At least one successful»',
+      },
+      {
+        name: 'Trap: an error in all does not cancel the remaining promises',
       }
     ]
   },

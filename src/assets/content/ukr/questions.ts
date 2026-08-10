@@ -1589,7 +1589,7 @@ export const questions = [
     answer: 'assets/content/ukr/answers/60-Metody-upravlinnya-gruppoju-promisiv.md',
     tags: [
       'JavaScript',
-      'ES6',
+      'JS mechanics',
       'Promise',
       'Async'
     ],
@@ -1610,6 +1610,9 @@ export const questions = [
       },
       {
         name: 'Promise.any() — «Хоч хтось успішний»',
+      },
+      {
+        name: 'Пастка: помилка в all не скасовує решту промісів',
       }
     ]
   },

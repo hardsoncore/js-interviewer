@@ -2039,13 +2039,29 @@ export const questions = [
     answer: 'assets/content/rus/answers/78-Patterny-proektirovaniya.md',
     tags: [
       'Patterns',
-      'best-practice'
+      'best-practice',
+      'ООП'
     ],
     category: 'programming',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Паттерны проектирования - что это и для чего нужны?',
+        name: 'Паттерн — типовое решение и общий язык команды',
+      },
+      {
+        name: 'Порождающие: Singleton, Factory Method, Builder',
+      },
+      {
+        name: 'Структурные: Adapter, Decorator, Facade, Proxy',
+      },
+      {
+        name: 'Поведенческие: Observer, Strategy, Command',
+      },
+      {
+        name: 'Паттерны во фронтенд-стеке: DI-сервисы, RxJS, декораторы, Proxy во Vue 3',
+      },
+      {
+        name: 'Ловушка: overengineering — паттерн применяют к проблеме',
       }
     ]
   },

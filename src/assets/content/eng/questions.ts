@@ -2039,13 +2039,29 @@ export const questions = [
     answer: 'assets/content/eng/answers/78-Design-Patterns.md',
     tags: [
       'Patterns',
-      'best-practice'
+      'best-practice',
+      'OOP'
     ],
     category: 'programming',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Design Patterns - what they are and why they are needed?',
+        name: 'A pattern is a typical solution and a shared team vocabulary',
+      },
+      {
+        name: 'Creational: Singleton, Factory Method, Builder',
+      },
+      {
+        name: 'Structural: Adapter, Decorator, Facade, Proxy',
+      },
+      {
+        name: 'Behavioral: Observer, Strategy, Command',
+      },
+      {
+        name: 'Patterns in the frontend stack: DI services, RxJS, decorators, Proxy in Vue 3',
+      },
+      {
+        name: 'The trap: overengineering — apply a pattern to a problem',
       }
     ]
   },

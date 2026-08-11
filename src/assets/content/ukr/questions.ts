@@ -1654,7 +1654,9 @@ export const questions = [
     name: 'LocalStorage VS SessionStorage. Різниця, принцип роботи. Коли використовувати?',
     answer: 'assets/content/ukr/answers/62-LocalStorage-VS-SessionStorage-Riznitsya-printsip-roboty.md',
     tags: [
+      'JavaScript',
       'browser',
+      'Web APIs',
       'LocalStorage',
       'SessionStorage'
     ],
@@ -1662,16 +1664,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'LocalStorage',
+        name: 'Загальний принцип: Web Storage API (рядки, синхронність, прив\'язка до origin, ~5 МБ)',
       },
       {
-        name: 'SessionStorage',
+        name: 'Однаковий API: setItem, getItem, removeItem, clear',
       },
       {
-        name: 'Основні відмінності та випадки використання',
+        name: 'Відмінності: час життя та область видимості між вкладками',
       },
       {
-        name: 'Обмеження зберігання та питання безпеки',
+        name: 'Коли використовувати: localStorage — налаштування, sessionStorage — стан вкладки',
+      },
+      {
+        name: 'Безпека: XSS, токени — в HttpOnly cookies',
       },
       {
         name: 'Альтернативи: Cookies та IndexedDB',

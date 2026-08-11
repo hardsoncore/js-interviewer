@@ -1654,7 +1654,9 @@ export const questions = [
     name: 'LocalStorage VS SessionStorage. Differences, working principle. When to use?',
     answer: 'assets/content/eng/answers/62-LocalStorage-VS-SessionStorage-Differences-working-principle.md',
     tags: [
+      'JavaScript',
       'browser',
+      'Web APIs',
       'LocalStorage',
       'SessionStorage'
     ],
@@ -1662,16 +1664,19 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'LocalStorage',
+        name: 'Shared principle: Web Storage API (strings, synchronous, bound to origin, ~5 MB)',
       },
       {
-        name: 'SessionStorage',
+        name: 'The same API: setItem, getItem, removeItem, clear',
       },
       {
-        name: 'Main differences and use cases',
+        name: 'Differences: lifetime and visibility across tabs',
       },
       {
-        name: 'Storage limits and security considerations',
+        name: 'When to use which: localStorage — settings, sessionStorage — tab state',
+      },
+      {
+        name: 'Security: XSS, tokens — in HttpOnly cookies',
       },
       {
         name: 'Alternatives: Cookies and IndexedDB',

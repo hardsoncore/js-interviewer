@@ -1714,14 +1714,34 @@ export const questions = [
     name: 'Мутабильность/иммутабильность (при работе с массивами etc)',
     answer: 'assets/content/rus/answers/64-Mutabilnostimmutabilnost-pri-rabot-s-massivami-etc.md',
     tags: [
-      'programming',
-      'immutable'
+      'JavaScript',
+      'JS mechanics',
+      'immutable',
+      'Array'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Теги HTML',
+        name: 'Мутация — изменение «на месте», иммутабельность — новая копия',
+      },
+      {
+        name: 'Переменная хранит ссылку: мутация видна всем держателям ссылки',
+      },
+      {
+        name: 'Методы массивов: мутирующие (push, splice, sort) vs новые (map, filter, slice)',
+      },
+      {
+        name: 'ES2023: toSorted, toReversed, toSpliced, with',
+      },
+      {
+        name: 'Иммутабельное обновление: spread, map, filter',
+      },
+      {
+        name: 'Зачем: предсказуемость и сравнение по ссылке (React, OnPush, Redux)',
+      },
+      {
+        name: 'const не защищает содержимое; Object.freeze — поверхностный',
       }
     ]
   },

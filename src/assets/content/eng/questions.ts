@@ -1714,14 +1714,34 @@ export const questions = [
     name: 'Mutability/Immutability (when working with arrays etc)',
     answer: 'assets/content/eng/answers/64-Mutability-Immutability-when-working-with-arrays-etc.md',
     tags: [
-      'programming',
-      'immutable'
+      'JavaScript',
+      'JS mechanics',
+      'immutable',
+      'Array'
     ],
     category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'HTML tags',
+        name: 'Mutation — changing "in place", immutability — a new copy',
+      },
+      {
+        name: 'A variable stores a reference: mutation is visible to every reference holder',
+      },
+      {
+        name: 'Array methods: mutating (push, splice, sort) vs new ones (map, filter, slice)',
+      },
+      {
+        name: 'ES2023: toSorted, toReversed, toSpliced, with',
+      },
+      {
+        name: 'Immutable updates: spread, map, filter',
+      },
+      {
+        name: 'Why: predictability and reference comparison (React, OnPush, Redux)',
+      },
+      {
+        name: 'const does not protect the contents; Object.freeze is shallow',
       }
     ]
   },

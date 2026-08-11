@@ -1747,20 +1747,34 @@ export const questions = [
   },
   {
     id: 65,
-    name: 'Реактивне програмування. RxJs і основні методи',
-    answer: 'assets/content/ukr/answers/65-Reaktyvne-programuvannya-RxJs-i-osnovni-metody.md',
+    name: 'Модулі в JavaScript: CommonJS vs ES Modules (import/export). У чому різниця?',
+    answer: 'assets/content/ukr/answers/65-Moduli-v-JavaScript-ESM-vs-CommonJS.md',
     tags: [
-      'TypeScript',
-      'RxJs'
+      'JavaScript',
+      'JS mechanics',
+      'ES6',
+      'Ecmascript'
     ],
-    category: QuestionCategories.typescript,
+    category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Реактивне програмування - що це?',
+        name: 'Навіщо модулі: власна область видимості та явний граф залежностей',
       },
       {
-        name: 'RxJs - для чого потрібен?',
+        name: 'CommonJS: require/module.exports — функція в рантаймі, синхронно',
+      },
+      {
+        name: 'ES Modules: import/export — статичний синтаксис, граф до виконання',
+      },
+      {
+        name: 'Ключові відмінності: момент розв\'язання, live bindings vs копія, sync vs async',
+      },
+      {
+        name: 'Tree shaking — наслідок статичної структури ESM',
+      },
+      {
+        name: 'Dynamic import() і code splitting',
       },
     ]
   },
@@ -2375,27 +2389,31 @@ export const questions = [
   },
   {
     id: 91,
-    name: 'RxJS і асинхронність',
+    name: 'Реактивне програмування і RxJS. Асинхронність через потоки даних',
     answer: 'assets/content/ukr/answers/91-RxJS-i-asinhronnist.md',
     tags: [
-      'rxjs',
-      'asynchronous',
-      'reactive programming'
+      'Angular',
+      'RxJS',
+      'Async',
+      'Reactive Programming'
     ],
     category: 'Angular',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Що таке RxJS',
+        name: 'Реактивне програмування: дані — асинхронні потоки в часі',
       },
       {
-        name: 'Для чого потрібен RxJS?',
+        name: 'Push vs Pull: Observable проти функцій, ітераторів і Promise',
       },
       {
-        name: 'Базові сутності RxJS: Observable, Observer, Subscription, Subject',
+        name: 'Які проблеми вирішує RxJS: множинність, скасування, композиція, стан',
       },
       {
-        name: 'Популярні оператори',
+        name: 'Базові сутності: Observable, Observer, Subscription, Subject',
+      },
+      {
+        name: 'Оператори та pipe(): сім\'ї операторів',
       }
     ]
   },

@@ -1747,20 +1747,34 @@ export const questions = [
   },
   {
     id: 65,
-    name: 'Reactive programming. RxJs and main methods',
-    answer: 'assets/content/eng/answers/65-Reactive-programming-RxJs-and-main-methods.md',
+    name: 'JavaScript modules: CommonJS vs ES Modules (import/export). What is the difference?',
+    answer: 'assets/content/eng/answers/65-JavaScript-modules-ESM-vs-CommonJS.md',
     tags: [
-      'TypeScript',
-      'RxJs'
+      'JavaScript',
+      'JS mechanics',
+      'ES6',
+      'Ecmascript'
     ],
-    category: QuestionCategories.typescript,
+    category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Reactive programming - what is it?',
+        name: 'Why modules: own scope and an explicit dependency graph',
       },
       {
-        name: 'RxJs - what is it for?',
+        name: 'CommonJS: require/module.exports — a runtime function, synchronous',
+      },
+      {
+        name: 'ES Modules: import/export — static syntax, graph before execution',
+      },
+      {
+        name: 'Key differences: resolution time, live bindings vs copy, sync vs async',
+      },
+      {
+        name: 'Tree shaking — a consequence of ESM static structure',
+      },
+      {
+        name: 'Dynamic import() and code splitting',
       },
     ]
   },
@@ -2378,27 +2392,31 @@ export const questions = [
   },
   {
     id: 91,
-    name: 'RxJS and Asynchronous Programming',
+    name: 'Reactive programming and RxJS. Asynchrony through data streams',
     answer: 'assets/content/eng/answers/91-RxJS-and-Asynchronous-Programming.md',
     tags: [
-      'rxjs',
-      'asynchronous',
-      'reactive programming'
+      'Angular',
+      'RxJS',
+      'Async',
+      'Reactive Programming'
     ],
     category: 'Angular',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'What is RxJS',
+        name: 'Reactive programming: data as asynchronous streams over time',
       },
       {
-        name: 'What is RxJS used for?',
+        name: 'Push vs Pull: Observable versus functions, iterators and Promise',
       },
       {
-        name: 'Basic entities of RxJS: Observable, Observer, Subscription, Subject',
+        name: 'Problems RxJS solves: multiple values, cancellation, composition, state',
       },
       {
-        name: 'Popular operators',
+        name: 'Basic entities: Observable, Observer, Subscription, Subject',
+      },
+      {
+        name: 'Operators and pipe(): operator families',
       }
     ]
   },

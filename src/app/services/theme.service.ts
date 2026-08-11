@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { ThemeType } from 'src/app/models/app.model';
 import { Themes } from 'src/app/enums/app.enum';
 
+// Colors the OS status bar in an installed PWA; must match --ion-background-color in src/theme/variables.scss
+const THEME_COLORS: Record<ThemeType, string> = {
+  [Themes.light]: '#f4f1e9',
+  [Themes.dark]: '#16171a'
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +28,13 @@ export class ThemeService {
     document.body.classList.toggle(Themes.dark, shouldAdd);
     this._currentTheme = shouldAdd ? Themes.dark : Themes.light;
     localStorage.setItem('theme', this._currentTheme);
+    this._updateThemeColorMeta();
+  }
+
+  private _updateThemeColorMeta(): void {
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', THEME_COLORS[this._currentTheme]);
   }
 
   private _initTheme(): void {

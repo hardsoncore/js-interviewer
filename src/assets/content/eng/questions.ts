@@ -2167,17 +2167,29 @@ export const questions = [
   },
   {
     id: 81,
-    name: 'HTTP Protocol. What it is and what it is used for?',
-    answer: 'assets/content/eng/answers/81-HTTP-Protocol-What-it-is-and-what-it-is-used-for.md',
+    name: 'Debounce and Throttle. What is the difference and when to use each?',
+    answer: 'assets/content/eng/answers/81-Debounce-and-Throttle.md',
     tags: [
-      'protocol',
-      'internet'
+      'JavaScript',
+      'JS mechanics',
+      'functions',
+      'closures',
+      'Performance'
     ],
-    category: 'Markup',
+    category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'HTML tags',
+        name: 'Debounce waits for silence, throttle keeps the rhythm',
+      },
+      {
+        name: 'Implementing debounce and throttle with a closure and a timer',
+      },
+      {
+        name: 'When to use which: the final result or the process',
+      },
+      {
+        name: 'Pitfall: create the wrapper only once',
       }
     ]
   },

@@ -2167,17 +2167,29 @@ export const questions = [
   },
   {
     id: 81,
-    name: 'Протокол HTTP. Что это такое и с чем его едят?',
-    answer: 'assets/content/rus/answers/81-Protokol-HTTP-Chto-eto-takoe-i-s-chem-ego-edyat.md',
+    name: 'Debounce и Throttle. В чем разница и когда что применять?',
+    answer: 'assets/content/rus/answers/81-Debounce-i-Throttle.md',
     tags: [
-      'protocol',
-      'internet'
+      'JavaScript',
+      'JS mechanics',
+      'functions',
+      'closures',
+      'Performance'
     ],
-    category: 'Markup',
+    category: 'JavaScript',
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Теги HTML',
+        name: 'Debounce ждёт тишины, throttle держит ритм',
+      },
+      {
+        name: 'Реализация debounce и throttle на замыкании и таймере',
+      },
+      {
+        name: 'Когда что применять: итог или процесс',
+      },
+      {
+        name: 'Ловушка: обёртку создают один раз',
       }
     ]
   },

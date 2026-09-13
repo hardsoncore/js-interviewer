@@ -1786,13 +1786,25 @@ export const questions = [
       'TypeScript',
       'Observables',
       'Async',
-      'RxJs'
+      'RxJS'
     ],
     category: QuestionCategories.typescript,
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Observable - что это?',
+        name: 'Observable — ленивая обёртка над функцией, поток значений во времени',
+      },
+      {
+        name: 'Контракт: next, error, complete',
+      },
+      {
+        name: 'Чем отличается от Promise: лень, много значений, отмена',
+      },
+      {
+        name: 'Subscription и unsubscribe: кто завершается сам, а кого закрываем мы',
+      },
+      {
+        name: 'Утечка памяти из-за забытой подписки: async pipe и takeUntilDestroyed',
       }
     ]
   },

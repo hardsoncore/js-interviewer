@@ -1792,19 +1792,7 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Observable — лінива обгортка над функцією, потік значень у часі',
-      },
-      {
-        name: 'Контракт: next, error, complete',
-      },
-      {
-        name: 'Чим відрізняється від Promise: лінивість, багато значень, скасування',
-      },
-      {
-        name: 'Subscription і unsubscribe: хто завершується сам, а кого закриваємо ми',
-      },
-      {
-        name: 'Витік пам\'яті через забуту підписку: async pipe і takeUntilDestroyed',
+        name: 'Observable - що це?',
       }
     ]
   },

@@ -1792,19 +1792,7 @@ export const questions = [
     level: QuestionLevels.middle,
     structure: [
       {
-        name: 'Observable — a lazy wrapper around a function, a stream of values over time',
-      },
-      {
-        name: 'The contract: next, error, complete',
-      },
-      {
-        name: 'How it differs from a Promise: laziness, many values, cancellation',
-      },
-      {
-        name: 'Subscription and unsubscribe: which streams end themselves and which we close',
-      },
-      {
-        name: 'Memory leak from a forgotten subscription: async pipe and takeUntilDestroyed',
+        name: 'Observable - what is it?',
       }
     ]
   },
